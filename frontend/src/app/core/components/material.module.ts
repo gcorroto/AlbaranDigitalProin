@@ -20,7 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       MatAutocompleteModule,
       MatIconModule,
       MatCardModule,
-      MatSliderModule
+      MatSliderModule,
   ],
     exports: []
 })

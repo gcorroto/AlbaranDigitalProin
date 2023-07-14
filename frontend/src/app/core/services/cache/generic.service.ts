@@ -24,7 +24,7 @@ export class GenericCacheService<T,I> extends CacheableService implements Generi
   getAll(ent: EntityApi): Observable<T> {
     return this.service.getAll(ent);
   }
-
+  @Cache({timeout: 1000})
   postSave(id: I, t: T, ent: EntityApi, format?: Formats): Observable<T> {
     return this.service.postSave(id, t, ent, format);
   }

@@ -1,0 +1,16 @@
+logging:
+  level:
+    org.springframework: ERROR
+    com.proin.albaran: DEBUG
+---
+security:
+  csrf:
+    enabled: false
+    cookie:
+      domain: ''
+      name: ''
+      httOnly: false
+      secure: false
+  paths:
+    exclude:
+    include:

@@ -14,11 +14,11 @@ plugins {
 		webjarDir = "static"
 
 		// NPM Task names
-		taskNames {
-			clean = "clean"
-			build = "build"
-			watch = "watch"
-		}
+		// taskNames {
+		// 	clean = "clean"
+		// 	build = "build"
+		// 	watch = "watch"
+		// }
 
 		// Caching options
 		cache {

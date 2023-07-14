@@ -8,16 +8,20 @@ import {
   BreakpointState
 } from '@angular/cdk/layout';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { EntityApiEnum } from '@app/core/const/Enums';
+import { ILog, Log } from '@app/core/dto/log.model';
+import { GenericCacheService } from '@app/core/services/cache/generic.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
+  selector: 'app-albaran',
   templateUrl: './albaran.component.html',
   styleUrls: ['./albaran.component.scss']
 })
 export class AlbaranComponent implements OnInit {
   isLinear = true;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  clienteFormGroup: FormGroup;
+  transporteFormGroup: FormGroup;
   albaran: Albaran;
   widthSize: number;
 
@@ -26,7 +30,8 @@ export class AlbaranComponent implements OnInit {
     protected readonly ngxService: NgxUiLoaderService,
     private readonly route: ActivatedRoute,
     protected readonly router: Router,
-    protected readonly breakpointObserver: BreakpointObserver
+    protected readonly breakpointObserver: BreakpointObserver,
+    private readonly log: GenericCacheService<Log,string>
     ) {
     }
 
@@ -36,15 +41,28 @@ export class AlbaranComponent implements OnInit {
 
     const resolvedData: Albaran = this.route.snapshot.data['albaran'];
     this.albaran = resolvedData;
+    this.logInitialData(resolvedData);
     this.buildFormCliente();
+    this.buildFormTransporte();
 
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+  }
+
+  private logInitialData(data) {
+    const logCurrent:ILog  = {level: 'debug', message: `recibimos primera carga albaran [${JSON.stringify(data)}]`};
+          this.log.postSave('send',logCurrent , EntityApiEnum.Log)
+          .pipe(untilDestroyed(this))
+          .subscribe(
+            (logResp) => {
+              console.debug(logResp.message);
+            },
+            (err)=>{
+              console.error(err);
+            }
+          );
   }
 
   private buildFormCliente() {
-    this.firstFormGroup = this._formBuilder.group({
+    this.clienteFormGroup = this._formBuilder.group({
       numAlbaran: ['', Validators.required],
       fechaEntrega: [{value: this.albaran.fechaEntrega, disabled: true}],
       radial: [{value: this.albaran.radial, disabled: true}],
@@ -62,20 +80,19 @@ export class AlbaranComponent implements OnInit {
     });
   }
 
+  private buildFormTransporte() {
+    this.transporteFormGroup = this._formBuilder.group({
+      'transporte.empresa': [{value: this.albaran.transporte.empresa, disabled: true}],
+      'transporte.cif': [{value: this.albaran.transporte.cif, disabled: true}],
+      'transporte.camion.matricula': [{value: this.albaran.transporte.camion.matricula, disabled: true}],
+      'transporte.remolque.matricula': [{value: this.albaran.transporte.remolque.matricula, disabled: true}],
+      'transporte.cargadorContractual': [{value: this.albaran.transporte.cargadorContractual, disabled: true}]
+    });
+  }
+
   private responsiveStepper(): void {
     this.widthSize = 0;
-      this.breakpointObserver
-        .observe(['(min-width: 600px)'])
-        .pipe(untilDestroyed(this))
-        .subscribe((state: BreakpointState) => {
-          if (state.matches) {
-            this.widthSize = 1;
-            console.log('Viewport width is 500px or greater!');
-          } else {
-            this.widthSize = 0;
-            console.log('Viewport width is less than 500px!');
-          }
-        });
+
 
         this.breakpointObserver
         .observe(['(min-width: 1280px)'])
@@ -83,12 +100,51 @@ export class AlbaranComponent implements OnInit {
         .subscribe((state: BreakpointState) => {
           if (state.matches) {
             this.widthSize = 2;
-            console.log('Viewport width is 1280px or greater!');
+            this.callLogger('log', 'Viewport width is 1280px or greater!');
           } else {
-            this.widthSize = 1;
-            console.log('Viewport width is less than 500px!');
+            this.callLogger('log', 'Viewport width is less than 1280px!');
+            this.breakpointObserver
+            .observe(['(min-width: 600px)'])
+            .pipe(untilDestroyed(this))
+            .subscribe((state: BreakpointState) => {
+              if (state.matches) {
+                this.widthSize = 1;
+                  this.callLogger('log', 'Viewport width is 600px or greater!');
+              } else {
+                this.widthSize = 0;
+                this.callLogger('log', 'Viewport width is less than 600px!');
+              }
+            });
           }
         })
+  }
+
+  private callLogger(level: string, message: string) {
+    const logCurrent:ILog  = {level, message};
+    this.log.postSave('send',logCurrent , EntityApiEnum.Log)
+    .subscribe((logResp) => {
+        switch (level) {
+          case 'log':
+            console.log(logResp.message);
+            break;
+          case 'debug':
+            console.debug(logResp.message);
+              break;
+          case 'info':
+            console.info(logResp.message);
+              break;
+          case 'warn':
+            console.warn(logResp.message);
+              break;
+          case 'error':
+            console.error(logResp.message);
+              break;
+          default:
+              break;
+        }
+    },(err)=>{
+      console.error(err);
+    });
   }
 
 }

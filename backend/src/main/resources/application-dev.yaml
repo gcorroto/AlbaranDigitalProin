@@ -1,0 +1,23 @@
+logging:
+  level:
+    org.springframework: INFO
+    com.proin.albaran: DEBUG
+---
+security:
+  csrf:
+    enabled: true
+    cookie:
+      domain: localhost
+      name: 'CSRF-TOKEN'
+      httOnly: false
+      secure: false
+  paths:
+    exclude: "/static/**,/signup,/login,/,/favicon.ico,/**.css,/**.scss,/**.html,/**.js"
+    include: "/api/**"
+
+---
+spring:
+  security:
+    user:
+      name: hugo
+      password: oguh

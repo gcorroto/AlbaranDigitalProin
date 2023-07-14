@@ -1,16 +1,19 @@
+import { ILog } from './../dto/log.model';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { EntityApiEnum } from '@const/Enums';
 import { Albaran } from '@dto/albaran.model';
 import { GenericCacheService } from '@services/cache/generic.service';
 import { Observable } from 'rxjs';
+import { Log } from '@dto/log.model';
 
 @Injectable()
 export class PrimeraCargaAlbaranResolver implements Resolve<Albaran> {
 
 
     constructor(
-        private readonly service: GenericCacheService<Albaran,string>,
+        private readonly serviceAlbaran: GenericCacheService<Albaran,string>,
+        private readonly log: GenericCacheService<Log,string>,
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Albaran> {
@@ -18,17 +21,15 @@ export class PrimeraCargaAlbaranResolver implements Resolve<Albaran> {
       // const clientId: string = route.paramMap.get('clientId');
 
         return new Observable<Albaran>((observ) => {
-          console.info("realizamos primera carga albaran");
-          const subscribtion = this.service.getAll(EntityApiEnum.Albaran)
+          console.debug(`realizamos primera carga albaran`);
+          this.serviceAlbaran.getAll(EntityApiEnum.Albaran)
           .subscribe((data: Albaran) => {
               observ.next(data);
-              observ.complete();
             },
-            (err) => observ.error(err),
+            (err) => {
+              observ.error(err);
+            },
             ()=> {
-              // if(subscribtion && !subscribtion.closed) {
-              //   subscribtion.unsubscribe();
-              // }
               observ.complete();
             }
           );

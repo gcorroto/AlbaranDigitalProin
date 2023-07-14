@@ -80,11 +80,13 @@ export enum ArrayFilms  {
  }
 
  export enum EntityToPath {
-    'Albaran '= 'albaran'
+    'Albaran '= 'albaran',
+    'Log '= 'log'
  }
 
 export const BASE_SWAPI_URL = `https://swapi.dev/api`;
 
 export enum EntityApiEnum {
-  Albaran = 'albaran'
+  Albaran = 'albaran',
+  Log = 'log',
 };

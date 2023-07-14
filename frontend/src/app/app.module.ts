@@ -14,7 +14,7 @@ import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER as spinner } from 'ngx-ui
 import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlbaranMaterialModule } from '@component/material.module';
-import { BaseComponentPage } from '@component/base/base.component';
+import { CookieService } from '@services/impl/cookie-service.service';
 
 
 const defaultLoaderConfig: NgxUiLoaderConfig = {
@@ -37,7 +37,6 @@ export function initializer(cacheConfig: CacheConfigService): () => Promise<any>
 
 @NgModule({
   declarations: [
-    BaseComponentPage,
     DataTableWrapperComponent,
     CardComponent,
     CardListComponent,
@@ -65,7 +64,8 @@ export function initializer(cacheConfig: CacheConfigService): () => Promise<any>
 			useFactory: initializer,
 			deps: [CacheConfigService],
 			multi: true
-    }
+    },
+    CookieService
   ]
 })
 export class AppModule { }

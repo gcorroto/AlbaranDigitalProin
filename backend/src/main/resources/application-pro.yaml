@@ -1,0 +1,29 @@
+logging:
+  level:
+    org.springframework: ERROR
+---
+security:
+  csrf:
+    enabled: true
+    cookie:
+      domain: localhost
+      name: 'CSRF-TOKEN'
+      httOnly: true
+      secure: true
+  paths:
+    exclude:
+      - /static/**
+      - /signup
+      - '**.ico'
+      - '**.css'
+      - '**.scss'
+      - '**.html'
+      - '**.js'
+    include:
+      - /api/**
+---
+spring:
+  security:
+    user:
+      name: hugo
+      password: oguh

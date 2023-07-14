@@ -18,13 +18,15 @@ import { StepFormComponent } from '@component/step-form/step-form.component';
 import { ToolbarComponent } from '@component/toolbar/toolbar.component';
 import { StepClienteComponent } from './component/step-cliente/step-cliente.component';
 import { PrimeraCargaAlbaranResolver } from '@app/core/resolvers/albaran.resolver';
+import { StepTransporteComponent } from './component/step-transporte/step-transporte.component';
 
 
 const components = [
 	AlbaranComponent,
   ToolbarComponent,
   StepFormComponent,
-  StepClienteComponent
+  StepClienteComponent,
+  StepTransporteComponent
 ];
 
 const pipes = [

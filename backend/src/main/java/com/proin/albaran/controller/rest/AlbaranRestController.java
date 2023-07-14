@@ -1,16 +1,16 @@
 package com.proin.albaran.controller.rest;
 
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,14 +29,10 @@ import com.proin.albaran.dto.HormigonDto;
 import com.proin.albaran.dto.MeteorologiaDto;
 import com.proin.albaran.dto.RemolqueDto;
 import com.proin.albaran.dto.TransporteDto;
+import com.proin.albaran.service.MockAlbaranService;
 import com.proin.albaran.util.EasyRandomUtils;
 import com.proin.conex.modelos.transporte.TAlbaran;
-import com.proin.conex.modelos.transporte.TConsumo;
-import com.proin.conex.modelos.transporte.TIncidenciaAlbaran;
-import com.proin.conex.modelos.transporte.TIncidenciaAlbaranId;
-import com.proin.conex.modelos.transporte.TLineaAlbaran;
 import com.proin.conex.modelos.transporte.TMedida;
-import com.proin.conex.modelos.transporte.albaranes.TDescripcionHormigon;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,45 +44,48 @@ import lombok.extern.slf4j.Slf4j;
 @CrossOrigin(value = {"http://localhost:4200","http://localhost:8080"})
 public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto> {
 
-	private final List<String> catalogoUnidades = TMedida.mapaUnidades.keySet().stream().collect(Collectors.toList());
+	private List<String> catalogoUnidades = TMedida.mapaUnidades.keySet().stream().collect(Collectors.toList());
 	private final ModelMapper modelMapper;
+	private final MockAlbaranService mockService;
 
 	@PostConstruct
 	public void init() {
         configMappingDto(); 
     }
 
+	/// REST CONTROLLERS
+
+	// GET BASE ALBARAN
 	@GetMapping()
 	public ResponseEntity<AlbaranDto> getAlbaran() {
 
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
-            TAlbaran entity = obtenerAlbaran();
-            AlbaranDto dto = masDatosAlbaran(convertToDto(entity));
+            TAlbaran entity = mockService.obtenerAlbaran();
+            AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
         if (dto == null) {
             response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
         }
         response = new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
+			log.error("Error al general el primer albaran", e);
             response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return response;
 	}
 
+	// GET CONSULTA ALBARAN CREADO ?¿
     @GetMapping("/{id}")
 	public ResponseEntity<AlbaranDto> getAlbaranById(@PathVariable("id") String id) {
 
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
             log.info("recibimos consulta albaran con id " + id);
-            TAlbaran entity = obtenerAlbaran();
-            AlbaranDto dto = masDatosAlbaran(convertToDto(entity));
+            TAlbaran entity = mockService.obtenerAlbaran();
+            AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
             dto.setNumAlbaran(id);
-        // if (dto == null) {
-        //     response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
-        // }
-        response = new ResponseEntity<>(dto, HttpStatus.OK);
+        	response = new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
             response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -94,104 +93,32 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
         return response;
 	}
 
-
-
+	// POST GUARDAMOS NUEVO ALBARAN
     @PostMapping("/{id}")
 	public ResponseEntity<AlbaranDto> postAlbaranById(@PathVariable("id") Integer id, @RequestBody AlbaranDto dto) {
 
+		// QUE HACEMOS?¿
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(dto, HttpStatus.OK);
         log.info("recibimos alta albaran con NumAlbaran " + dto.getNumAlbaran());
 
         return response;
 	}
 
+	// PUT ACTUALIZAMOS ALBARAN ?¿
     @PutMapping("/{id}")
 	public ResponseEntity<AlbaranDto> putAlbaranById(@PathVariable("id") Integer id, @RequestBody AlbaranDto dto) {
-
+		
+		// QUE HACEMOS?¿
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(dto, HttpStatus.OK);
         log.info("recibimos modificación albaran con NumAlbaran " + dto.getNumAlbaran());
 
         return response;
 	}
 
-	
-    //// testing
-	private TAlbaran obtenerAlbaran() {
 
-		TAlbaran albaran = EASY_RANDOM.nextObject(TAlbaran.class);
-		albaran.setAlbaranid(1l);
-		albaran.setCantidadARecuperar(new TMedida());
-		albaran.setConsumos(obtenerConsumos());
-		albaran.setDescripcionHormigon(obtenerDescripcionDeHormigon(albaran));
-		albaran.setFechaAlbaran(new Date());
-		albaran.setIncidencias(obtenerIncidencias());
-		albaran.setLineasAlbaran(obtenerLineasAlbaran(albaran));
-		albaran.setFechaAlbaran(new Date());
-		albaran.setCliente(EasyRandomUtils.nombreCompletoGenerator().getRandomValue());
-		albaran.setId(23456789L);
-		albaran.setCifTransportista(EasyRandomUtils.cifGenerator().getRandomValue());
-		albaran.setMatriculaCamion(EasyRandomUtils.matriculaGenerator().getRandomValue());
-		albaran.setMatricularemolque(EasyRandomUtils.matriculaGenerator().getRandomValue());
-		albaran.setCodigoEmpresa(1);
-		albaran.setCifTransportista(EasyRandomUtils.cifGenerator().getRandomValue());
-		albaran.setClienteEsCargadorContractual(true);
-		albaran.setNumeroalbaran(EasyRandomUtils.numeroIsbnGenerator().getRandomValue());
-		albaran.setFechaAlbaran(new Date());
-		albaran.setPlantasChanged(EasyRandomUtils.stringGenerator(5).getRandomValue());
-		albaran.setClienteEsCargadorContractual(true);
-		albaran.setObra(EasyRandomUtils.stringGenerator(4).getRandomValue());
 
-		return albaran;
-	}
 
-	//// testing
-	private AlbaranDto masDatosAlbaran(AlbaranDto dto) {
-
-		dto.setM3(EasyRandomUtils.floatGenerator(4).getRandomValue());
-		dto.setProgresoDia(EasyRandomUtils.integerGenerator(2).getRandomValue());
-		dto.setDireccion(EasyRandomUtils.streetGenerator().getRandomValue());
-		dto.setCp(EasyRandomUtils.codigoPostalGenerator().getRandomValue());
-		dto.setMunicipio(EasyRandomUtils.countryGenerator().getRandomValue());
-
-		return dto;
-	}
-
-	private List<TLineaAlbaran> obtenerLineasAlbaran(TAlbaran albaran) {
-		TLineaAlbaran a = new TLineaAlbaran();
-		a.setAlbaran(albaran);
-		a.setCantidadRestantePedido(new TMedida());
-		a.setLineaalbaranid(1);
-		return List.of(a);
-	}
-
-	private List<TIncidenciaAlbaran> obtenerIncidencias() {
-		TIncidenciaAlbaran a = new TIncidenciaAlbaran();
-		a.setCantidadARecuperar(new TMedida());
-		TIncidenciaAlbaranId id = new TIncidenciaAlbaranId();
-		id.setCentro("centro");
-		id.setCodigoExterno("codigoexterno");
-		id.setCodigoExternoAlbaran("codigoexternoalbaran");
-		id.setCodigoPlanta("codigoplanta");
-		id.setSerieAlbaran("seriealbaran");
-		return List.of(a);
-	}
-
-	private TDescripcionHormigon obtenerDescripcionDeHormigon(TAlbaran albaran) {
-		TDescripcionHormigon a = new TDescripcionHormigon();
-		a.setAlbaran(albaran);
-		return a;
-	}
-
-	private List<TConsumo> obtenerConsumos() {
-		TConsumo c = new TConsumo();
-		c.setId(1);
-		return List.of(c);
-	}
-
-	@PostMapping("/submit")
-	public String submit(Model model) {
-		return "index";
-	}
+	/// MAPPINGS DTOS
 
 	@Override
 	public AlbaranDto convertToDto(TAlbaran entity) {
@@ -214,7 +141,11 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 		return degloses.stream().map(c-> {
 			c.setFabricante(EasyRandomUtils.companiaGenerator().getRandomValue());
 			c.setModelo(EasyRandomUtils.modeloHormigonGenerator().getRandomValue());
-			c.setCantidad(String.valueOf(EASY_RANDOM.nextObject(Integer.class) + " "+ EasyRandomUtils.catalogoRandomGenerator(catalogoUnidades).getRandomValue()));
+			c.setCantidad(String.valueOf(
+				EASY_RANDOM.nextObject(Integer.class) + 
+				" "+ 
+				(ArrayUtils.isEmpty(catalogoUnidades.toArray(new String[0])) ? "" :EasyRandomUtils.catalogoRandomGenerator(catalogoUnidades).getRandomValue())
+			));
 			return c;
 		}).collect(Collectors.toList());
 	}

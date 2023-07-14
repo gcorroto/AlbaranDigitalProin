@@ -1,0 +1,53 @@
+<form [formGroup]="formGroup">
+  <mat-grid-list cols="4" rowHeight="100px" gutterSize="5px" >
+
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
+          <mat-label>Empresa</mat-label>
+          <input matInput placeholder="" formControlName="transporte.empresa" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 1" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>cif</mat-label>
+          <input matInput readonly placeholder="-" formControlName="transporte.cif" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 1" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Matrícula Camión</mat-label>
+          <input matInput readonly placeholder="-" formControlName="transporte.camion.matricula" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 1" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Matrícula Remolque</mat-label>
+          <input matInput readonly placeholder="-" formControlName="transporte.remolque.matricula" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Cargador Contractual</mat-label>
+          <input matInput readonly placeholder="-" formControlName="transporte.cargadorContractual" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>CIF</mat-label>
+          <input matInput readonly placeholder="-" formControlName="transporte.cif" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-button matStepperPrevious>Volver</button>
+      <button mat-button matStepperNext>Siguiente</button>
+    </div>
+</form>

@@ -5,6 +5,7 @@ import { HttpServiceImpl } from '@services/impl/http.service';
 import { UtilService } from '@util/util.service.';
 import { UtilTableService } from '@util/util.table.service';
 import { GenericCacheService } from '@services/cache/generic.service';
+import { CSRF_TOKEN_PROVIDERS } from '../interceptors/csrfinterceptor.service';
 
 
 const httpServices: any = [
@@ -29,6 +30,7 @@ export class HttpCacheModule {
 		return {
 			ngModule: HttpCacheModule,
 			providers: [
+        CSRF_TOKEN_PROVIDERS,
         httpServices,
         asyncServices,
         utilServices

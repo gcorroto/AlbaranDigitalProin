@@ -8,8 +8,6 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-divider></mat-divider>
-
       <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
           <mat-label>Fecha de entrega</mat-label>
@@ -23,8 +21,6 @@
           <input matInput readonly placeholder="-" formControlName="radial" readonly>
         </mat-form-field>
       </mat-grid-tile>
-
-      <mat-divider></mat-divider>
 
       <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
@@ -40,8 +36,6 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-divider></mat-divider>
-
       <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
           <mat-label>Planta</mat-label>
@@ -56,16 +50,12 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-divider></mat-divider>
-
       <mat-grid-tile [colspan]="4" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
           <mat-label>Cliente</mat-label>
           <input matInput placeholder=" " formControlName="cliente.nombre" readonly>
         </mat-form-field>
       </mat-grid-tile>
-
-      <mat-divider></mat-divider>
 
       <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
@@ -81,8 +71,6 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-divider></mat-divider>
-
       <mat-grid-tile [colspan]="4" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
           <mat-label>Obra</mat-label>
@@ -90,16 +78,12 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-divider></mat-divider>
-
       <mat-grid-tile [colspan]="4" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
           <mat-label>Dirección</mat-label>
           <input matInput placeholder=" " formControlName="direccion" readonly>
         </mat-form-field>
       </mat-grid-tile>
-
-      <mat-divider></mat-divider>
 
       <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
         <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
@@ -116,7 +100,8 @@
       </mat-grid-tile>
 
     </mat-grid-list>
-  <div>
-    <button mat-button matStepperNext>Siguiente</button>
-  </div>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-button matStepperNext>Siguiente</button>
+    </div>
 </form>

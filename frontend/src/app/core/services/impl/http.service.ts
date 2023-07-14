@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Formats } from '@const/Enums';
 import { EntityApi } from '@const/types';
-import { ResultSearch } from '@dto/result.search.model';
 import { environment } from '@environment';
 import { GenericService } from '@services/generic.service';
 import { UtilService } from '@util/util.service.';
@@ -28,11 +27,11 @@ export class HttpServiceImpl<T,ID> implements GenericService<T,ID> {
   }
 
   postSave(id: ID, t: T, ent: EntityApi, format?: Formats): Observable<T> {
-    return this.http.post<T>(`${this.url}/${ent}${UtilService.formatQueryParam(format)}`, t);
+    return this.http.post<T>(`${this.url}/${ent}${id ?`/${id}`:''}${UtilService.formatQueryParam(format)}`, t);
   }
 
   putUpdate(id: ID, t: T, ent: EntityApi, format?: Formats): Observable<T> {
-    return this.http.put<T>(`${this.url}/${ent}${UtilService.formatQueryParam(format)}`, t);
+    return this.http.put<T>(`${this.url}/${ent}${id ?`/${id}`:''}${UtilService.formatQueryParam(format)}`, t);
   }
 
   patchUpdate(p: Partial<T>, ent: EntityApi, format?: Formats): Observable<T> {
