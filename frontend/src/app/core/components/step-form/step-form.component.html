@@ -1,0 +1,9 @@
+<mat-step [stepControl]="formGroup">
+  <form [formGroup]="formGroup">
+    <ng-template matStepLabel>{{title}}</ng-template>
+    <ng-content select="[stepContent]"></ng-content>
+    <div>
+      <ng-content select="[stepBtns]"></ng-content>
+    </div>
+  </form>
+</mat-step>

@@ -1,0 +1,122 @@
+<form [formGroup]="formGroup">
+  <mat-grid-list cols="4" rowHeight="100px" gutterSize="5px" >
+
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
+          <mat-label>Nº de albarán</mat-label>
+          <input matInput placeholder="" formControlName="numAlbaran" required>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Fecha de entrega</mat-label>
+          <input matInput readonly placeholder="-" formControlName="fechaEntrega" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Radial</mat-label>
+          <input matInput readonly placeholder="-" formControlName="radial" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>M3 entregados</mat-label>
+          <input matInput readonly placeholder="-" formControlName="m3" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Total progres día</mat-label>
+          <input matInput readonly placeholder="-" formControlName="progresoDia" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Planta</mat-label>
+          <input matInput readonly placeholder="-" formControlName="planta" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>viaCarga</mat-label>
+          <input matInput readonly placeholder="-" formControlName="viaCarga" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
+          <mat-label>Cliente</mat-label>
+          <input matInput placeholder=" " formControlName="cliente.nombre" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Nº Cliente</mat-label>
+          <input matInput readonly placeholder=" " formControlName="planta" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>CIF</mat-label>
+          <input matInput readonly placeholder=" " formControlName="viaCarga" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
+          <mat-label>Obra</mat-label>
+          <input matInput placeholder=" " formControlName="obra" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl3_large : sizeLvlFull">
+          <mat-label>Dirección</mat-label>
+          <input matInput placeholder=" " formControlName="direccion" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-divider></mat-divider>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Población</mat-label>
+          <input matInput readonly placeholder=" " formControlName="cp" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="widthSize ===0 ? 4 : 2" [rowspan]="1">
+        <mat-form-field [style.width.px]="widthSize ===0 ? sizeLvl1 : widthSize ===1 ? sizeLvl2 : sizeLvl3">
+          <mat-label>Municipio</mat-label>
+          <input matInput readonly placeholder=" " formControlName="municipio" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  <div>
+    <button mat-button matStepperNext>Siguiente</button>
+  </div>
+</form>

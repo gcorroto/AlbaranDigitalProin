@@ -1,0 +1,22 @@
+<table class="blueTable">
+  <thead>
+  <tr>
+    <th *ngFor="let columnHead of tableConfig.columns">{{ columnHead.title }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let columnData of tableContent">
+    <td *ngFor="let columnHead of tableConfig.columns">
+      <div *ngIf="columnHead.dataProperty !== 'ROW_ACTIONS';else action_content">{{ columnData[columnHead.dataProperty] }}</div>
+      <ng-template #action_content>
+        <div *ngFor="let action of tableConfig.rowActions">
+          <img src="{{ action.logoImageUrl }}"
+               alt="{{ action.label }}"
+               *ngIf="action.showOption(columnData)"
+               (click)="onRowActionClicked(action.actionIdToReturn, columnData)"/>
+        </div>
+      </ng-template>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,47 @@
+<fieldset th:fragment="transporte">
+    <legend>Información de Transporte</legend>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="name-2">Empresa</label>
+                <input id="name-2" readonly name="name" th:field="*{transporte.empresa}" type="text" class="form-control-plaintext ">
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="name-2">cif</label>
+                <input id="name-2" readonly name="name" th:field="*{transporte.cif}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="name-2">Matrícula Camión</label>
+                <input id="name-2" readonly name="name" th:field="*{transporte.camion.matricula}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="name-2">Matrícula Remolque</label>
+                <input id="name-2" readonly name="name" th:field="*{transporte.remolque.matricula}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">Cargador Contractual</label>
+                <input id="name-2" readonly name="name" th:field="*{transporte.cargadorContractual}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">CIF</label>
+                <input id="name-2" readonly name="name" th:field="*{transporte.cif}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+</fieldset>

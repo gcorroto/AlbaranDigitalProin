@@ -1,0 +1,109 @@
+
+<fieldset th:fragment="cliente">
+    <legend>Información Cliente</legend>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="numAlbaran">Nº de albarán</label>
+                <input id="numAlbaran" name="numAlbaran" th:field="*{numAlbaran}" type="text" class="form-control required">
+            </div>
+
+        </div>
+    </div>
+    <p>Introduce número de albarán</p>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">Fecha de entrega</label>
+                <input id="name-2" readonly name="name" th:field="*{fechaEntrega}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">Radial</label>
+                <input id="name-2" readonly name="name" th:field="*{radial}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">M3 entregados</label>
+                <input id="name-2" readonly name="name" th:field="*{m3}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">Total progres día</label>
+                <input id="name-2" readonly name="name" th:field="*{progresoDia}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">Planta</label>
+                <input id="name-2" readonly name="name" th:field="*{planta}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">viaCarga</label>
+                <input id="name-2" readonly name="name" th:field="*{viaCarga}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="name-2">Cliente</label>
+                <input id="name-2" readonly name="name" th:field="*{cliente.nombre}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">Nº Cliente</label>
+                <input id="name-2" readonly name="name" th:field="*{cliente.id}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">CIF</label>
+                <input id="name-2" readonly name="name" th:field="*{cliente.cif}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="name-2">Obra</label>
+                <input id="name-2" readonly name="name" th:field="*{obra}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="name-2">Dirección</label>
+                <input id="name-2" readonly name="name" th:field="*{direccion}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2">Población</label>
+                <input id="name-2" readonly name="name" th:field="*{cp}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name-2"> </label>
+                <input id="name-2" readonly name="name" th:field="*{municipio}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+</fieldset>

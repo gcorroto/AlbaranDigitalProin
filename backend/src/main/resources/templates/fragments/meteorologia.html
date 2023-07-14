@@ -1,0 +1,23 @@
+<fieldset th:fragment="meteorologia">
+    <legend>Meteorología planta</legend>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="name-2">Temperatura ºC</label>
+                <input id="name-2" readonly name="name" th:field="*{meteorologia.temperatura}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="name-2">Humedad %</label>
+                <input id="name-2" readonly name="name" th:field="*{meteorologia.humedad}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="name-2">Velocidad Viento</label>
+                <input id="name-2" readonly name="name" th:field="*{meteorologia.velocidad}" type="text" class="form-control-plaintext ">
+            </div>
+        </div>
+    </div>
+</fieldset>

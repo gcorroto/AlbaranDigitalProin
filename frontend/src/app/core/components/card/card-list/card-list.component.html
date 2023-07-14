@@ -1,0 +1,10 @@
+<!-- <div class="row" *ngFor="let columnData of tableContent">
+  <div class="column">
+    <app-card [content]="columnData" [tableConfig]="tableConfig"></app-card>
+  </div>
+</div> -->
+
+<div class="card-container" *ngFor="let columnData of tableContent">
+  <app-card [content]="columnData" [tableConfig]="tableConfig"></app-card>
+
+</div>

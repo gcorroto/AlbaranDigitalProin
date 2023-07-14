@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /albaran-digital
+
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+
+logging:
+  level:
+    org.springframework: ERROR

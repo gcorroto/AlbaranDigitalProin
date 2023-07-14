@@ -1,0 +1,82 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@util/*": [
+        "src/app/core/util/*"
+      ],
+      "@base/*": [
+        "src/app/core/base-classes/*"
+      ],
+      "@dto/*": [
+        "src/app/core/dto/*"
+      ],
+      "@const/*": [
+        "src/app/core/const/*"
+      ],
+      "@mock/albaran/*": [
+        "src/app/page/albaran/mock/*"
+      ],
+      "@service/albaran/*": [
+        "src/app/page/albaran/service/*"
+      ],
+      "@services/*": [
+        "src/app/core/services/*"
+      ],
+      "@directive/*": [
+        "src/app/core/directives/*"
+      ],
+      "@pipe/*": [
+        "src/app/core/pipes/*"
+      ],
+      "@component/*": [
+        "src/app/core/components/*"
+      ],
+      "@router/*": [
+        "src/app/router/*"
+      ],
+      "@albaran/*": [
+        "src/app/page/albaran/*"
+      ],
+      "@environment": [
+        "src/environments/environment"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

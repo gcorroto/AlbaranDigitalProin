@@ -1,0 +1,24 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+/** No CSS for this example */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin:1rem auto;
+    max-width: 90%;
+
+ }
+
+::ng-deep .mat-input-wrapper{
+ width:400px !important;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 22px;
+}

@@ -1,0 +1,87 @@
+<div id="accordion-hormigon" th:fragment="contenido-hormigon">
+    
+    <legend>Identificación/Contenido</legend>
+
+    <div class="card">
+    <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+        <a class="btn btn-link preDef" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Cemento
+        </a>
+        </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion-hormigon">
+        <div class="card-body">
+            <ul class="list-group mb-3" th:each="cemento: ${albaran.hormigon.contenido.cementos}">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Fabricante
+                  <span class="badge badge-primary">[(${cemento.fabricante})]</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Modelo
+                  <span class="badge badge-secondary badge-pill">[(${cemento.modelo})]</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Cantidad
+                  <span class="badge badge-warning badge-pill">[(${cemento.cantidad})]</span>
+                </li>
+              </ul>
+        </div>
+    </div>
+    </div>
+    <div class="card">
+    <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+        <a class="btn btn-link collapsed preDef" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Aditivos
+        </a>
+        </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-hormigon">
+        <div class="card-body">
+            <ul class="list-group mb-3" th:each="aditivo: ${albaran.hormigon.contenido.aditivos}">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Fabricante
+                    <span class="badge badge-primary">[(${aditivo.fabricante})]</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Modelo
+                    <span class="badge badge-secondary badge-pill">[(${aditivo.modelo})]</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Cantidad
+                    <span class="badge badge-warning badge-pill">[(${aditivo.cantidad})]</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="card">
+    <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+        <a class="btn btn-link collapsed preDef" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Adiciones
+        </a>
+        </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-hormigon">
+        <div class="card-body">
+            <ul class="list-group mb-3" th:each="adicion: ${albaran.hormigon.contenido.adiciones}">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Fabricante
+                    <span class="badge badge-primary">[(${adicion.fabricante})]</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Modelo
+                    <span class="badge badge-secondary badge-pill">[(${adicion.modelo})]</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Cantidad
+                    <span class="badge badge-warning badge-pill">[(${adicion.cantidad})]</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</div>

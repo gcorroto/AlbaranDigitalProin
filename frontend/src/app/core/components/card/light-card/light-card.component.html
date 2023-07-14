@@ -1,0 +1,19 @@
+
+<div #card class="card-wrap">
+  <div class="card"  [ngStyle]="cardStyle()">
+    <!-- (click)="toggleFlip()" [@flipState]="flip" -->
+    <!-- ARRIBA  -->
+    <div class="card-bg" [ngStyle]="cardBgTransform()">
+      <div class="image-placeholder">
+        <img alt [src]="cardBgImage" loading="eager"/>
+        <!-- <p class="card-text">Title: {{content['title']}}</p> -->
+      </div>
+      <app-label-sw [trigger]="content.name" [sizeText]="20">
+        {{content.name}}
+      </app-label-sw>
+    </div>
+
+
+
+  </div>
+</div>

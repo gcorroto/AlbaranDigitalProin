@@ -1,0 +1,72 @@
+<app-toolbar></app-toolbar>
+
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+<div class="container">
+
+  <ng-container *ngIf="widthSize === 2 else verticalRef">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Información Cliente</ng-template>
+        <app-step-cliente [formGroup]="firstFormGroup" [widthSize]="widthSize"></app-step-cliente>
+      </mat-step>
+      <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Información Cliente</ng-template>
+        <app-step-cliente [formGroup]="firstFormGroup" [widthSize]="widthSize"></app-step-cliente>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </ng-container>
+  <ng-template #verticalRef>
+    <ng-container  *ngIf="widthSize === 1 else verticalMinRef">
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>Información Cliente</ng-template>
+          <app-step-cliente [formGroup]="firstFormGroup" [widthSize]="widthSize"></app-step-cliente>
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Información Cliente</ng-template>
+        <app-step-cliente [formGroup]="firstFormGroup" [widthSize]="widthSize"></app-step-cliente>
+      </mat-step>
+      </mat-vertical-stepper>
+    </ng-container>
+  </ng-template>
+  <ng-template #verticalMinRef>
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel></ng-template>
+          <app-step-cliente [formGroup]="firstFormGroup" [widthSize]="widthSize"></app-step-cliente>
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel></ng-template>
+        <app-step-cliente [formGroup]="firstFormGroup" [widthSize]="widthSize"></app-step-cliente>
+      </mat-step>
+      </mat-vertical-stepper>
+  </ng-template>
+</div>
+
+<ng-template #stepperClienteTemplate let-stepper="stepper" let-form="form" let-title="title">
+    <ng-template matStepLabel>{{title}}</ng-template>
+    <app-step-cliente [formGroup]="form" [widthSize]="widthSize"></app-step-cliente>
+  <!-- <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step> -->
+</ng-template>
