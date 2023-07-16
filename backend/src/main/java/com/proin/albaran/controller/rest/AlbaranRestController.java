@@ -41,7 +41,6 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @Slf4j
 @RequestMapping("/api/v1/albaran")
-@CrossOrigin(value = {"http://localhost:4200","http://localhost:8080"})
 public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto> {
 
 	private List<String> catalogoUnidades = TMedida.mapaUnidades.keySet().stream().collect(Collectors.toList());

@@ -2,9 +2,18 @@ server:
   servlet:
     context-path: /albaran-digital
 spring:
+  main:
+    allow-bean-definition-overriding: true
   h2:
     console:
       enabled: true
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     generate-ddl: true
+  profiles:
+    group:
+      pro-csrf: pro, csrf
+      pro-oauth2: pro, oauth2
+      dev-csrf: dev, csrf
+      dev-oauth2: dev, oauth2
+      dev-insecure: dev, insecure

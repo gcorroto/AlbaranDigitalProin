@@ -1,0 +1,24 @@
+<h1>
+  {{title}}
+</h1>
+
+
+<form [formGroup]="formGroup"  (submit)="submit()" (window:resize)="beResponsive()">
+    <!-- <div fxLayout="row">
+      <button type="button" (click)="clear()" [disabled]="!form.controls.signatureField1.valid && !form.controls.signatureField2.valid && !form.controls.signatureField3.valid">Clear</button>
+      <button type="submit" [disabled]="!form.valid">Submit</button>
+    </div> -->
+    <div class="sig-container" #firmaContainer>
+      <!-- <div fxLayout="row">
+        <button mat-button (click)="sigs.first.clear()" [disabled]="!form.controls.signatureField1.valid">Limpiar Firma</button>
+      </div> -->
+      <div fxLayout="row">
+        <signature-field formControlName="signatureField"></signature-field>
+      </div>
+    </div>
+    <div>
+      <button mat-button matStepperPrevious>Volver</button>
+      <button mat-button (click)="sigs.first.clear()" [disabled]="!formGroup.controls.firma.valid">Limpiar Firma</button>
+      <button mat-button matStepperNext [disabled]="!formGroup.valid">Firmar</button>
+    </div>
+</form>

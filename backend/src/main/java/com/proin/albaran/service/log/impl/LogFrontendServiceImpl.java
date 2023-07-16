@@ -1,8 +1,8 @@
-package com.proin.albaran.service.impl;
+package com.proin.albaran.service.log.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.proin.albaran.service.LogFrontendService;
+import com.proin.albaran.service.log.LogFrontendService;
 
 import lombok.extern.slf4j.Slf4j;
 

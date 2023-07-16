@@ -19,6 +19,7 @@ export interface IAlbaran {
    transporte: ITransporte;
    meteorologia: IMeteorologia;
    hormigon: IHormigon;
+   firma: string;
 }
 
 export class Albaran implements IAlbaran {
@@ -40,8 +41,9 @@ export class Albaran implements IAlbaran {
   cp: string;
   municipio: string;
   cliente: Cliente;
-   transporte: Transporte;
-   meteorologia: Meteorologia;
-   hormigon: Hormigon;
+  transporte: Transporte;
+  meteorologia: Meteorologia;
+  hormigon: Hormigon;
+  firma: string;
 }
 

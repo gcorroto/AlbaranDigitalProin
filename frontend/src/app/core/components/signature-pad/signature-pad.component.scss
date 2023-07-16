@@ -1,0 +1,11 @@
+:host {
+  // This should be solving issue with open area that don't have signature pad canvas
+  // background: antiquewhite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .signature-pad-canvas {
+    // border: 1px solid gray;
+  }
+}

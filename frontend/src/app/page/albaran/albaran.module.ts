@@ -13,20 +13,25 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AlbaranRoutingModule } from '@app/page/albaran/router/albaran.routing.module';
+import { AlbaranRoutingModule } from '@albaran/router/albaran.routing.module';
 import { StepFormComponent } from '@component/step-form/step-form.component';
 import { ToolbarComponent } from '@component/toolbar/toolbar.component';
-import { StepClienteComponent } from './component/step-cliente/step-cliente.component';
-import { PrimeraCargaAlbaranResolver } from '@app/core/resolvers/albaran.resolver';
-import { StepTransporteComponent } from './component/step-transporte/step-transporte.component';
-
+import { StepClienteComponent } from '@albaran/component/step-cliente/step-cliente.component';
+import { PrimeraCargaAlbaranResolver } from '@core/resolvers/albaran.resolver';
+import { StepTransporteComponent } from '@albaran/component/step-transporte/step-transporte.component';
+import { AngularSignaturePadModule } from '@component/signature-pad/signature-pad.module';
+import { StepFirmaComponent } from '@albaran/component/step-firma/step-firma.component';
+import { AngularSignatureFieldModule } from '@app/core/components/signature-field/signature-pad.module';
 
 const components = [
 	AlbaranComponent,
+
   ToolbarComponent,
   StepFormComponent,
+
   StepClienteComponent,
-  StepTransporteComponent
+  StepTransporteComponent,
+  StepFirmaComponent,
 ];
 
 const pipes = [
@@ -44,6 +49,7 @@ const resolvers = [
 		AlbaranRoutingModule,
 		ReactiveFormsModule,
     FormsModule,
+    AngularSignatureFieldModule,
 
     MatStepperModule,
     MatToolbarModule,

@@ -25,7 +25,7 @@ public class CsfrServerWebExchangeMatcher implements ServerWebExchangeMatcher {
         // Puedes utilizar métodos como getRequest(), getPath(), getHeaders(), etc. de ServerWebExchange
         // y aplicar las condiciones necesarias para la coincidencia
 
-        // Ejemplo: Verificar si la ruta del intercambio contiene "/api"
+        // Verificar si la ruta del intercambio contiene "/api"
         String path = exchange.getRequest().getPath().toString();
         boolean matchesExcludes = securityExcludePaths!=null ?  Stream.of(securityExcludePaths).anyMatch(e -> path.contains(e.replace("/**",""))): false;
         boolean matchesIncludes = securityIncludePaths!=null ? Stream.of(securityIncludePaths).anyMatch(e -> path.contains(e.replace("/**",""))): false;

@@ -15,10 +15,14 @@
         <ng-template matStepLabel>Transporte</ng-template>
         <app-step-transporte [formGroup]="transporteFormGroup" [widthSize]="widthSize"></app-step-transporte>
       </mat-step>
+      <mat-step [stepControl]="transporteFormGroup">
+        <ng-template matStepLabel>Firma</ng-template>
+        <app-step-firma [widthSize]="widthSize"></app-step-firma>
+      </mat-step>
     </mat-horizontal-stepper>
   </ng-container>
   <ng-template #verticalRef>
-    <ng-container  *ngIf="widthSize === 1 else verticalMinRef">
+    <ng-container  *ngIf="widthSize < 2">
       <mat-vertical-stepper [linear]="isLinear" #stepper>
         <mat-step [stepControl]="clienteFormGroup">
           <ng-template matStepLabel>Información Cliente</ng-template>
@@ -27,50 +31,17 @@
         <mat-step [stepControl]="transporteFormGroup">
           <ng-template matStepLabel>Transporte</ng-template>
           <app-step-transporte [formGroup]="transporteFormGroup" [widthSize]="widthSize"></app-step-transporte>
-      </mat-step>
-      </mat-vertical-stepper>
-    </ng-container>
-  </ng-template>
-  <ng-template #verticalMinRef>
-      <mat-vertical-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="clienteFormGroup">
-          <ng-template matStepLabel>
-            <mat-icon> person_pin</mat-icon>
-          </ng-template>
-          <app-step-cliente [formGroup]="clienteFormGroup" [widthSize]="widthSize"></app-step-cliente>
         </mat-step>
         <mat-step [stepControl]="transporteFormGroup">
-        <ng-template matStepLabel>
-          <mat-icon>send</mat-icon>
-        </ng-template>
-        <app-step-transporte [formGroup]="transporteFormGroup" [widthSize]="widthSize"></app-step-transporte>
-      </mat-step>
+          <ng-template matStepLabel>Firma</ng-template>
+          <app-step-firma [widthSize]="widthSize"></app-step-firma>
+        </mat-step>
       </mat-vertical-stepper>
+    </ng-container>
   </ng-template>
 </div>
 
 <ng-template #stepperClienteTemplate let-stepper="stepper" let-form="form" let-title="title">
     <ng-template matStepLabel>{{title}}</ng-template>
     <app-step-cliente [formGroup]="form" [widthSize]="widthSize"></app-step-cliente>
-  <!-- <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-    <form [formGroup]="secondFormGroup">
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step> -->
 </ng-template>

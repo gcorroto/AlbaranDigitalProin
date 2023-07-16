@@ -1,4 +1,4 @@
-package com.proin.albaran.configuration;
+package com.proin.albaran.configuration.frontend;
 import static org.springframework.http.MediaType.TEXT_HTML;
 import static org.springframework.web.reactive.function.server.RouterFunctions.resources;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
@@ -7,6 +7,7 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j()
+@Profile("!oauth2")
 public class NPMRouterAndViewResolver {
 	
 	private static final String STATIC_FOLDER_NPM = "classpath:/static/frontend/index.html";

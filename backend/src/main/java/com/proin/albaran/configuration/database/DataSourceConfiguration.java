@@ -1,4 +1,4 @@
-package com.proin.albaran.configuration;
+package com.proin.albaran.configuration.database;
 
 import java.util.Properties;
 

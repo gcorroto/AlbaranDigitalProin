@@ -1,4 +1,4 @@
-package com.proin.albaran.configuration;
+package com.proin.albaran.configuration.security;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity.CsrfSpec;
-import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 
 import com.proin.albaran.configuration.matcher.CsfrServerWebExchangeMatcher;
@@ -15,10 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j()
-@Profile({"dev", "pro"})
-public class SecurityConfiguration {
-
-    
+@Profile({"csrf"})
+public class SecurityConfigurationCSRF {
 
     @Value("${security.csrf.enabled}") boolean csrfEnabled;
     @Value("${security.csrf.cookie.domain}") String csrfCookieDomain;
@@ -28,9 +25,10 @@ public class SecurityConfiguration {
     @Value("${security.paths.exclude}") String[] securityExcludePaths;
     @Value("${security.paths.include}") String[] securityIncludePaths;
 
-    @Bean
-    @Profile({"dev", "pro"})
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+
+    @Bean(value = "httpSecurityCsrf")
+    @Profile({"csrf"})
+    public SecurityConfigurationContainer httpSecurity(ServerHttpSecurity http) {
         log.debug("prepare configuration with security cookie " + csrfCookieName);
         final CookieServerCsrfTokenRepository cookieCsrfTokenRepository = new CookieServerCsrfTokenRepository();
         final CsfrServerWebExchangeMatcher csfrServerWebExchangeMatcher = new CsfrServerWebExchangeMatcher(securityExcludePaths, securityIncludePaths, csrfCookieName);
@@ -54,9 +52,10 @@ public class SecurityConfiguration {
             security = spec.disable();
         }
         security
+        .cors().and()
         .formLogin();
 
-        return security.build();
+        return new SecurityConfigurationContainer(security);
     }
 
     private ServerHttpSecurity serverHttpSecurity(ServerHttpSecurity http) {

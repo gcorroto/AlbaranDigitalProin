@@ -1,9 +1,8 @@
-package com.proin.albaran.configuration;
+package com.proin.albaran.configuration.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.web.server.SecurityWebFilterChain;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,14 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 @Profile({"insecure"})
 public class SecurityConfigurationInsecure {
 
-    @Bean
+    @Bean(value = "httpSecurityInsecure")
     @Profile("insecure")
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+    public SecurityConfigurationContainer securityWebFilterChain(ServerHttpSecurity http) {
         log.debug("prepare configuration insecure security");
-        return
-        http.csrf().disable() // deshabilitamos en local
+        return new SecurityConfigurationContainer(
+        http.csrf().disable() // deshabilitamos csrf 
+        .cors().disable() // deshabilitamos cors 
         .authorizeExchange().anyExchange().permitAll() // permitimos todo en dev
-        .and().build();
+        .and());
     }
 
 

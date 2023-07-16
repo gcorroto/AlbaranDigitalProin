@@ -1,4 +1,4 @@
-package com.proin.albaran.configuration;
+package com.proin.albaran.configuration.modelmapper;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

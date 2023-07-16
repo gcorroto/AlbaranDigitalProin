@@ -1,4 +1,4 @@
-package com.proin.albaran.service;
+package com.proin.albaran.service.log;
 
 public interface LogFrontendService {
 

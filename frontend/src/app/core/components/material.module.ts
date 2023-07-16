@@ -22,7 +22,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       MatCardModule,
       MatSliderModule,
   ],
-    exports: []
+    exports: [],
+    declarations: [
+  ]
 })
 export class AlbaranMaterialModule {
     static forRoot(): ModuleWithProviders<AlbaranMaterialModule> {

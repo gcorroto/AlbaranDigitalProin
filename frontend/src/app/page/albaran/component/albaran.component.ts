@@ -22,6 +22,9 @@ export class AlbaranComponent implements OnInit {
   isLinear = true;
   clienteFormGroup: FormGroup;
   transporteFormGroup: FormGroup;
+  hormigonFormGroup: FormGroup;
+  meteorologinaFormGroup: FormGroup;
+  firmaFormGroup: FormGroup;
   albaran: Albaran;
   widthSize: number;
 
@@ -44,7 +47,9 @@ export class AlbaranComponent implements OnInit {
     this.logInitialData(resolvedData);
     this.buildFormCliente();
     this.buildFormTransporte();
-
+    this.buildFormHormigon();
+    this.buildFormMeteorologia();
+    this.buildFormFirma();
   }
 
   private logInitialData(data) {
@@ -88,7 +93,35 @@ export class AlbaranComponent implements OnInit {
       'transporte.remolque.matricula': [{value: this.albaran.transporte.remolque.matricula, disabled: true}],
       'transporte.cargadorContractual': [{value: this.albaran.transporte.cargadorContractual, disabled: true}]
     });
+
   }
+
+  private buildFormHormigon() {
+
+    this.hormigonFormGroup = this._formBuilder.group({
+      'hormigon.tipo': [{value: this.albaran.hormigon.tipo, disabled: true}],
+      'hormigon.referencia': [{value: this.albaran.hormigon.referencia, disabled: true}],
+      'hormigon.relacion': [{value: this.albaran.transporte.camion.matricula, disabled: true}],
+      'hormigon.contenido.cementos': [{value: this.albaran.hormigon.contenido.cementos, disabled: true}],
+      'hormigon.contenido.aditivos': [{value: this.albaran.hormigon.contenido.aditivos, disabled: true}],
+      'hormigon.contenido.adiciones': [{value: this.albaran.hormigon.contenido.adiciones, disabled: true}]
+    });
+  }
+
+  private buildFormMeteorologia() {
+    this.meteorologinaFormGroup = this._formBuilder.group({
+      'meteorologia.temperatura': [{value: this.albaran.meteorologia.temperatura, disabled: true}],
+      'meteorologia.humedad': [{value: this.albaran.meteorologia.humedad, disabled: true}],
+      'meteorologia.velocidad': [{value: this.albaran.meteorologia.velocidad, disabled: true}],
+    });
+  }
+
+  private buildFormFirma() {
+    this.firmaFormGroup = this._formBuilder.group({
+      'firma': [{value: this.albaran.firma}, Validators.required],
+    });
+  }
+
 
   private responsiveStepper(): void {
     this.widthSize = 0;

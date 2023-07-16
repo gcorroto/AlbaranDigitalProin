@@ -1,0 +1,17 @@
+security:
+  csrf:
+    enabled: ${env.security.csrf.enabled}
+    cookie:
+      domain: ${env.security.csrf.cookie.domain}
+      name: ${env.security.csrf.cookie.name}
+      httOnly: ${env.security.csrf.cookie.httOnly}
+      secure: ${env.security.csrf.cookie.secure}
+  paths:
+    exclude: ${env.security.paths.exclude}
+    include: ${env.security.paths.include}
+---
+spring:
+  security:
+    user:
+      name: ${env.spring.security.user.name}
+      password: ${env.spring.security.user.password}

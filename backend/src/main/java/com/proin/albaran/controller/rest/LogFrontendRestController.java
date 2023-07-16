@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proin.albaran.controller.BaseController;
 import com.proin.albaran.dto.InputLogDto;
-import com.proin.albaran.service.LogFrontendService;
+import com.proin.albaran.service.log.LogFrontendService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/log")
-@CrossOrigin(value = {"http://localhost:4200","http://localhost:8080"})
 public class LogFrontendRestController implements BaseController<InputLogDto,InputLogDto> {
 
 	private final LogFrontendService logFrontendService;
