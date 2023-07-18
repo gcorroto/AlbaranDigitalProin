@@ -1,8 +1,8 @@
 <app-toolbar></app-toolbar>
 
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
   {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
+</button> -->
 <div class="container">
 
   <ng-container *ngIf="widthSize === 2 else verticalRef">
@@ -15,7 +15,7 @@
         <ng-template matStepLabel>Transporte</ng-template>
         <app-step-transporte [formGroup]="transporteFormGroup" [widthSize]="widthSize"></app-step-transporte>
       </mat-step>
-      <mat-step [stepControl]="transporteFormGroup">
+      <mat-step [stepControl]="firmaFormGroup">
         <ng-template matStepLabel>Firma</ng-template>
         <app-step-firma [widthSize]="widthSize"></app-step-firma>
       </mat-step>
@@ -32,7 +32,7 @@
           <ng-template matStepLabel>Transporte</ng-template>
           <app-step-transporte [formGroup]="transporteFormGroup" [widthSize]="widthSize"></app-step-transporte>
         </mat-step>
-        <mat-step [stepControl]="transporteFormGroup">
+        <mat-step [stepControl]="firmaFormGroup">
           <ng-template matStepLabel>Firma</ng-template>
           <app-step-firma [widthSize]="widthSize"></app-step-firma>
         </mat-step>

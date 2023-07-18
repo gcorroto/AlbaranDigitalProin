@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SecurityConfiguration {
 
     // @Autowired(required = false)
-    @Oauth2Qualifier()
+    @Oauth2Qualifier() // no funciona aún
     @CsrfQualifier()
     @InsecuredQualifier()
     private final SecurityConfigurationContainer httpSecurity;

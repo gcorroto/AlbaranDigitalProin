@@ -13,6 +13,7 @@ export class StepTransporteComponent implements OnInit {
   @Input() widthSize: number;
 
   sizeLvl1: number = SizeLvl1;
+  sizeLvl1_3: number = 180;
   sizeLvl2: number = SizeLvl2;
   sizeLvl3: number = SizeLvl3;
   sizeLvl3_large: number = SizeLvl3_large;

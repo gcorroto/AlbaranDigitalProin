@@ -48,7 +48,7 @@ export class StepFirmaComponent implements  AfterViewInit {
     console.log('CAPTURED firmaContainer writer:' + this.sigs.first.signature);
     // const firmaUrl = this.sigs.first.signaturePad.toDataURL();
     // console.log('CAPTURED firmaContainer:' + firmaUrl);
-    // this.formGroup.controls.firma.setValue(firmaUrl);
+    // this.formGroup.controls.signatureField.setValue(firmaUrl);
   }
 
   public clear() {

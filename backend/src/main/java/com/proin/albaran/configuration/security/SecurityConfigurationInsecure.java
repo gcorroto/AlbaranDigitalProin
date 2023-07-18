@@ -18,7 +18,7 @@ public class SecurityConfigurationInsecure {
         return new SecurityConfigurationContainer(
         http.csrf().disable() // deshabilitamos csrf 
         .cors().disable() // deshabilitamos cors 
-        .authorizeExchange().anyExchange().permitAll() // permitimos todo en dev
+        .authorizeExchange().anyExchange().permitAll() // permitimos todo
         .and());
     }
 
