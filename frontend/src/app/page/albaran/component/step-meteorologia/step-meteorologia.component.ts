@@ -3,18 +3,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { StepBaseComponent } from '../step-base/step-base.component';
 
 @Component({
-  selector: 'app-step-transporte',
-  templateUrl: './step-transporte.component.html',
-  styleUrls: ['./step-transporte.component.scss']
+  selector: 'app-step-meteorologia',
+  templateUrl: './step-meteorologia.component.html',
+  styleUrls: ['./step-meteorologia.component.scss']
 })
-export class StepTransporteComponent extends StepBaseComponent implements OnInit {
+export class StepMeteorologiaComponent extends StepBaseComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
-  @ViewChildren('transporteContainer') public clienteContainer: QueryList<ElementRef>;
+  @ViewChildren('meteorologiaContainer') public meteorologiaContainer: QueryList<ElementRef>;
 
   constructor(private _formBuilder: FormBuilder) {
     super();
-    this.container = this.clienteContainer;
+    this.container = this.meteorologiaContainer;
   }
 
   ngOnInit(): void {

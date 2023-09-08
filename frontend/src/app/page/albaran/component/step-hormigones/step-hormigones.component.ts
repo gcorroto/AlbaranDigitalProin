@@ -4,18 +4,18 @@ import { SizeLvl1, SizeLvl2, SizeLvl3, SizeLvl3_large, SizeLvlFull } from '@cons
 import { StepBaseComponent } from '../step-base/step-base.component';
 
 @Component({
-  selector: 'app-step-cliente',
-  templateUrl: './step-cliente.component.html',
-  styleUrls: ['./step-cliente.component.scss']
+  selector: 'app-step-hormigones',
+  templateUrl: './step-hormigones.component.html',
+  styleUrls: ['./step-hormigones.component.scss']
 })
-export class StepClienteComponent extends StepBaseComponent implements OnInit {
+export class StepHormigonesComponent extends StepBaseComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
-  @ViewChildren('clienteContainer') public clienteContainer: QueryList<ElementRef>;
+  @ViewChildren('hormigonesContainer') public hormigonesContainer: QueryList<ElementRef>;
 
   constructor(private _formBuilder: FormBuilder) {
     super();
-    this.container = this.clienteContainer;
+    this.container = this.hormigonesContainer;
   }
 
   ngOnInit(): void {

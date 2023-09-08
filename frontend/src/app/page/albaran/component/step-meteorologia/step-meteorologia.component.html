@@ -1,0 +1,31 @@
+<form [formGroup]="formGroup">
+  <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #meteorologiaContainer>
+
+      <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
+          <mat-label>Temperatura ºC</mat-label>
+          <input matInput placeholder="-" formControlName="meteorologia.temperatura" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
+          <mat-label>Humedad %</mat-label>
+          <input matInput placeholder="-" formControlName="meteorologia.humedad" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
+          <mat-label>Velocidad Viento</mat-label>
+          <input matInput placeholder="-" formControlName="meteorologia.velocidad" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-button matStepperPrevious>Volver</button>
+      <button mat-button matStepperNext>Siguiente</button>
+    </div>
+</form>

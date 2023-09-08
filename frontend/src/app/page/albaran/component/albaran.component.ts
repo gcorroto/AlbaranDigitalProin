@@ -23,7 +23,9 @@ export class AlbaranComponent implements OnInit {
   clienteFormGroup: FormGroup;
   transporteFormGroup: FormGroup;
   hormigonFormGroup: FormGroup;
-  meteorologinaFormGroup: FormGroup;
+  meteorologiaFormGroup: FormGroup;
+  horarioFormGroup: FormGroup;
+  recepcionFormGroup: FormGroup;
   firmaFormGroup: FormGroup;
   albaran: Albaran;
   widthSize: number;
@@ -49,6 +51,8 @@ export class AlbaranComponent implements OnInit {
     this.buildFormTransporte();
     this.buildFormHormigon();
     this.buildFormMeteorologia();
+    this.buildFormHorarios();
+    this.buildFormRecepcion();
     this.buildFormFirma();
   }
 
@@ -68,7 +72,7 @@ export class AlbaranComponent implements OnInit {
 
   private buildFormCliente() {
     this.clienteFormGroup = this._formBuilder.group({
-      numAlbaran: ['', Validators.required],
+      numAlbaran: [{value: this.albaran.numAlbaran, disabled: true}],
       fechaEntrega: [{value: this.albaran.fechaEntrega, disabled: true}],
       radial: [{value: this.albaran.radial, disabled: true}],
       m3: [{value: this.albaran.m3, disabled: true}],
@@ -101,18 +105,46 @@ export class AlbaranComponent implements OnInit {
     this.hormigonFormGroup = this._formBuilder.group({
       'hormigon.tipo': [{value: this.albaran.hormigon.tipo, disabled: true}],
       'hormigon.referencia': [{value: this.albaran.hormigon.referencia, disabled: true}],
-      'hormigon.relacion': [{value: this.albaran.transporte.camion.matricula, disabled: true}],
+      'hormigon.relacion': [{value: this.albaran.hormigon.relacion, disabled: true}],
       'hormigon.contenido.cementos': [{value: this.albaran.hormigon.contenido.cementos, disabled: true}],
       'hormigon.contenido.aditivos': [{value: this.albaran.hormigon.contenido.aditivos, disabled: true}],
-      'hormigon.contenido.adiciones': [{value: this.albaran.hormigon.contenido.adiciones, disabled: true}]
+      'hormigon.contenido.adiciones': [{value: this.albaran.hormigon.contenido.adiciones, disabled: true}],
+      // 'hormigon.adiciones.tipo': ['', Validators.required],
+      // 'hormigon.adiciones.cantidad': ['', Validators.required],
     });
   }
 
   private buildFormMeteorologia() {
-    this.meteorologinaFormGroup = this._formBuilder.group({
-      'meteorologia.temperatura': [{value: this.albaran.meteorologia.temperatura, disabled: true}],
-      'meteorologia.humedad': [{value: this.albaran.meteorologia.humedad, disabled: true}],
-      'meteorologia.velocidad': [{value: this.albaran.meteorologia.velocidad, disabled: true}],
+    this.meteorologiaFormGroup = this._formBuilder.group({
+      // 'meteorologia.temperatura': [{value: this.albaran.meteorologia.temperatura, disabled: true}],
+      // 'meteorologia.humedad': [{value: this.albaran.meteorologia.humedad, disabled: true}],
+      // 'meteorologia.velocidad': [{value: this.albaran.meteorologia.velocidad, disabled: true}],
+      'meteorologia.temperatura': [{value: '100', disabled: true}],
+      'meteorologia.humedad': [{value: '40', disabled: true}],
+      'meteorologia.velocidad': [{value: '60', disabled: true}],
+    });
+  }
+
+  private buildFormHorarios() {
+    this.horarioFormGroup = this._formBuilder.group({
+      'horario.cargaPlanta': [{value: '11:30', disabled: true}],
+      'horario.llegadaObra': ['', Validators.required],
+      'horario.inicioDescarga': ['', Validators.required],
+      'horario.finalDescarga': ['', Validators.required],
+      'horario.llegadaPlanta': ['', Validators.required],
+      'horario.limiteUso': [{value: '13:00', disabled: true}],
+      'horario.hormigonBombeado': ['', Validators.required],
+      'horario.aguaCliente': ['', Validators.required],
+    });
+  }
+
+  private buildFormRecepcion() {
+    this.recepcionFormGroup = this._formBuilder.group({
+      'recepcion.laboratorio': ['', Validators.required],
+      'recepcion.elementoHormigon': ['', Validators.required],
+      'recepcion.horaToma': ['', Validators.required],
+      'recepcion.cono': ['', Validators.required],
+      'recepcion.numProbetas': ['', Validators.required],
     });
   }
 

@@ -1,0 +1,45 @@
+<cdk-accordion class="hormigones-accordion">
+  <cdk-accordion-item
+    *ngFor="let elemento of elementos; let index = index;"
+    #accordionItem="cdkAccordionItem"
+    class="hormigones-accordion-item"
+    role="button"
+    tabindex="0"
+    [attr.id]="'accordion-header-' + index"
+    [attr.aria-expanded]="accordionItem.expanded"
+    [attr.aria-controls]="'accordion-body-' + index">
+    <div class="hormigones-accordion-item-header" (click)="accordionItem.toggle()">
+      {{ elemento }}
+      <span class="hormigones-accordion-item-description">
+        Click para {{ accordionItem.expanded ? 'cerrar' : 'abrir' }}
+      </span>
+    </div>
+      <div
+        class="hormigones-accordion-item-body"
+        role="region"
+        [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index"
+        [attr.aria-labelledby]="'accordion-header-' + index">
+        <div class="card-body">
+          <ng-container *ngTemplateOutlet="tmpListadoElemento,context:{elementos:elemento === 'Cementos' ? cementos : (elemento === 'Aditivos' ? aditivos: adiciones)}"></ng-container>
+        </div>
+    </div>
+  </cdk-accordion-item>
+</cdk-accordion>
+
+<ng-template #tmpListadoElemento let-elementos="elementos">
+  <ul class="list-group mb-3" *ngFor="let elemento of elementos; let index = index;">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Fabricante
+      <span class="badge badge-primary">{{elemento.fabricante}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Modelo
+      <span class="badge badge-secondary badge-pill">{{elemento.modelo}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Cantidad
+      <span class="badge badge-warning badge-pill">{{elemento.cantidad}}</span>
+    </li>
+  </ul>
+</ng-template>

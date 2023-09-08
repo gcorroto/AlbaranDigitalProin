@@ -2,6 +2,8 @@ import { Cliente, ICliente } from "@dto/cliente.model";
 import { Hormigon, IHormigon } from "@dto/hormigon.model";
 import { IMeteorologia, Meteorologia } from "@dto/meteorologia.model";
 import { ITransporte, Transporte } from "@dto/transporte.model";
+import { Horario } from "@dto/horario.model";
+import { Recepcion } from "@dto/recepcion.model";
 
 export interface IAlbaran {
    numAlbaran: string;
@@ -43,6 +45,8 @@ export class Albaran implements IAlbaran {
   cliente: Cliente;
   transporte: Transporte;
   meteorologia: Meteorologia;
+  horario: Horario;
+  recepcion: Recepcion
   hormigon: Hormigon;
   firma: string;
 }

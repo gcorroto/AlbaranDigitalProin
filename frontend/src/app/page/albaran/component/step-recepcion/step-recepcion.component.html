@@ -1,0 +1,46 @@
+<form [formGroup]="formGroup">
+  <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #recepcionContainer>
+
+      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+          <mat-label>Laboratorio</mat-label>
+          <input matInput placeholder="-" formControlName="recepcion.laboratorio">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+          <mat-label>Elemento Hormigonado</mat-label>
+          <input matInput placeholder="-" formControlName="recepcion.elementoHormigon">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
+          <mat-label>Hora de toma</mat-label>
+          <input matInput placeholder="-" formControlName="recepcion.horaToma">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
+          <mat-label>Cono</mat-label>
+          <input matInput placeholder="-" formControlName="recepcion.cono">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
+          <mat-label>Nº de probetas</mat-label>
+          <input matInput placeholder="-" formControlName="recepcion.numProbetas">
+        </mat-form-field>
+      </mat-grid-tile>
+
+
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <div>
+      <button mat-button matStepperPrevious>Volver</button>
+      <button mat-button matStepperNext>Siguiente</button>
+    </div>
+</form>
