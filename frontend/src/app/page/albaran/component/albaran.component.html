@@ -4,6 +4,10 @@
   {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
 </button>
 
+<button color="primary" mat-raised-button color="primary" (click)="isReader = !isReader" id="toggle-linear">
+  {{!isReader ? 'Modo simple' : 'Modo completo'}}
+</button>
+
 <div class="container">
 
   <ng-container *ngIf="widthSize === 2 else verticalRef">
@@ -11,7 +15,7 @@
 
       <mat-step [stepControl]="clienteFormGroup">
         <ng-template matStepLabel>Cliente</ng-template>
-        <app-step-cliente [formGroup]="clienteFormGroup"></app-step-cliente>
+        <app-step-cliente [formGroup]="clienteFormGroup" [readMode]="isReader"></app-step-cliente>
       </mat-step>
 
       <mat-step [stepControl]="transporteFormGroup">

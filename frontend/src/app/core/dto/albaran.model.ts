@@ -46,7 +46,7 @@ export class Albaran implements IAlbaran {
   transporte: Transporte;
   meteorologia: Meteorologia;
   horario: Horario;
-  recepcion: Recepcion
+  recepcion: Recepcion;
   hormigon: Hormigon;
   firma: string;
 }

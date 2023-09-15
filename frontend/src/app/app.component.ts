@@ -20,8 +20,6 @@ export class AppComponent implements OnInit  {
       .subscribe((event) => {
         if (event instanceof NavigationStart) {
           this.ngxService.start();
-        } else {
-          this.ngxService.stop();
         }
       });
   }

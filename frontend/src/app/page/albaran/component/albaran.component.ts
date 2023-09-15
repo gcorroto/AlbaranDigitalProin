@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Albaran } from '@app/core/dto/albaran.model';
@@ -20,6 +20,7 @@ import { GenericCacheService } from '@app/core/services/cache/generic.service';
 })
 export class AlbaranComponent implements OnInit {
   isLinear = true;
+  @Output() isReader = true;
   clienteFormGroup: FormGroup;
   transporteFormGroup: FormGroup;
   hormigonFormGroup: FormGroup;
@@ -54,6 +55,8 @@ export class AlbaranComponent implements OnInit {
     this.buildFormHorarios();
     this.buildFormRecepcion();
     this.buildFormFirma();
+
+    this.ngxService.stop();
   }
 
   private logInitialData(data) {

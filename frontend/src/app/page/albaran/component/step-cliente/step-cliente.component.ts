@@ -11,6 +11,7 @@ import { StepBaseComponent } from '../step-base/step-base.component';
 export class StepClienteComponent extends StepBaseComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
+  @Input() readMode: boolean;
   @ViewChildren('clienteContainer') public clienteContainer: QueryList<ElementRef>;
 
   constructor(private _formBuilder: FormBuilder) {

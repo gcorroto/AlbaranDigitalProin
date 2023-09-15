@@ -31,6 +31,7 @@ import { AngularSignaturePadModule } from '@component/signature-pad/signature-pa
 import { StepFirmaComponent } from '@albaran/component/step-firma/step-firma.component';
 import { AngularSignatureFieldModule } from '@app/core/components/signature-field/signature-pad.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { OnlyReaderdirectivesPipe } from '@core/directives/only-readerdirective.pipe';
 
 const components = [
 	AlbaranComponent,
@@ -51,7 +52,7 @@ const components = [
 const pipes = [
 ];
 const directives = [
-	// MetricResizableDirective
+	OnlyReaderdirectivesPipe
 ];
 
 const resolvers = [

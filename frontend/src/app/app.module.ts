@@ -15,6 +15,7 @@ import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlbaranMaterialModule } from '@component/material.module';
 import { CookieService } from '@services/impl/cookie-service.service';
+import { OnlyReaderdirectivesPipe } from './core/directives/only-readerdirective.pipe';
 
 
 const defaultLoaderConfig: NgxUiLoaderConfig = {
