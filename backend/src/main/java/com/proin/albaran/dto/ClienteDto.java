@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteDto {
+public class ClienteDto extends BaseDto {
 
 	private String nombre;
 	private String id;

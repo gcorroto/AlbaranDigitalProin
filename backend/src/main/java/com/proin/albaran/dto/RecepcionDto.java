@@ -9,9 +9,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MeteorologiaDto extends BaseDto {
+public class RecepcionDto extends BaseDto {
 
-	private Integer temperatura;
-	private Integer humedad;
-	private Integer velocidad;
+	private String laboratorio;
+	private String elementoHormigon;
+	private String horaToma;
+	private String cono;
+	private Integer numProbetas;
+
 }

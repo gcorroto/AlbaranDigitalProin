@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class HormigonDto {
+public class HormigonDto extends BaseDto {
 
 	private String tipo;
 	// ficha tecinca referencia

@@ -1,5 +1,7 @@
 package com.proin.albaran.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +11,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MeteorologiaDto extends BaseDto {
+public class InputMetadataDto {
 
-	private Integer temperatura;
-	private Integer humedad;
-	private Integer velocidad;
+	private List<String> propiedades;
+	private String entidad;
+
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransporteDto {
+public class TransporteDto extends BaseDto {
 
 	private String empresa;
 	private String cif;

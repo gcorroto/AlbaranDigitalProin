@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AlbaranDto {
+public class AlbaranDto extends BaseDto {
 
 	private String numAlbaran;
 	private String fechaEntrega;
@@ -27,4 +27,8 @@ public class AlbaranDto {
 	private TransporteDto transporte;
 	private MeteorologiaDto meteorologia;
 	private HormigonDto hormigon;
+	private HorarioDto horario;
+	private RecepcionDto recepcion;
+
+
 }

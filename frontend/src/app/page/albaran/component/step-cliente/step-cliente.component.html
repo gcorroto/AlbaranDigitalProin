@@ -60,14 +60,14 @@
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Nº Cliente</mat-label>
-          <input matInput placeholder=" " formControlName="planta" readonly>
+          <input matInput placeholder=" " formControlName="cliente.id" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>CIF</mat-label>
-          <input matInput placeholder=" " formControlName="viaCarga" readonly>
+          <input matInput placeholder=" " formControlName="cliente.cif" readonly>
         </mat-form-field>
       </mat-grid-tile>
 

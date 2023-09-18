@@ -1,5 +1,6 @@
 package com.proin.albaran.controller.rest;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,17 +19,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proin.albaran.constantes.MetadataAlbaranEnum;
 import com.proin.albaran.controller.BaseController;
+import com.proin.albaran.aop.ResponseMetadataBody;
 import com.proin.albaran.dto.AlbaranDto;
 import com.proin.albaran.dto.CamionDto;
 import com.proin.albaran.dto.ClienteDto;
 import com.proin.albaran.dto.DesgloseContenidoDto;
+import com.proin.albaran.dto.HorarioDto;
 import com.proin.albaran.dto.HormigonDto;
 import com.proin.albaran.dto.MeteorologiaDto;
+import com.proin.albaran.dto.RecepcionDto;
 import com.proin.albaran.dto.RemolqueDto;
 import com.proin.albaran.dto.TransporteDto;
+import com.proin.albaran.dto.generic.ResponseMetadata;
 import com.proin.albaran.service.MockAlbaranService;
 import com.proin.albaran.util.EasyRandomUtils;
 import com.proin.conex.modelos.transporte.TAlbaran;
@@ -55,17 +62,39 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 	/// REST CONTROLLERS
 
 	// GET BASE ALBARAN
-	@GetMapping()
-	public ResponseEntity<AlbaranDto> getAlbaran() {
+	// @GetMapping()
+	// public ResponseEntity<AlbaranDto> getAlbaran() {
 
-        ResponseEntity<AlbaranDto> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     ResponseEntity<AlbaranDto> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     try {
+    //         TAlbaran entity = mockService.obtenerAlbaran();
+    //         AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
+    //     if (dto == null) {
+    //         response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
+    //     }
+    //     response = new ResponseEntity<>(dto, HttpStatus.OK);
+    //     } catch (Exception e) {
+	// 		log.error("Error al general el primer albaran", e);
+    //         response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+
+    //     return response;
+	// }
+
+	// GET BASE ALBARAN
+	@GetMapping()
+	@ResponseMetadataBody
+	public ResponseEntity<?> getAlbaran(@RequestParam(value = "meta", required=false) boolean meta) {
+
+        ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
             TAlbaran entity = mockService.obtenerAlbaran();
             AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
         if (dto == null) {
             response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
-        }
-        response = new ResponseEntity<>(dto, HttpStatus.OK);
+        }else {
+			response = new ResponseEntity<>(dto, HttpStatus.OK);
+		}
         } catch (Exception e) {
 			log.error("Error al general el primer albaran", e);
             response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -205,6 +234,8 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 			// mapper.map(TAlbaran::get, AlbaranDto::setMunicipio);
 			// mapper.map(src -> modelMapper.map(src, TransporteDto.class), AlbaranDto::setTransporte);
 			mapper.map(src -> new MeteorologiaDto(), AlbaranDto::setMeteorologia);
+			mapper.map(src -> new HorarioDto(), AlbaranDto::setHorario);
+			mapper.map(src -> new RecepcionDto(), AlbaranDto::setRecepcion);
 		});
 	}
 }
