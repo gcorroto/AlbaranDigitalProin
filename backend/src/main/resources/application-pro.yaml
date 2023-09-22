@@ -7,21 +7,6 @@ env:
         name: 'CSRF-TOKEN'
         httOnly: false
         secure: false
-    oauth2:
-      authorization-server-url: http://127.0.0.1:8080
-      enabled: true
-      credentials:
-        clientId: albaran-client
-        secret: 'secret'
-      paths:
-        code: /login/oauth2/code/albaran-client-oidc
-        authorize: /authorized
-      scopes:
-        read: albaran.read
-        write: albaran.write
-      cors:
-      origins: localhost:4200,localhost:8080
-      methods: GET,POST,PUT,DELETE,OPTIONS
     paths:
       exclude: "/static/**,/signup,/login,/,/favicon.ico,/**.css,/**.scss,/**.html,/**.js"
       include: "/api/**"
