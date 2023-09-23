@@ -8,22 +8,21 @@ import { Observable } from 'rxjs';
 import { Log } from '@dto/log.model';
 
 @Injectable()
-export class PrimeraCargaAlbaranResolver implements Resolve<Albaran> {
+export class PrimeraCargaAlbaranResolver implements Resolve<Albaran[]> {
 
 
     constructor(
-        private readonly serviceAlbaran: GenericCacheService<Albaran,string>,
-        private readonly log: GenericCacheService<Log,string>,
+        private readonly serviceAlbaran: GenericCacheService<Albaran,string>
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Albaran> {
+    resolve(route: ActivatedRouteSnapshot): Observable<Albaran[]> {
       // request param ???
       // const clientId: string = route.paramMap.get('clientId');
 
-        return new Observable<Albaran>((observ) => {
+        return new Observable<Albaran[]>((observ) => {
           console.debug(`realizamos primera carga albaran`);
           this.serviceAlbaran.getAll(EntityApiEnum.Albaran)
-          .subscribe((data: Albaran) => {
+          .subscribe((data: Albaran[]) => {
               observ.next(data);
             },
             (err) => {

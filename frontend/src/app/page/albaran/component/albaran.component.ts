@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewContainerRef, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Albaran } from '@app/core/dto/albaran.model';
@@ -14,7 +14,7 @@ import { GenericCacheService } from '@app/core/services/cache/generic.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
-  selector: 'app-albaran',
+  // selector: 'app-albaran',
   templateUrl: './albaran.component.html',
   styleUrls: ['./albaran.component.scss']
 })
@@ -28,7 +28,8 @@ export class AlbaranComponent implements OnInit {
   horarioFormGroup: FormGroup;
   recepcionFormGroup: FormGroup;
   firmaFormGroup: FormGroup;
-  albaran: Albaran;
+  @Input() albaran: Albaran;
+  @Input() simple: boolean = true;
   widthSize: number;
 
   constructor(
@@ -37,7 +38,8 @@ export class AlbaranComponent implements OnInit {
     private readonly route: ActivatedRoute,
     protected readonly router: Router,
     protected readonly breakpointObserver: BreakpointObserver,
-    private readonly log: GenericCacheService<Log,string>
+    private readonly log: GenericCacheService<Log,string>,
+    public viewContainerRef: ViewContainerRef
     ) {
     }
 
@@ -45,9 +47,9 @@ export class AlbaranComponent implements OnInit {
 
     this.responsiveStepper();
 
-    const resolvedData: Albaran = this.route.snapshot.data['albaran'];
-    this.albaran = resolvedData;
-    this.logInitialData(resolvedData);
+    // const resolvedData: Albaran = this.route.snapshot.data['albaran'];
+    // this.albaran = resolvedData;
+    this.logInitialData(this.albaran);
     this.buildFormCliente();
     this.buildFormTransporte();
     this.buildFormHormigon();

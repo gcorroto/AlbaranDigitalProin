@@ -1,21 +1,17 @@
 import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CardListComponent } from '@component/card/card-list/card-list.component';
-import { CardComponent } from '@component/card/card/card.component';
-import { LightCardComponent } from '@component/card/light-card/light-card.component';
-import { LabelSwComponent } from '@component/label-sw/label-sw.component';
-import { SmoothHeightComponent } from '@component/smooth-height/smooth-height.component';
-import { DataTableWrapperComponent } from '@component/table/data-table-wrapper/data-table-wrapper.component';
+import { AlbaranMaterialModule } from '@component/material.module';
 import { CacheConfigService, NgxCachemanagerModule } from '@grec0/ngx-cachemanager';
 import { HttpCacheModule } from '@services/generic-service.module';
+import { CookieService } from '@services/impl/cookie-service.service';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER as spinner } from 'ngx-ui-loader';
 import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AlbaranMaterialModule } from '@component/material.module';
-import { CookieService } from '@services/impl/cookie-service.service';
-import { OnlyReaderdirectivesPipe } from './core/directives/only-readerdirective.pipe';
 
 
 const defaultLoaderConfig: NgxUiLoaderConfig = {
@@ -38,12 +34,6 @@ export function initializer(cacheConfig: CacheConfigService): () => Promise<any>
 
 @NgModule({
   declarations: [
-    DataTableWrapperComponent,
-    CardComponent,
-    CardListComponent,
-    LightCardComponent,
-    SmoothHeightComponent,
-    LabelSwComponent,
     AppComponent
   ],
   imports: [
@@ -55,7 +45,10 @@ export function initializer(cacheConfig: CacheConfigService): () => Promise<any>
     // SwapiHttpModule.forRoot(),
     AlbaranMaterialModule.forRoot(),
     HttpCacheModule.forRoot(),
-    NgxUiLoaderModule.forRoot(defaultLoaderConfig)
+    NgxUiLoaderModule.forRoot(defaultLoaderConfig),
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule
   ],
   bootstrap: [AppComponent],
   exports: [HttpClientModule, NgxUiLoaderModule],

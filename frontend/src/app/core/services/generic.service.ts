@@ -26,7 +26,7 @@ export abstract class GenericService<T,I> {
    * @param
    * @return {Async<T>}
    * **/
-  abstract getAll(ent: EntityApi, format?: Formats): Observable<T>;
+  abstract getAll(ent: EntityApi, format?: Formats): Observable<T[]>;
 
 
   /**

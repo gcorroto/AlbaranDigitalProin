@@ -1,0 +1,66 @@
+<section class="container">
+  <!-- <ng-template> -->
+    <mat-card class="card">
+        <!-- <mat-card-title>
+          <h3>{{albaran.cliente.nombre}}:</h3>
+        </mat-card-title> -->
+
+
+        <mat-card-content>
+          <mat-grid-list
+            (window:resize)="beResponsive()"
+            [cols]="numColumns"
+            rowHeight="25px"
+            gutterSize="5px"
+            #albaranSimpleContainer>
+
+          <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
+            <p><strong>Especificación del Hormimgon: </strong></p>
+            <p class="detalle-simple-value">{{albaran.hormigon.tipo}}</p>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
+            <h2></h2>
+            <p><strong>Cemento que se utiliza: </strong></p>
+            <p class="detalle-simple-value">{{albaran.hormigon.referencia}}</p>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
+            <h2></h2>
+            <p><strong>Volumen de fabricación: </strong></p>
+            <p class="detalle-simple-value">{{albaran.hormigon.adiciones.cantidad}} Kg</p>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
+            <h2></h2>
+            <p><strong>Masa fabricada: </strong></p>
+            <p class="detalle-simple-value">{{albaran.hormigon.adiciones.tipo}}</p>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
+            <h2></h2>
+            <p><strong>Cantidad de Agua: </strong></p>
+            <p class="detalle-simple-value">{{albaran.horario.aguaCliente}} L</p>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
+            <h2></h2>
+            <p><strong>Cantidad de Cemento: </strong></p>
+            <p class="detalle-simple-value">{{albaran.hormigon.adiciones.cantidad}} Kg</p>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
+            <h2></h2>
+            <p><strong>Relación agua-cemento: </strong></p>
+            <p class="detalle-simple-value">{{albaran.hormigon.relacion}}</p>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-button>Editar</button>
+        </mat-card-actions>
+    </mat-card>
+  <!-- </ng-template> -->
+</section>

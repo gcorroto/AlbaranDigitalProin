@@ -22,8 +22,8 @@ export class HttpServiceImpl<T,ID> implements GenericService<T,ID> {
     return this.http.get<T>(`${this.url}/${ent}/${id}${UtilService.formatQueryParam(format)}`);
   }
 
-  getAll(ent: EntityApi, format?: Formats): Observable<T> {
-    return this.http.get<T>(`${this.url}/${ent}${UtilService.formatQueryParam(format)}`);
+  getAll(ent: EntityApi, format?: Formats): Observable<T[]> {
+    return this.http.get<T[]>(`${this.url}/${ent}${UtilService.formatQueryParam(format)}`);
   }
 
   postSave(id: ID, t: T, ent: EntityApi, format?: Formats): Observable<T> {

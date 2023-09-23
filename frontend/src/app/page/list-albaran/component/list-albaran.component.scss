@@ -1,0 +1,63 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+/** No CSS for this example */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin:1rem auto;
+    max-width: 90%;
+
+ }
+
+::ng-deep .mat-input-wrapper{
+ width:400px !important;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 22px;
+}
+
+
+
+.list-albaran-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-albaran-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+
+.card {
+  min-width: 80%;
+  // color: white;
+  // background: rgb(63,81,181);
+  // background: linear-gradient(113deg, rgba(63,81,181,1) 0%, rgba(63,81,181,0.7875525210084033) 29%, rgba(255,255,255,0.26094187675070024) 53%);
+}
+
+.accordion-albaranes-container {
+  display: flex;
+  flex-direction: column;
+  // max-height: 500px;
+  min-width: 100%;
+}
+
+// .list-albaran-headers-align {
+//   overflow: auto;
+//   max-height: 500px;
+// }
+
+a {
+  cursor: pointer;
+}
+
+.mat-mdc-chip-set {
+  max-width: 200px;
+}
