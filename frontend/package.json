@@ -23,7 +23,6 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "@grec0/ngx-cachemanager": "0.0.139",
     "@ngneat/until-destroy": "^8.1.4",
     "keen-slider": "^6.8.6",
     "ngx-material-timepicker": "^11.0.0",
