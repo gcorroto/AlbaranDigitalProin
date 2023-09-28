@@ -7,12 +7,10 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proin.albaran.constantes.MetadataAlbaranEnum;
-import com.proin.albaran.controller.BaseController;
 import com.proin.albaran.aop.ResponseMetadataBody;
+import com.proin.albaran.controller.BaseController;
 import com.proin.albaran.dto.AlbaranDto;
 import com.proin.albaran.dto.CamionDto;
 import com.proin.albaran.dto.ClienteDto;
@@ -35,7 +32,6 @@ import com.proin.albaran.dto.MeteorologiaDto;
 import com.proin.albaran.dto.RecepcionDto;
 import com.proin.albaran.dto.RemolqueDto;
 import com.proin.albaran.dto.TransporteDto;
-import com.proin.albaran.dto.generic.ResponseMetadata;
 import com.proin.albaran.service.MockAlbaranService;
 import com.proin.albaran.util.EasyRandomUtils;
 import com.proin.conex.modelos.transporte.TAlbaran;
@@ -59,20 +55,20 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
         configMappingDto(); 
     }
 
-	/// REST CONTROLLERS
-
 	// GET BASE ALBARAN
 	// @GetMapping()
-	// public ResponseEntity<AlbaranDto> getAlbaran() {
+	// @ResponseMetadataBody
+	// public ResponseEntity<?> getAlbaran(@RequestParam(value = "meta", required=false) boolean meta) {
 
-    //     ResponseEntity<AlbaranDto> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
     //     try {
     //         TAlbaran entity = mockService.obtenerAlbaran();
     //         AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
     //     if (dto == null) {
     //         response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
-    //     }
-    //     response = new ResponseEntity<>(dto, HttpStatus.OK);
+    //     }else {
+	// 		response = new ResponseEntity<AlbaranDto>(dto, HttpStatus.OK);
+	// 	}
     //     } catch (Exception e) {
 	// 		log.error("Error al general el primer albaran", e);
     //         response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -81,41 +77,44 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
     //     return response;
 	// }
 
-	// GET BASE ALBARAN
 	@GetMapping()
-	@ResponseMetadataBody
-	public ResponseEntity<?> getAlbaran(@RequestParam(value = "meta", required=false) boolean meta) {
+	public ResponseEntity<?> getAlbaranesUsuario(@RequestParam(value = "meta", required=false) boolean meta) {
 
         ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
-            TAlbaran entity = mockService.obtenerAlbaran();
-            AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
-        if (dto == null) {
-            response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
+            List<TAlbaran> entities = mockService.obtenerAlbaranesUsuario();
+            List<AlbaranDto> dtos = entities.stream().map(e -> mockService.rellenarCamposAlbaran(convertToDto(e))).collect(Collectors.toList());
+        if (dtos == null || dtos!=null && dtos.isEmpty()) {
+            response = new ResponseEntity<List<AlbaranDto>>(HttpStatus.NO_CONTENT);
         }else {
-			response = new ResponseEntity<>(dto, HttpStatus.OK);
+			response = new ResponseEntity<List<AlbaranDto>>(dtos, HttpStatus.OK);
 		}
         } catch (Exception e) {
 			log.error("Error al general el primer albaran", e);
-            response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            response = new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return response;
 	}
 
 	// GET CONSULTA ALBARAN CREADO ?¿
-    @GetMapping("/{id}")
-	public ResponseEntity<AlbaranDto> getAlbaranById(@PathVariable("id") String id) {
+    @GetMapping(value = "/{id}")
+	@ResponseMetadataBody
+	public ResponseEntity<?> getAlbaranById(@PathVariable(value = "id", required=true) String id, @RequestParam(value = "meta", required=false) boolean meta) {
 
-        ResponseEntity<AlbaranDto> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
             log.info("recibimos consulta albaran con id " + id);
-            TAlbaran entity = mockService.obtenerAlbaran();
+            TAlbaran entity = mockService.obtenerAlbaran(id);
             AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
-            dto.setNumAlbaran(id);
+			if (dto == null) {
+				response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
+			}else {
+				response = new ResponseEntity<AlbaranDto>(dto, HttpStatus.OK);
+			}
         	response = new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
-            response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            response = new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return response;

@@ -4,7 +4,7 @@ import { map, debounceTime, tap, merge, delay, mapTo, share, repeat, switchMap, 
 import { DataTableType } from '../../table/table.component';
 import { animate, style, transition, trigger, state } from '@angular/animations';
 @Component({
-  selector: 'card',
+  selector: 'custom-card',
   templateUrl: './light-card.component.html',
   styleUrls: ['./light-card.component.scss'],
   animations: [
