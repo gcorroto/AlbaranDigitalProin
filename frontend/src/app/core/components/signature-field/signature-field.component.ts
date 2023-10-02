@@ -55,7 +55,7 @@ export class SignatureFieldComponent implements ControlValueAccessor {
   }
 
   public drawBegin(): void {
-    console.log('Begin Drawing');
+    console.log('Comenzando a dibujar');
   }
 
   public drawComplete(): void {
