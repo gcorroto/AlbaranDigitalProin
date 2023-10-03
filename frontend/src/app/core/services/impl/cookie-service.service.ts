@@ -24,7 +24,7 @@ export class CookieService {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     // Get the `PLATFORM_ID` so we can check if we're in a browser.
-    @Inject(PLATFORM_ID) private platformId
+    @Inject(PLATFORM_ID) private platformId: Object // or `private platformId: string`
   ) {
     this.documentIsAccessible = isPlatformBrowser(this.platformId);
   }
@@ -95,9 +95,9 @@ export class CookieService {
       name = encodeURIComponent(name);
 
       const regExp: RegExp = CookieService.getCookieRegExp(name);
-      const result: RegExpExecArray = regExp.exec(this.document.cookie);
+      const result: RegExpExecArray | null = regExp.exec(this.document.cookie);
 
-      return result[1] ? CookieService.safeDecodeURIComponent(result[1]) : '';
+      return result && result[1] ? CookieService.safeDecodeURIComponent(result[1]) : '';
     } else {
       return '';
     }
@@ -120,7 +120,7 @@ export class CookieService {
     const document: any = this.document;
 
     if (document.cookie && document.cookie !== '') {
-      document.cookie.split(';').forEach((currentCookie) => {
+      document.cookie.split(';').forEach((currentCookie: { split: (arg0: string) => [any, any]; }) => {
         const [cookieName, cookieValue] = currentCookie.split('=');
         cookies[CookieService.safeDecodeURIComponent(cookieName.replace(/^ /, ''))] = CookieService.safeDecodeURIComponent(cookieValue);
       });

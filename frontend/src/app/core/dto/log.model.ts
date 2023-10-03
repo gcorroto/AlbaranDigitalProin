@@ -4,12 +4,13 @@ export interface ILog {
 }
 
 export class Log implements ILog {
-  static [Symbol.hasInstance](obj) {
-    if ( obj.nombre) {
+  static [Symbol.hasInstance](obj: { level: any; }): boolean {
+    if ( obj.level) {
         return true;
-      }
+    }
+    return false;
   }
-  level: string;
-  message: string;
+  level!: string;
+  message!: string;
 }
 

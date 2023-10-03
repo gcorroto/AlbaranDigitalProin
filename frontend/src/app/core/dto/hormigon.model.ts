@@ -2,24 +2,26 @@ import { AdicionesHormigon, IAdicionesHormigon } from "@dto/adiciones-hormigon.m
 import { Contenido, IContenido } from "@dto/contenido.model";
 
 export interface IHormigon {
-  tipo: string;
+  tipo?: string;
   referencia: string;
-	relacion: string;
-  contenido: IContenido;
-  adiciones: IAdicionesHormigon;
+	relacion?: string;
+  contenido?: IContenido;
+  adiciones?: IAdicionesHormigon;
 }
 
 export class Hormigon implements IHormigon {
-  static [Symbol.hasInstance](obj) {
-    if ( obj.nombre) {
+  static [Symbol.hasInstance](obj: { referencia: any; }): boolean {
+    if ( obj.referencia) {
         return true;
-      }
+    } else {
+        return false;
+    }
   }
 
-  tipo: string;
-  referencia: string;
-	relacion: string;
-  contenido: Contenido;
-  adiciones: AdicionesHormigon;
+  tipo?: string;
+  referencia!: string;
+	relacion?: string;
+  contenido?: Contenido;
+  adiciones?: AdicionesHormigon;
 }
 

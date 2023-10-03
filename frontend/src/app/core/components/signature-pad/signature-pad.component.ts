@@ -18,10 +18,17 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
   @Output() public drawAfterUpdate: EventEmitter<MouseEvent | Touch>;
   @Output() public drawEnd: EventEmitter<MouseEvent | Touch>;
 
-  private signaturePad: SignaturePad;
+  private _signaturePad: SignaturePad;
+  public get signaturePad(): SignaturePad {
+    return this._signaturePad;
+  }
+  public set signaturePad(value: SignaturePad) {
+    this._signaturePad = value;
+  }
 
   constructor(private elementRef: ElementRef) {
-    this.options = this.options || {} as NgSignaturePadOptions;
+    this.options ??= {} as NgSignaturePadOptions;
+    this._signaturePad = {} as SignaturePad;
     this.drawStart = new EventEmitter<MouseEvent | Touch>();
     this.drawBeforeUpdate = new EventEmitter<MouseEvent | Touch>();
     this.drawAfterUpdate = new EventEmitter<MouseEvent | Touch>();
@@ -39,10 +46,10 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
     }
 
     this.signaturePad = new SignaturePad(canvas, this.options);
-    this.signaturePad.addEventListener('beginStroke', (event: CustomEvent) => this.beginStroke(event.detail));
-    this.signaturePad.addEventListener('beforeUpdateStroke', (event: CustomEvent) => this.beforeUpdateStroke(event.detail));
-    this.signaturePad.addEventListener('afterUpdateStroke', (event: CustomEvent) => this.afterUpdateStroke(event.detail));
-    this.signaturePad.addEventListener('endStroke', (event: CustomEvent) => this.endStroke(event.detail));
+    this.signaturePad.addEventListener('beginStroke', (event: Event) => this.beginStroke((event as CustomEvent).detail));
+    this.signaturePad.addEventListener('beforeUpdateStroke', (event: Event) => this.beforeUpdateStroke((event as CustomEvent).detail));
+    this.signaturePad.addEventListener('afterUpdateStroke', (event: Event) => this.afterUpdateStroke((event as CustomEvent).detail));
+    this.signaturePad.addEventListener('endStroke', (event: Event) => this.endStroke((event as CustomEvent).detail));
   }
 
   public ngOnDestroy(): void {
@@ -55,14 +62,16 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
    * Redraw or Resize canvas, note this will clear data.
    */
   public redrawCanvas(): void {
-    const canvas: HTMLCanvasElement = this.getCanvas();
+    const canvas: HTMLCanvasElement | null = this.getCanvas();
     // when zoomed out to less than 100%, for some very strange reason,
     // some browsers report devicePixelRatio as less than 1, and only part of the canvas is cleared then.
     const ratio: number = Math.max(window.devicePixelRatio || 1, 1);
-    canvas.width = canvas.offsetWidth * ratio;
-    canvas.height = canvas.offsetHeight * ratio;
-    canvas.getContext('2d').scale(ratio, ratio);
-    this.signaturePad.clear(); // otherwise isEmpty() might return incorrect value
+    if (canvas) {
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext('2d')?.scale(ratio, ratio);
+      this.signaturePad.clear(); // otherwise isEmpty() might return incorrect value
+    }
   }
 
   /**
@@ -147,7 +156,8 @@ export class SignaturePadComponent implements AfterContentInit, OnDestroy {
         canvas.width = value;
         break;
       default:
-        this.signaturePad[option] = value;
+        // this.signaturePad[option] = value;
+        break;
     }
   }
 

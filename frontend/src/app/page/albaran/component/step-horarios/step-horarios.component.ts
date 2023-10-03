@@ -9,8 +9,8 @@ import { StepBaseComponent } from '../step-base/step-base.component';
 })
 export class StepHorariosComponent extends StepBaseComponent implements OnInit {
 
-  @Input() formGroup: FormGroup;
-  @ViewChildren('horariosContainer') public horariosContainer: QueryList<ElementRef>;
+  @Input() formGroup!: FormGroup;
+  @ViewChildren('horariosContainer') public horariosContainer!: QueryList<ElementRef>;
 
   constructor(private _formBuilder: FormBuilder) {
     super();

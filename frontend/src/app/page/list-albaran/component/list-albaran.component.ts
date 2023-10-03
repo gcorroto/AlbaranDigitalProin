@@ -23,9 +23,9 @@ import { Subject } from 'rxjs';
 export class ListAlbaranComponent implements OnInit {
 
   //list albaranes
-  private _albaranes: Albaran[];
-  private totalAlbaranes: Albaran[];
-  albaranesLength: number;
+  private _albaranes: Albaran[] = [];
+  private totalAlbaranes: Albaran[] = [];
+  albaranesLength: number = 0;
   get albaranes(): Albaran[] {
     return this._albaranes;
   }
@@ -34,7 +34,7 @@ export class ListAlbaranComponent implements OnInit {
   }
 
   //idDetail Control
-  private _idDetail: string;
+  private _idDetail: string = '';
   get idDetail(): string {
     return this._idDetail;
   }
@@ -52,13 +52,13 @@ export class ListAlbaranComponent implements OnInit {
   }
 
 
-  changesPagination: Subject<void>;
+  changesPagination!: Subject<void>;
   pageSizeAlbaranes: number = 25;
   currentPageAlbaranes: number = 0;
-  @ViewChild('albaranTemplate', { read: ViewContainerRef }) albaranTemplate: ViewContainerRef;
+  @ViewChild('albaranTemplate', { read: ViewContainerRef }) albaranTemplate!: ViewContainerRef;
 
 
-  widthSize: number;
+  widthSize?: number;
 
   constructor(
     private readonly _formBuilder: FormBuilder,
@@ -72,7 +72,7 @@ export class ListAlbaranComponent implements OnInit {
     ) {
     }
 
-  pageChange(event) {
+  pageChange(event: { pageIndex: any; pageSize: any; } | undefined) {
     event ??= {pageIndex:0, pageSize: this.pageSizeAlbaranes};
     let calcSize = (event.pageIndex*event.pageSize);
     let currentCalcSize = calcSize + event.pageSize;
@@ -81,7 +81,7 @@ export class ListAlbaranComponent implements OnInit {
 
   }
 
-  expand(id){//method to load component when panel is expanded
+  expand(id: string){//method to load component when panel is expanded
     const componentFactory =
     this.componentFactoryResolver.resolveComponentFactory(AlbaranSimpleComponent);
     this.idDetail = id;
@@ -121,7 +121,7 @@ export class ListAlbaranComponent implements OnInit {
     this.ngxService.stop();
   }
 
-  private logInitialData(data) {
+  private logInitialData(data: Albaran[]) {
       this.callLogger('debug',`recibimos primera carga albaranes [${JSON.stringify(data)}]`);
   }
 

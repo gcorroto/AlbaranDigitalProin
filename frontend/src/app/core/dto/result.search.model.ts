@@ -2,15 +2,15 @@
 
 export interface IResultSearch<A> {
   count: number
-  next: string
-  previous: any
-  results: A[]
+  next?: string
+  previous?: any
+  results?: A[]
 }
 
 export class ResultSearch<A> implements IResultSearch<A> {
-  count: number
-  next: string
-  previous: any
-  results: A[]
+  count!: number
+  next?: string
+  previous?: any
+  results?: A[]
 }
 
