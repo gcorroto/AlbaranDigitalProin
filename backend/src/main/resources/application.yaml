@@ -13,7 +13,5 @@ spring:
   profiles:
     group:
       pro-csrf: pro, csrf
-      pro-oauth2: pro, oauth2
       dev-csrf: dev, csrf
-      dev-oauth2: dev, oauth2
       dev-insecure: dev, insecure

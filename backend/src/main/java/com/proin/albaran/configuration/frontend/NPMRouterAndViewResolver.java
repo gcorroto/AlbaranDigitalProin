@@ -38,7 +38,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j()
-@Profile("!oauth2")
 public class NPMRouterAndViewResolver {
 	
 	private static final String STATIC_INDEX_NPM = "classpath:/static/frontend/index.html";
