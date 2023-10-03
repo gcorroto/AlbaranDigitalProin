@@ -7,16 +7,16 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 })
 export class StepBaseComponent {
 
-    sizeParentElement: number;
+    sizeParentElement!: number;
     numColumns: number = 3*2;
-    container: QueryList<ElementRef>;
+    container!: QueryList<ElementRef>;
 
     constructor() {
     }
 
     size(container: QueryList<ElementRef>) {
       if(container) {
-        this.sizeParentElement = container.first['_element'].nativeElement.clientWidth;
+        this.sizeParentElement = container.first.nativeElement.clientWidth;
         console.log('Resizing container with value ' + this.sizeParentElement );
       }
     }

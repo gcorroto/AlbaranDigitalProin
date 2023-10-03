@@ -3,32 +3,31 @@ export interface IVehiculo {
 }
 
 export class Vehiculo implements IVehiculo {
-  static [Symbol.hasInstance](obj) {
+  static [Symbol.hasInstance](obj: { matricula: any; }): boolean {
     if ( obj.matricula) {
         return true;
-      }
+    }
+    return false;
   }
 
-  matricula: string;
+  matricula!: string;
 }
 
 export class Camion extends Vehiculo implements IVehiculo  {
-  static [Symbol.hasInstance](obj) {
-    if ( obj.matricula) {
-        return true;
-      }
+  static [Symbol.hasInstance](obj: any): boolean {
+    if (obj && obj.matricula) {
+      return true;
+    }
+    return false;
   }
-
-  matricula: string;
 }
 
 export class Remolque extends Vehiculo implements IVehiculo  {
-  static [Symbol.hasInstance](obj) {
-    if ( obj.matricula) {
-        return true;
-      }
+  static [Symbol.hasInstance](obj: any): boolean {
+    if (obj && obj.matricula) {
+      return true;
+    }
+    return false;
   }
-
-  matricula: string;
 }
 

@@ -19,7 +19,7 @@ export class OnlyReaderdirectivesPipe implements OnInit, OnChanges  {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes.read){
+    if(changes['read']){
       console.log('read changed');
       if (!this.reader()) {
         this.elementRef.nativeElement.display = 'none';

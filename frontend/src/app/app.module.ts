@@ -6,7 +6,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbaranMaterialModule } from '@component/material.module';
-import { CacheConfigService, NgxCachemanagerModule } from '@grec0/ngx-cachemanager';
+// import { CacheConfigService, NgxCachemanagerModule } from '@grec0/ngx-cachemanager';
 import { HttpCacheModule } from '@services/generic-service.module';
 import { CookieService } from '@services/impl/cookie-service.service';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER as spinner } from 'ngx-ui-loader';
@@ -28,9 +28,9 @@ const defaultLoaderConfig: NgxUiLoaderConfig = {
   bgsType: 'square-jelly-box',
 };
 
-export function initializer(cacheConfig: CacheConfigService): () => Promise<any> {
-	return (): Promise<any> => cacheConfig.loadGlobalConfig({logger:true});
-}
+// export function initializer(cacheConfig: CacheConfigService): () => Promise<any> {
+// 	return (): Promise<any> => cacheConfig.loadGlobalConfig({logger:true});
+// }
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ export function initializer(cacheConfig: CacheConfigService): () => Promise<any>
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
-    NgxCachemanagerModule,
+    // NgxCachemanagerModule,
     // SwapiHttpModule.forRoot(),
     AlbaranMaterialModule.forRoot(),
     HttpCacheModule.forRoot(),
@@ -53,12 +53,12 @@ export function initializer(cacheConfig: CacheConfigService): () => Promise<any>
   bootstrap: [AppComponent],
   exports: [HttpClientModule, NgxUiLoaderModule],
   providers: [
-    {
-			provide: APP_INITIALIZER,
-			useFactory: initializer,
-			deps: [CacheConfigService],
-			multi: true
-    },
+    // {
+		// 	provide: APP_INITIALIZER,
+		// 	useFactory: initializer,
+		// 	deps: [CacheConfigService],
+		// 	multi: true
+    // },
     CookieService
   ]
 })

@@ -14,7 +14,7 @@ export class CsrfInterceptor implements HttpInterceptor {
 
   constructor(private readonly cookieService: CookieService) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let csrfReq = req;
     if(req.url.includes("/api/v1")) {
     const  token = this.cookieService.get('CSRF-TOKEN');
@@ -25,8 +25,8 @@ export class CsrfInterceptor implements HttpInterceptor {
 
     return next.handle(csrfReq).pipe(
       filter(event => event instanceof HttpResponse),
-      map((event: HttpResponse<any>) => {
-        if (event.status === 302) {
+      map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse && event.status === 302) {
           window.location.href = csrfReq.url;
           throw new Error('Redirect to login');
         }
@@ -36,12 +36,12 @@ export class CsrfInterceptor implements HttpInterceptor {
       if (error instanceof HttpErrorResponse){
         if(error.status === 401 || error.status === 403){
           return this.handle401Error(req, next);
-        } else if(error.status === 200  && error.url.includes('/login')) {
+        } else if(error.status === 200  && error.url?.includes('/login')) {
           window.location.href = error.url;
         }
       }
 
-      return throwError(error);
+      return throwError(() => error);
     }));
   }
 

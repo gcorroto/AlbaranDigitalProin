@@ -17,7 +17,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { AlbaranRoutingModule } from '@app/page/list-albaran/router/albaran.routing.module';
-import { StepFormComponent } from '@component/step-form/step-form.component';
+// import { StepFormComponent } from '@component/step-form/step-form.component';
 import { ToolbarComponent } from '@component/toolbar/toolbar.component';
 import { StepClienteComponent } from '@albaran/component/step-cliente/step-cliente.component';
 import { StepHormigonesComponent } from '@albaran/component/step-hormigones/step-hormigones.component';
@@ -30,7 +30,7 @@ import { StepHormigonesContenidoComponent } from '@app/page/albaran/component/st
 import { AngularSignaturePadModule } from '@component/signature-pad/signature-pad.module';
 import { StepFirmaComponent } from '@albaran/component/step-firma/step-firma.component';
 import { AngularSignatureFieldModule } from '@app/core/components/signature-field/signature-pad.module';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+// import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { OnlyReaderdirectivesPipe } from '@core/directives/only-readerdirective.pipe';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -46,7 +46,7 @@ const components = [
   AlbaranSimpleComponent,
   ListAlbaranComponent,
   ToolbarComponent,
-  StepFormComponent,
+  // StepFormComponent,
 
   StepClienteComponent,
   StepHormigonesComponent,
@@ -58,8 +58,7 @@ const components = [
   StepFirmaComponent,
 ];
 
-const pipes = [
-];
+
 const directives = [
 	OnlyReaderdirectivesPipe
 ];
@@ -92,11 +91,11 @@ const resolvers = [
     MatProgressBarModule,
     MatExpansionModule,
     MatPaginatorModule,
-    NgxMaterialTimepickerModule,
+    // NgxMaterialTimepickerModule,
     MatChipsModule
 	],
-	declarations: [components, pipes, directives],
-	entryComponents: [ListAlbaranComponent],
+	declarations: [components, directives],
+	bootstrap: [ListAlbaranComponent],
 	providers: [
 		resolvers
 	]

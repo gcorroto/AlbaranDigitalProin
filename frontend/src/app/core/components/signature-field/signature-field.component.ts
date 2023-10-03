@@ -14,13 +14,14 @@ import { SignaturePadComponent } from '@component/signature-pad/signature-pad.co
   ],
 })
 export class SignatureFieldComponent implements ControlValueAccessor {
-  @ViewChild(SignaturePadComponent) public signaturePad: SignaturePadComponent;
+  @ViewChild(SignaturePadComponent)
+  public signaturePad!: SignaturePadComponent;
 
-  public options: Object = {};
+  public options: any = {};
 
   public _signature: any = null;
 
-  public propagateChange: Function = null;
+  public propagateChange!: Function;
 
   get signature(): any {
     return this._signature;
@@ -55,7 +56,7 @@ export class SignatureFieldComponent implements ControlValueAccessor {
   }
 
   public drawBegin(): void {
-    console.log('Begin Drawing');
+    console.log('Comenzando a dibujar');
   }
 
   public drawComplete(): void {
