@@ -15,7 +15,23 @@ env:
       user:
         name: hugo
         password: oguh
+        
+    jpa:
+      database-platform: org.hibernate.dialect.SQLServerDialect
+      hibernate:
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        ddl-auto: none
+      generate-ddl: false
+      
+    datasource:
+      url: jdbc:sqlserver://85.215.195.246:1433;databaseName=conex.modelos.transporte;encrypt=false;trustServerCertificate=false
+      username: albarandigital
+      password: BXZgi6QipRzfSg725QVQwT
+      driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver            
 ---
 logging:
   level:
     com.proin.albaran: INFO
+    org.hibernate: INFO

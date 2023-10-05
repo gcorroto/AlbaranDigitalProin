@@ -128,4 +128,8 @@ public class MockAlbaranServiceImpl implements MockAlbaranService {
 		return List.of(c);
 	}
 
+	public static void main (String args[]) {
+		System.out.println("HHola mundo raul");
+	}
+	
 }
