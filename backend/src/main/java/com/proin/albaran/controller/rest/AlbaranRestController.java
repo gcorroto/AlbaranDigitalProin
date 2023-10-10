@@ -32,6 +32,7 @@ import com.proin.albaran.dto.MeteorologiaDto;
 import com.proin.albaran.dto.RecepcionDto;
 import com.proin.albaran.dto.RemolqueDto;
 import com.proin.albaran.dto.TransporteDto;
+import com.proin.albaran.service.AlbaranService;
 import com.proin.albaran.service.MockAlbaranService;
 import com.proin.albaran.util.EasyRandomUtils;
 import com.proin.conex.modelos.transporte.TAlbaran;
@@ -49,37 +50,19 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 	private List<String> catalogoUnidades = TMedida.mapaUnidades.keySet().stream().collect(Collectors.toList());
 	private final ModelMapper modelMapper;
 	private final MockAlbaranService mockService;
+	private final AlbaranService albaranService;
 
 	@PostConstruct
 	public void init() {
         configMappingDto(); 
     }
 
-	// GET BASE ALBARAN
-	// @GetMapping()
-	// @ResponseMetadataBody
-	// public ResponseEntity<?> getAlbaran(@RequestParam(value = "meta", required=false) boolean meta) {
-
-    //     ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //     try {
-    //         TAlbaran entity = mockService.obtenerAlbaran();
-    //         AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
-    //     if (dto == null) {
-    //         response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
-    //     }else {
-	// 		response = new ResponseEntity<AlbaranDto>(dto, HttpStatus.OK);
-	// 	}
-    //     } catch (Exception e) {
-	// 		log.error("Error al general el primer albaran", e);
-    //         response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-
-    //     return response;
-	// }
-
 	@GetMapping()
 	public ResponseEntity<?> getAlbaranesUsuario(@RequestParam(value = "meta", required=false) boolean meta) {
 
+		albaranService.obtenerConEntities();
+		//albaranService.obtenerAlbaran("1", "2", "HNESVASCOS001", "1");
+		
         ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
             List<TAlbaran> entities = mockService.obtenerAlbaranesUsuario();

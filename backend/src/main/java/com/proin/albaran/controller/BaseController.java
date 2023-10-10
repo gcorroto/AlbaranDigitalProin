@@ -14,3 +14,5 @@ public interface BaseController<Entity,Dto> {
 
 	abstract void configMappingDto();
 }
+
+

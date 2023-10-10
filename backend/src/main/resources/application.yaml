@@ -3,13 +3,27 @@ server:
     context-path: /albaran-digital
 spring:
   main:
-    allow-bean-definition-overriding: true
-  h2:
-    console:
-      enabled: true
+    allow-bean-definition-overriding: true 
+  security:
+    user:
+      name: hugo
+      password: oguh
+      
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    generate-ddl: true
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      ddl-auto: none
+    generate-ddl: false
+    
+  datasource:
+    url: jdbc:sqlserver://85.215.195.246:1433;databaseName=conex.modelos.transporte;encrypt=false;trustServerCertificate=false
+    username: albarandigital
+    password: BXZgi6QipRzfSg725QVQwT
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver      
+
   profiles:
     group:
       pro-csrf: pro, csrf
