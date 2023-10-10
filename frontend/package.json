@@ -9,8 +9,9 @@
     "test:old": "ng test",
     "test": "exit code 0",
     "lint": "exit code 0",
-    "clean": "rm -rf dist && rm -rf build/tmp"
+    "clean": "rm -rf dist"
   },
+  "comentariolimpieza": "rm -rf build/tmp",
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
