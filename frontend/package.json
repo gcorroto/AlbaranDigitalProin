@@ -9,7 +9,7 @@
     "test:old": "ng test",
     "test": "exit code 0",
     "lint": "exit code 0",
-    "clean": "rm -rf dist"
+    "clean": "exit code 0"
   },
   "comentariolimpieza": "rm -rf build/tmp",
   "private": true,
