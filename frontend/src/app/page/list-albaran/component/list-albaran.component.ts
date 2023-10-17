@@ -1,61 +1,40 @@
-import { Component, ComponentFactoryResolver, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { Albaran } from '@app/core/dto/albaran.model';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AlbaranSimpleComponent } from '@albaran/component/albaran-simple/albaran-simple.component';
 import {
-  BreakpointObserver,
-  BreakpointState
+  BreakpointObserver
 } from '@angular/cdk/layout';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewChildren, ViewContainerRef, WritableSignal, signal } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EntityApiEnum } from '@app/core/const/Enums';
+import { Albaran } from '@app/core/dto/albaran.model';
 import { ILog, Log } from '@app/core/dto/log.model';
 import { GenericCacheService } from '@app/core/services/cache/generic.service';
-import { AlbaranSimpleComponent } from '@albaran/component/albaran-simple/albaran-simple.component';
-import { Subject } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { EMPTY, Subject, catchError, map, switchMap, tap } from 'rxjs';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
   selector: 'app-list-albaran',
   templateUrl: './list-albaran.component.html',
-  styleUrls: ['./list-albaran.component.scss']
+  styleUrls: ['./list-albaran.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListAlbaranComponent implements OnInit {
 
   //list albaranes
-  private _albaranes: Albaran[] = [];
-  private totalAlbaranes: Albaran[] = [];
-  albaranesLength: number = 0;
-  get albaranes(): Albaran[] {
-    return this._albaranes;
-  }
-  set albaranes(data: Albaran[]) {
-    this._albaranes = data;
-  }
+  private totalAlbaranes: WritableSignal<Albaran[]> = signal<Albaran[]>([]);
+  albaranesLength = signal(0);
+  albaranes= signal<Albaran[]>([]);
 
   //idDetail Control
-  private _idDetail: string = '';
-  get idDetail(): string {
-    return this._idDetail;
-  }
-  set idDetail(data: string) {
-    this._idDetail = data;
-  }
-
-  //loading Control
-  private _loading: boolean = false;
-  get loading(): boolean {
-    return this._loading;
-  }
-  set loading(data: boolean) {
-    this._loading = data;
-  }
+  idDetail = signal<string>('');
+  loading = signal<boolean>(false);
 
 
   changesPagination!: Subject<void>;
-  pageSizeAlbaranes: number = 25;
-  currentPageAlbaranes: number = 0;
-  @ViewChild('albaranTemplate', { read: ViewContainerRef }) albaranTemplate!: ViewContainerRef;
+  pageSizeAlbaranes= signal(25);
+  @ViewChildren('albaranTemplate', { read: ViewContainerRef }) albaranTemplate!: ViewContainerRef;
 
 
   widthSize?: number;
@@ -67,58 +46,55 @@ export class ListAlbaranComponent implements OnInit {
     protected readonly router: Router,
     protected readonly breakpointObserver: BreakpointObserver,
     private readonly log: GenericCacheService<Log,string>,
-    private readonly serviceAlbaran: GenericCacheService<Albaran,string>,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private readonly serviceAlbaran: GenericCacheService<Albaran,string>
     ) {
-    }
+  }
+
+  ngOnInit(): void {
+    const resolvedData: Albaran[] = this.route.snapshot.data['albaranesUsuario'];
+    this.totalAlbaranes.set(resolvedData);
+    this.albaranesLength.set(resolvedData.length);
+    this.logInitialData(resolvedData);
+    this.pageChange(undefined);
+    this.ngxService.stop();
+  }
 
   pageChange(event: { pageIndex: any; pageSize: any; } | undefined) {
-    event ??= {pageIndex:0, pageSize: this.pageSizeAlbaranes};
+    event ??= {pageIndex:0, pageSize: this.pageSizeAlbaranes()};
     let calcSize = (event.pageIndex*event.pageSize);
     let currentCalcSize = calcSize + event.pageSize;
-    if (currentCalcSize > this.totalAlbaranes.length) currentCalcSize =  this.totalAlbaranes.length - calcSize;
-    this.albaranes = this.totalAlbaranes.slice(calcSize, currentCalcSize);
+    if (currentCalcSize > this.totalAlbaranes().length) currentCalcSize =  this.totalAlbaranes().length - calcSize;
+    console.log(`calcSize: ${calcSize} currentCalcSize: ${currentCalcSize}`);
+    this.albaranes.set(this.totalAlbaranes().slice(calcSize, currentCalcSize));
 
   }
 
   expand(id: string){//method to load component when panel is expanded
-    const componentFactory =
-    this.componentFactoryResolver.resolveComponentFactory(AlbaranSimpleComponent);
-    this.idDetail = id;
-    this.loading = true;
+    this.idDetail.set(id);
+    this.loading.set(true);
 
     this.serviceAlbaran.getById(id, EntityApiEnum.Albaran)
-      .pipe(untilDestroyed(this))
-      .subscribe(
-        (data: Albaran) => {
-            this.albaranTemplate.clear();
-            const componentRef = this.albaranTemplate.createComponent(componentFactory);
-            // here you can send data to dynamically loaded component
-          (<AlbaranSimpleComponent>componentRef.instance).albaran = data;
+      .pipe(
+        untilDestroyed(this),
+        tap(() => this.albaranTemplate.clear()),
+        map((data: Albaran) => {
+          const componentRef = this.albaranTemplate.createComponent(AlbaranSimpleComponent);
+          // here you can send data to dynamically loaded component
+          (<AlbaranSimpleComponent>componentRef.instance).albaran.set(data);
           // you can detach without destroying
           this.albaranTemplate.detach(0);
           // also reattach it with preserved elements.
           this.albaranTemplate.insert(componentRef.hostView, 0);
-          this.loading = false;
-        },
-        (err) => {
+          // return of(data);
+        }),
+        catchError((err) => {
           console.error(err);
-          this.loading = false;
-        }
-      );
-
- }
-
-
-
-  ngOnInit(): void {
-
-    const resolvedData: Albaran[] = this.route.snapshot.data['albaranesUsuario'];
-    this.totalAlbaranes = resolvedData;
-    this.albaranesLength = resolvedData.length;
-    this.logInitialData(resolvedData);
-    this.pageChange(undefined);
-    this.ngxService.stop();
+          return EMPTY;
+        })
+      )
+      .subscribe({
+        complete: () => this.loading.set(false)
+      });
   }
 
   private logInitialData(data: Albaran[]) {
@@ -129,28 +105,31 @@ export class ListAlbaranComponent implements OnInit {
     const logCurrent:ILog  = {level, message};
     this.log.postSave('send',logCurrent , EntityApiEnum.Log)
     .pipe(untilDestroyed(this))
-    .subscribe((logResp) => {
-        switch (level) {
-          case 'log':
-            console.log(logResp.message);
-            break;
-          case 'debug':
-            console.debug(logResp.message);
-              break;
-          case 'info':
-            console.info(logResp.message);
-              break;
-          case 'warn':
-            console.warn(logResp.message);
-              break;
-          case 'error':
-            console.error(logResp.message);
-              break;
-          default:
-              break;
+    .subscribe({
+        next: (logResp) => {
+            switch (level) {
+              case 'log':
+                console.log(logResp.message);
+                break;
+              case 'debug':
+                console.debug(logResp.message);
+                  break;
+              case 'info':
+                console.info(logResp.message);
+                  break;
+              case 'warn':
+                console.warn(logResp.message);
+                  break;
+              case 'error':
+                console.error(logResp.message);
+                  break;
+              default:
+                  break;
+            }
+        },
+        error: (err)=>{
+          console.error(err);
         }
-    },(err)=>{
-      console.error(err);
     });
   }
 

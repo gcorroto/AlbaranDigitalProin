@@ -43,7 +43,7 @@ import { AlbaranSimpleComponent } from '@albaran/component/albaran-simple/albara
 
 const components = [
 	AlbaranComponent,
-  AlbaranSimpleComponent,
+  // AlbaranSimpleComponent,
   ListAlbaranComponent,
   ToolbarComponent,
   // StepFormComponent,
