@@ -20,7 +20,7 @@ import { GenericCacheService } from '@app/core/services/cache/generic.service';
 })
 export class AlbaranComponent implements OnInit {
   isLinear = true;
-  @Output() isReader = true;
+  // @Output() isReader = true;
   clienteFormGroup: FormGroup = new FormGroup({});
   transporteFormGroup: FormGroup = new FormGroup({});
   hormigonFormGroup: FormGroup = new FormGroup({});
@@ -28,8 +28,8 @@ export class AlbaranComponent implements OnInit {
   horarioFormGroup: FormGroup = new FormGroup({});
   recepcionFormGroup: FormGroup = new FormGroup({});
   firmaFormGroup: FormGroup = new FormGroup({});
-  @Input() albaran!: Albaran;
-  @Input() simple: boolean = true;
+  albaran?: Albaran;
+  // @Input() simple: boolean = true;
   widthSize: number = 0;
 
   constructor(
@@ -44,21 +44,27 @@ export class AlbaranComponent implements OnInit {
     }
 
   ngOnInit(): void {
-
+    console.debug(`detallesalbaran firma`);
     this.responsiveStepper();
 
-    // const resolvedData: Albaran = this.route.snapshot.data['albaran'];
-    // this.albaran = resolvedData;
-    this.logInitialData(this.albaran);
-    this.buildFormCliente();
-    this.buildFormTransporte();
-    this.buildFormHormigon();
-    this.buildFormMeteorologia();
-    this.buildFormHorarios();
-    this.buildFormRecepcion();
-    this.buildFormFirma();
+    // this.route.paramMap.subscribe(params => {
+      const state = window.history.state;
+      this.albaran = state?.['albaran'];
 
-    this.ngxService.stop();
+      if (this.albaran) {
+        this.logInitialData(this.albaran);
+      }
+
+      this.buildFormCliente();
+      this.buildFormTransporte();
+      this.buildFormHormigon();
+      this.buildFormMeteorologia();
+      this.buildFormHorarios();
+      this.buildFormRecepcion();
+      this.buildFormFirma();
+
+      this.ngxService.stop();
+    // });
   }
 
   private logInitialData(data: Albaran) {
@@ -153,7 +159,7 @@ export class AlbaranComponent implements OnInit {
 
   private buildFormFirma() {
     this.firmaFormGroup = this._formBuilder.group({
-      'firma': [{value: this.albaran.firma}, Validators.required],
+      'firma': [{value: this.albaran?.firma}, Validators.required],
     });
   }
 

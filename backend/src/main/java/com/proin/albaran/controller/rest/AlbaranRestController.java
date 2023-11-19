@@ -32,7 +32,6 @@ import com.proin.albaran.dto.MeteorologiaDto;
 import com.proin.albaran.dto.RecepcionDto;
 import com.proin.albaran.dto.RemolqueDto;
 import com.proin.albaran.dto.TransporteDto;
-import com.proin.albaran.service.AlbaranService;
 import com.proin.albaran.service.MockAlbaranService;
 import com.proin.albaran.util.EasyRandomUtils;
 import com.proin.conex.modelos.transporte.TAlbaran;
@@ -50,7 +49,7 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 	private List<String> catalogoUnidades = TMedida.mapaUnidades.keySet().stream().collect(Collectors.toList());
 	private final ModelMapper modelMapper;
 	private final MockAlbaranService mockService;
-	private final AlbaranService albaranService;
+	// private final AlbaranService albaranService;
 
 	@PostConstruct
 	public void init() {
@@ -60,7 +59,7 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 	@GetMapping()
 	public ResponseEntity<?> getAlbaranesUsuario(@RequestParam(value = "meta", required=false) boolean meta) {
 
-		albaranService.obtenerConEntities();
+		// albaranService.obtenerAlbaranesUsuario();
 		//albaranService.obtenerAlbaran("1", "2", "HNESVASCOS001", "1");
 		
         ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -73,7 +72,7 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 			response = new ResponseEntity<List<AlbaranDto>>(dtos, HttpStatus.OK);
 		}
         } catch (Exception e) {
-			log.error("Error al general el primer albaran", e);
+			log.error("Error al general el listado de albaranes", e);
             response = new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

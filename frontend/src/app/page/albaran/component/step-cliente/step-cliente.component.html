@@ -1,7 +1,7 @@
 <form [formGroup]="formGroup">
   <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #clienteContainer>
 
-      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1" onlyReader [read]="readMode">
+      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
           <mat-label>Nº de albarán</mat-label>
           <input matInput placeholder="" formControlName="numAlbaran" required>

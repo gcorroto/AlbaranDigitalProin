@@ -12,6 +12,8 @@ import { CookieService } from '@services/impl/cookie-service.service';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER as spinner } from 'ngx-ui-loader';
 import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BreadcrumbService } from './core/services/breadcrumb.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 const defaultLoaderConfig: NgxUiLoaderConfig = {
@@ -48,7 +50,8 @@ const defaultLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(defaultLoaderConfig),
     MatTreeModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule
   ],
   bootstrap: [AppComponent],
   exports: [HttpClientModule, NgxUiLoaderModule],
@@ -59,7 +62,8 @@ const defaultLoaderConfig: NgxUiLoaderConfig = {
 		// 	deps: [CacheConfigService],
 		// 	multi: true
     // },
-    CookieService
+    CookieService,
+    BreadcrumbService
   ]
 })
 export class AppModule { }

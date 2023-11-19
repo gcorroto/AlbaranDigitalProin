@@ -1,13 +1,13 @@
-package com.proin.albaran.service;
+// package com.proin.albaran.service;
 
-import java.util.List;
+// import java.util.List;
 
-import com.proin.albaran.entity.AlbaranEntity;
-import com.proin.conex.modelos.transporte.TAlbaran;
+// import com.proin.albaran.entity.AlbaranEntity;
+// import com.proin.conex.modelos.transporte.TAlbaran;
 
-public interface AlbaranService {
+// public interface AlbaranService {
 
-	TAlbaran obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie);
+// 	TAlbaran obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie);
 	
-	List<AlbaranEntity> obtenerConEntities();
-}
+// 	List<AlbaranEntity> obtenerConEntities();
+// }

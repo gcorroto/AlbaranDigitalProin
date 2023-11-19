@@ -1,10 +1,10 @@
-package com.proin.albaran.repository;
+// package com.proin.albaran.repository;
 
-import com.proin.conex.modelos.transporte.TAlbaran;
-import com.proin.conex.modelos.transporte.TAlbaranId;
+// import com.proin.conex.modelos.transporte.TAlbaran;
+// import com.proin.conex.modelos.transporte.TAlbaranId;
 
-public interface CustomAlbaranRepository {
+// public interface CustomAlbaranRepository {
 	
-	TAlbaran obtenerAlbaranPorId(TAlbaranId id);
+// 	TAlbaran obtenerAlbaranPorId(TAlbaranId id);
 	
-}
+// }

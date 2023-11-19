@@ -17,13 +17,13 @@ dependencies {
 	implementation  fileTree(include: ['*.jar'], dir: 'libs')
 	implementation ('org.yaml:snakeyaml:1.27') 
 	
-	implementation  "org.springframework.boot:spring-boot-starter-data-jpa",
-					'org.springframework.boot:spring-boot-starter-security',
+	implementation  'org.springframework.boot:spring-boot-starter-security',
 					'org.springframework.boot:spring-boot-starter-aop',
 					'org.springframework.boot:spring-boot-starter-validation',
 					'org.springframework.boot:spring-boot-starter-actuator',
 					'org.springframework.boot:spring-boot-starter-webflux',
 					'org.thymeleaf:thymeleaf-spring5',
+					// "org.springframework.boot:spring-boot-starter-data-jpa",
 
 					'org.webjars:bootstrap:4.0.0-2',
 					'org.webjars:webjars-locator:0.30',

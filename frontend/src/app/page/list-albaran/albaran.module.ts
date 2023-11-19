@@ -39,29 +39,19 @@ import {MatChipsModule} from '@angular/material/chips';
 import { ListAlbaranComponent } from '@app/page/list-albaran/component/list-albaran.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { AlbaranSimpleComponent } from '@albaran/component/albaran-simple/albaran-simple.component';
+import { StepFormComponent } from '@app/core/components/step-form/step-form.component';
 
 
 const components = [
-	AlbaranComponent,
   // AlbaranSimpleComponent,
   ListAlbaranComponent,
   ToolbarComponent,
-  // StepFormComponent,
-
-  StepClienteComponent,
-  StepHormigonesComponent,
-  StepHormigonesContenidoComponent,
-  StepTransporteComponent,
-  StepMeteorologiaComponent,
-  StepHorariosComponent,
-  StepRecepcionComponent,
-  StepFirmaComponent,
 ];
 
 
-const directives = [
-	OnlyReaderdirectivesPipe
-];
+// const directives = [
+// 	OnlyReaderdirectivesPipe
+// ];
 
 const resolvers = [
 	PrimeraCargaAlbaranResolver
@@ -73,7 +63,7 @@ const resolvers = [
 		ReactiveFormsModule,
     FormsModule,
     AngularSignatureFieldModule,
-
+    MatPaginatorModule,
     MatStepperModule,
     MatToolbarModule,
     MatInputModule,
@@ -90,11 +80,9 @@ const resolvers = [
     CdkStepperModule,
     MatProgressBarModule,
     MatExpansionModule,
-    MatPaginatorModule,
-    // NgxMaterialTimepickerModule,
     MatChipsModule
 	],
-	declarations: [components, directives],
+	declarations: [components],
 	bootstrap: [ListAlbaranComponent],
 	providers: [
 		resolvers

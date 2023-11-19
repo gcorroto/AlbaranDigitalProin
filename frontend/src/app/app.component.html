@@ -1,2 +1,11 @@
+
+<mat-toolbar color="primary" style="height: 45px; font-size: 16px; font-weight: bold; color: #E6E8EA">
+  <span><a  mat-button (click)="breadCrumbMain()" style="color: white;">{{level1}}</a></span>
+
+  <span style="color: white;" *ngIf="level2">
+    <a  mat-button >{{level2}}</a>
+  </span>
+
+</mat-toolbar>
 <router-outlet></router-outlet>
 <ngx-ui-loader></ngx-ui-loader>

@@ -1,16 +1,16 @@
 <div class="container">
   <!-- <div fxLayout="row" fxLayoutAlign="center center" class="content"> -->
 
-    <mat-card class="card">
-      <mat-card-title>
+    <!-- <mat-card class="card"> -->
+      <!-- <mat-card-title> -->
         <h3>Listado Albaranes :</h3>
-      </mat-card-title>
-      <mat-card-content>
+      <!-- </mat-card-title> -->
+      <!-- <mat-card-content> -->
         <div class="accordion-albaranes-container mat-elevation-z8">
-          <!-- <ng-container *ngTemplateOutlet="detalleAlbaran; context: { $implicit: albaranes() }"></ng-container> -->
           <mat-accordion class="list-albaran-headers-align">
-            <mat-expansion-panel *ngFor="let albaran of albaranes()" (afterExpand)="expand(albaran.numAlbaran)">
+            <mat-expansion-panel *ngFor="let albaran of albaranes" (afterExpand)="expand(albaran.numAlbaran)">
               <mat-expansion-panel-header>
+
                 <mat-panel-title>
                   <p><strong>Nº {{albaran.numAlbaran}}</strong></p>
                 </mat-panel-title>
@@ -20,26 +20,22 @@
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <!--where component will be loaded-->
-              <ng-container *ngIf="idDetail() === albaran.numAlbaran && loading()">
+              <ng-container *ngIf="idDetail === albaran.numAlbaran && loading">
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
               </ng-container>
-              <ng-container *ngIf="idDetail() === albaran.numAlbaran && !loading()">
+              <ng-container *ngIf="idDetail === albaran.numAlbaran">
                 <ng-template #albaranTemplate></ng-template>
               </ng-container>
+              <!-- <ng-container #albaranContainer></ng-container> -->
             </mat-expansion-panel>
           </mat-accordion>
-          <ng-container *ngTemplateOutlet="paginacionListadoAlbaran;"></ng-container>
+
+          <mat-paginator [length]="albaranesLength" [pageSize]="pageSizeAlbaranes" [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Selecciona tamaño" (page)="pageChange($event)">
+          </mat-paginator>
         </div>
-      </mat-card-content>
-    </mat-card>
+
+      <!-- </mat-card-content> -->
+    <!-- </mat-card> -->
   <!-- </div> -->
 </div>
-<!-- templates -->
-
-
-<ng-template #paginacionListadoAlbaran>
-  <mat-paginator [length]="albaranesLength()" [pageSize]="pageSizeAlbaranes()" [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Selecciona tamaño" (page)="pageChange($event)">
-  </mat-paginator>
-</ng-template>
-```

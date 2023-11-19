@@ -4,12 +4,14 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { EntityApiEnum } from '@const/Enums';
 import { Albaran } from '@dto/albaran.model';
 import { GenericCacheService } from '@services/cache/generic.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Log } from '@dto/log.model';
 
 @Injectable()
 export class PrimeraCargaAlbaranResolver implements Resolve<Albaran[]> {
 
+
+  private cacheConsulta:Albaran[] = [];
 
     constructor(
         private readonly serviceAlbaran: GenericCacheService<Albaran,string>
@@ -17,21 +19,23 @@ export class PrimeraCargaAlbaranResolver implements Resolve<Albaran[]> {
 
     resolve(route: ActivatedRouteSnapshot): Observable<Albaran[]> {
       // request param ???
-      // const clientId: string = route.paramMap.get('clientId');
-
         return new Observable<Albaran[]>((observ) => {
           console.debug(`realizamos primera carga albaran`);
-          this.serviceAlbaran.getAll(EntityApiEnum.Albaran)
-          .subscribe((data: Albaran[]) => {
+          const observer:Observable<Albaran[]>= this.cacheConsulta && this.cacheConsulta.length>0 ?  of(this.cacheConsulta) : this.serviceAlbaran.getAll(EntityApiEnum.Albaran);
+          observer
+          .subscribe({
+            next:(data: Albaran[]) => {
+              this.cacheConsulta = data;
               observ.next(data);
             },
-            (err) => {
+            error:(err) => {
+              this.cacheConsulta = [];
               observ.error(err);
             },
-            ()=> {
+            complete:()=> {
               observ.complete();
-            }
-          );
+            },
+        });
         });
     }
 }
