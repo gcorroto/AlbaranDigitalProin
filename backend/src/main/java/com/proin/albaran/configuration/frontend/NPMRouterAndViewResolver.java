@@ -29,12 +29,12 @@ import org.springframework.web.reactive.function.server.RequestPredicate;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.expression.ThymeleafEvaluationContext;
-import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 import lombok.extern.slf4j.Slf4j;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
+import org.thymeleaf.spring6.expression.ThymeleafEvaluationContext;
+import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 @Configuration
 @Slf4j()

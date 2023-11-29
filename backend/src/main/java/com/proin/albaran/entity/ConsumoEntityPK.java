@@ -1,7 +1,5 @@
 package com.proin.albaran.entity;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -9,12 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Embeddable
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AlbaranEntityPK implements Serializable {
+public class ConsumoEntityPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,5 +29,8 @@ public class AlbaranEntityPK implements Serializable {
     
     @Column(name = "serie")
     private String serie;
+
+    @Column(name = "idConsumo")
+    private Integer idConsumo;
     
 }

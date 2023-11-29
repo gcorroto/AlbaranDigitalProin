@@ -3,12 +3,17 @@ server:
     context-path: /albaran-digital
 spring:
   main:
-    allow-bean-definition-overriding: true 
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
   security:
     user:
       name: hugo
       password: oguh
-      
+  profiles:
+    group:
+      pro-csrf: pro, csrf
+      dev-csrf: dev, csrf
+      dev-insecure: dev, insecure
   jpa:
     database-platform: org.hibernate.dialect.SQLServerDialect
     hibernate:
@@ -17,15 +22,22 @@ spring:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
       ddl-auto: none
     generate-ddl: false
-    
+    open-in-view: false
+
   datasource:
     url: jdbc:sqlserver://85.215.195.246:1433;databaseName=conex.modelos.transporte;encrypt=false;trustServerCertificate=false
     username: albarandigital
-    password: BXZgi6QipRzfSg725QVQwT
+    password: BXZgi6QipRzfSg725QVQwZ
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+management:
+  endpoints:
+    web:
+      cors:
+        allow-credentials:
 
-  profiles:
-    group:
-      pro-csrf: pro, csrf
-      dev-csrf: dev, csrf
-      dev-insecure: dev, insecure
+logging:
+  level:
+    org.hibernate: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: DEBUG
+    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: DEBUG

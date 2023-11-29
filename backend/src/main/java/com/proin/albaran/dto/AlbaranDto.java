@@ -12,16 +12,16 @@ import lombok.Setter;
 public class AlbaranDto extends BaseDto {
 
 	private String numAlbaran;
-	private String fechaEntrega;
+	private String fechaAlbaran; //fechaEntrega;
 	private Integer radial;
-	private Float m3;
-	private Integer progresoDia;
-	private String planta;
-	private Integer viaCarga;
-	private String obra;
-	private String direccion;
-	private String cp;
-	private String municipio;
+	private Float cantidadAlbaran; //m3;
+	private Float distanciaADestino;//progresoDia;
+	private String codigoPlanta; //planta;
+	private Integer obra; //viaCarga;
+	private String nombreObra;
+	private String nombreCliente; //direccion;
+	private String codigoPostalObra; //cp
+	private String nombreTransportista; //municipio;
 
 	private ClienteDto cliente;
 	private TransporteDto transporte;

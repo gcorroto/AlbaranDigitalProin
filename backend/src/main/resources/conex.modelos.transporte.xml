@@ -1,0 +1,1998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	<mapped-superclass
+		class="com.proin.conex.modelos.transporte.TFacetaArticulo">
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<basic name="fechaCreacion">
+				<column name="fechaCreacion" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="setNull">
+				<column name="setNull" />
+			</basic>
+			<basic name="descripcion">
+				<column name="descripcion" />
+			</basic>
+			<basic name="descripcionAbreviada">
+				<column name="descripcionAbreviada" />
+			</basic>
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass
+		class="com.proin.conex.modelos.transporte.TObject">
+		<attributes>
+			<basic name="changed">
+				<column name="changed" />
+			</basic>
+			<basic name="lastChangeDate">
+				<column name="lastChangeDate" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="changeAuthor">
+				<column name="changeAuthor" />
+			</basic>
+			<basic name="plantasChanged">
+				<column name="plantasChanged" />
+			</basic>
+			<transient name="listPlantasChanged" />
+			<transient name="mensajeErrorConsistencia" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass
+		class="com.proin.conex.modelos.transporte.TAbstractAlbaran">
+		<id-class
+			class="com.proin.conex.modelos.transporte.TAlbaranId" />
+		<attributes>
+			<id name="codigoPlanta">
+				<column name="codigoPlanta" />
+			</id>
+			<id name="serie">
+				<column name="serie" />
+			</id>
+			<id name="numeroalbaran">
+				<column name="numeroalbaran" />
+			</id>
+			<id name="centro">
+				<column name="centro" />
+			</id>
+			<basic name="camion">
+				<column name="camion" />
+			</basic>
+			<basic name="obra">
+				<column name="obra" />
+			</basic>
+			<basic name="transportePropio">
+				<column name="transportePropio" />
+			</basic>
+			<basic name="fechaAlbaran">
+				<column name="fechaAlbaran" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="codigoExternoPedido">
+				<column name="codigoExternoPedido" />
+			</basic>
+			<basic name="observaciones">
+				<column name="observaciones" />
+			</basic>
+			<basic name="conductor">
+				<column name="conductor" />
+			</basic>
+			<basic name="cliente">
+				<column name="cliente" />
+			</basic>
+			<basic name="albaranid">
+				<column name="albaranid" />
+			</basic>
+			<basic name="estadoAlbaran">
+				<column name="estadoAlbaran" />
+			</basic>
+			<basic name="unidadCapacidadCamion">
+				<column name="unidadCapacidadCamion" />
+			</basic>
+			<basic name="nombreObra">
+				<column name="nombreObra" />
+			</basic>
+			<basic name="nombreProveedor">
+				<column name="nombreProveedor" />
+			</basic>
+			<basic name="codigoExternoProveedor">
+				<column name="codigoExternoProveedor" />
+			</basic>
+			<basic name="nombreTransportista">
+				<column name="nombreTransportista" />
+			</basic>
+			<basic name="nombreCliente">
+				<column name="nombreCliente" />
+			</basic>
+			<basic name="capacidadCamion">
+				<column name="capacidadCamion" />
+			</basic>
+			<basic name="unidadDistanciaADestino">
+				<column name="unidadDistanciaADestino" />
+			</basic>
+			<basic name="distanciaADestino">
+				<column name="distanciaADestino" />
+			</basic>
+			<basic name="codigoExternoTransportista">
+				<column name="codigoExternoTransportista" />
+			</basic>
+			<basic name="nombreConductor">
+				<column name="nombreConductor" />
+			</basic>
+			<basic name="unidadTara">
+				<column name="unidadTara" />
+			</basic>
+			<basic name="tara">
+				<column name="tara" />
+			</basic>
+			<basic name="estadoCierre">
+				<column name="estadoCierre" />
+			</basic>
+			<basic name="matriculaCamion">
+				<column name="matriculaCamion" />
+			</basic>
+			<basic name="clienteEsCargadorContractual">
+				<column name="clienteEsCargadorContractual" />
+			</basic>
+			<basic name="codigoExternoOperadorTransporte">
+				<column name="codigoExternoOperadorTransporte" />
+			</basic>
+			<basic name="nombreOperadorTransporte">
+				<column name="nombreOperadorTransporte" />
+			</basic>
+			<basic name="cifTransportista">
+				<column name="cifTransportista" />
+			</basic>
+			<basic name="cifOperadorTransporte">
+				<column name="cifOperadorTransporte" />
+			</basic>
+			<basic name="codigoExternoFormula">
+				<column name="codigoExternoFormula" />
+			</basic>
+			<basic name="codigoExternoGPSCamion">
+				<column name="codigoExternoGPSCamion" />
+			</basic>
+			<basic name="seriePedido">
+				<column name="seriePedido" />
+			</basic>
+			<basic name="codigoExternoPedidoERP">
+				<column name="codigoExternoPedidoERP"/>
+			</basic>
+			<transient name="idElementoHormigonado" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass
+		class="com.proin.conex.modelos.transporte.TAbstractLineaAlbaran">
+		<attributes>
+			<id name="lineaalbaranid">
+				<column name="lineaalbaranid" />
+			</id>
+			<basic name="cantidad">
+				<column name="cantidad" />
+			</basic>
+			<basic name="codigoExternoMaterial">
+				<column name="codigoExternoMaterial" />
+			</basic>
+			<basic name="unidad">
+				<column name="unidad" />
+			</basic>
+			<basic name="tipoMaterial">
+				<column name="tipoMaterial" />
+			</basic>
+			<basic name="descripcion">
+				<column name="descripcion" />
+			</basic>
+			<basic name="unidadPrecioUnitario">
+				<column name="unidadPrecioUnitario" />
+			</basic>
+			<basic name="precioUnitario">
+				<column name="precio" />
+			</basic>
+			<embedded name="cantidadRestantePedido">
+				<attribute-override name="valor">
+					<column name="cantidadRestantePedido" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadRestantePedido" />
+				</attribute-override>
+			</embedded>
+			<embedded name="cantidadServidaPedido">
+				<attribute-override name="valor">
+					<column name="cantidadServidaPedido" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadServidaPedido" />
+				</attribute-override>
+			</embedded>
+			<embedded name="cantidadSolicitadaPedido">
+				<attribute-override name="valor">
+					<column name="cantidadSolicitadaPedido" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadSolicitadaPedido" />
+				</attribute-override>
+			</embedded>
+		</attributes>
+	</mapped-superclass>
+	<entity
+		class="com.proin.conex.modelos.transporte.TAlbaranEntrada">
+		<table name="TAlbaranEntrada">
+		</table>
+		<id-class
+			class="com.proin.conex.modelos.transporte.TAlbaranEntradaId" />
+		<attributes>
+			<id name="codigoExternoAlbaranEntrada">
+				<column name="codigoExternoAlbaranEntrada" />
+			</id>
+			<id name="codigoExternoCentro">
+				<column name="codigoExternoCentro" />
+			</id>
+			<basic name="fecha">
+				<column name="fecha" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="observaciones">
+				<column name="observaciones" />
+			</basic>
+			<basic name="codigoExternoAlbaranProveedor">
+				<column name="codigoExternoAlbaranProveedor" />
+			</basic>
+			<basic name="codigoExternoLote">
+				<column name="codigoExternoLote" />
+			</basic>
+			<basic name="estadoCierre">
+				<column name="estadoCierre" />
+			</basic>
+			<basic name="codigoExternoConductor">
+				<column name="codigoExternoConductor" />
+			</basic>
+			<basic name="codigoExternoProveedor">
+				<column name="codigoExternoProveedor" />
+			</basic>
+			<basic name="matriculaCamion">
+				<column name="matriculaCamion" />
+			</basic>
+			<basic name="codigoExternoCamion">
+				<column name="codigoExternoCamion" />
+			</basic>
+			<basic name="codigoExternoOrigen">
+				<column name="codigoExternoOrigen" />
+			</basic>
+			<basic name="codigoExternoPedidoCompraAbierto">
+				<column name="codigoExternoPedidoCompraAbierto" />
+			</basic>
+			<basic name="codigoExternoMaterial">
+				<column name="codigoExternoMaterial" />
+			</basic>
+			<basic name="cantidad">
+				<column name="cantidad" />
+			</basic>
+			<basic name="unidadCantidad">
+				<column name="unidadCantidad" />
+			</basic>
+			<basic name="cantidadSegunProveedor">
+				<column name="cantidadSegunProveedor" />
+			</basic>
+			<basic name="unidadCantidadSegunProveedor">
+				<column name="unidadCantidadSegunProveedor" />
+			</basic>
+			<basic name="codigoExternoTransportista">
+				<column name="codigoExternoTransportista" />
+			</basic>
+			<basic name="codigoExternoProveedorAsociadoTransportista">
+				<column name="codigoExternoProveedorAsociadoTransportista" />
+			</basic>
+			<basic name="razonSocialProveedorAsociadoTransportista">
+				<column name="razonSocialProveedorAsociadoTransportista" />
+			</basic>
+			<basic name="fechaBorrado">
+				<column name="fechaBorrado" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="id" />
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TArticulo">
+		<table name="TArticulo">
+		</table>
+		<attributes>
+			<id name="codigoExternoArticulo">
+				<column name="codigoExternoArticulo" />
+			</id>
+			<basic name="fechaCreacion">
+				<column name="fechaCreacion" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="descripcionArticulo">
+				<column name="descripcionArticulo" />
+			</basic>
+			<basic name="descripcionAbreviadaArticulo">
+				<column name="descripcionAbreviadaArticulo" />
+			</basic>
+			<basic name="descripcionAlternativaArticulo">
+				<column name="descripcionAlternativaArticulo" />
+			</basic>
+			<basic name="unidadPreferidaArticulo">
+				<column name="unidadPreferidaArticulo" />
+			</basic>
+			<basic name="unidadPreferidaComprable">
+				<column name="unidadPreferidaComprable" />
+			</basic>
+			<basic name="unidadPreferidaVendible">
+				<column name="unidadPreferidaVendible" />
+			</basic>
+			<basic name="unidadPreferidaMaterial">
+				<column name="unidadPreferidaMaterial" />
+			</basic>
+			<basic name="numeroOrden">
+				<column name="numeroOrden" />
+			</basic>
+			<basic name="tipo">
+				<column name="tipo" />
+			</basic>
+			<basic name="esMaterial">
+				<column name="esMaterial" />
+			</basic>
+			<basic name="esCategoria">
+				<column name="esCategoria" />
+			</basic>
+			<basic name="esComprable">
+				<column name="esComprable" />
+			</basic>
+			<basic name="esVendible">
+				<column name="esVendible" />
+			</basic>
+			<basic name="esServicio">
+				<column name="esServicio" />
+			</basic>
+			<basic name="codigoExternoSegunProveedor">
+				<column name="codigoExternoSegunProveedor" />
+			</basic>
+			<basic name="tipoMaterial">
+				<column name="tipoMaterial" />
+			</basic>
+			<basic name="residuoSeco">
+				<column name="residuoSeco" />
+			</basic>
+			<basic name="densidadReal">
+				<column name="densidadReal" />
+			</basic>
+			<basic name="codigoExternoCategoria">
+				<column name="codigoExternoCategoria" />
+			</basic>
+			<basic name="porcentajeIonCloro">
+				<column name="porcentajeIonCloro" />
+			</basic>
+			<basic name="coeficienteAbsorcion">
+				<column name="coeficienteAbsorcion" />
+			</basic>
+			<basic name="codigoExternoOrigen">
+				<column name="codigoExternoOrigen" />
+			</basic>
+			<basic name="ehe">
+				<column name="ehe" />
+			</basic>
+			<basic name="descripcionCategoria">
+				<column name="descripcionCategoria" />
+			</basic>
+			<basic name="descripcionAbreviadaCategoria">
+				<column name="descripcionAbreviadaCategoria" />
+			</basic>
+			<basic name="tipoCategoria">
+				<column name="tipoCategoria" />
+			</basic>
+			<basic name="descripcionComprable">
+				<column name="descripcionComprable" />
+			</basic>
+			<basic name="descripcionAbreviadaComprable">
+				<column name="descripcionAbreviadaComprable" />
+			</basic>
+			<basic name="codigoExternoProveedor">
+				<column name="codigoExternoProveedor" />
+			</basic>
+			<basic name="descripcionVendible">
+				<column name="descripcionVendible" />
+			</basic>
+			<basic name="descripcionAbreviadaVendible">
+				<column name="descripcionAbreviadaVendible" />
+			</basic>
+			<basic name="descripcionServicio">
+				<column name="descripcionServicio" />
+			</basic>
+			<basic name="descripcionAbreviadaServicio">
+				<column name="descripcionAbreviadaServicio" />
+			</basic>
+			<element-collection name="categorias">
+				<column name="categorias" />
+				<collection-table name="TArticulo_Categorias">
+					<join-column name="codigoExternoArticulo"
+						referenced-column-name="codigoExternoArticulo" />
+				</collection-table>
+			</element-collection>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TArticuloSimple">
+		<table name="TArticuloSimple">
+		</table>
+		<attributes>
+			<id name="codigoExternoArticulo">
+				<column name="codigoExternoArticulo" />
+			</id>
+			<basic name="fechaCreacion">
+				<column name="fechaCreacion" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="descripcionArticulo">
+				<column name="descripcionArticulo" />
+			</basic>
+			<basic name="descripcionAbreviadaArticulo">
+				<column name="descripcionAbreviadaArticulo" />
+			</basic>
+			<basic name="descripcionAlternativaArticulo">
+				<column name="descripcionAlternativaArticulo" />
+			</basic>
+			<basic name="unidadPreferidaArticulo">
+				<column name="unidadPreferidaArticulo" />
+			</basic>
+			<basic name="codigoExternoSegunProveedor">
+				<column name="codigoExternoSegunProveedor" />
+			</basic>
+			<basic name="tipoMaterial">
+				<column name="tipoMaterial" />
+			</basic>
+			<basic name="codigoExternoProveedor">
+				<column name="codigoExternoProveedor" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TCamion"
+		cacheable="false">
+		<table name="TCamion">
+		</table>
+		<discriminator-value>TCamion</discriminator-value>
+		<discriminator-column name="clase" />
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<basic name="conductor">
+				<column name="conductor" />
+			</basic>
+			<basic name="inactivo">
+				<column name="inactivo" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="matricula">
+				<column name="matricula" />
+			</basic>
+			<basic name="matriculaRemolque">
+				<column name="matricularemolque" />
+			</basic>
+			<basic name="numero">
+				<column name="numero" />
+			</basic>
+			<basic name="taraTeorica">
+				<column name="taraTeorica" />
+			</basic>
+			<basic name="pma">
+				<column name="pma" />
+			</basic>
+			<basic name="codigoExternoTransportista">
+				<column name="codigoExternoTransportista" />
+			</basic>
+			<basic name="propio">
+				<column name="propio" />
+			</basic>
+			<basic name="tara">
+				<column name="tara" />
+			</basic>
+			<basic name="bomba">
+				<column name="bomba" />
+			</basic>
+			<basic name="codigoExternoOperadorTransporte">
+				<column name="codigoExternoOperadorTransporte" />
+			</basic>
+			<embedded name="capacidad">
+				<attribute-override name="valor">
+					<column name="capacidad" table="TCamion" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCapacidad" table="TCamion" />
+				</attribute-override>
+			</embedded>
+			<transient name="id" />
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TCategoria">
+		<table name="TCategoria">
+		</table>
+		<attributes>
+			<basic name="codigoExternoProveedor">
+				<column name="codigoExternoProveedor" />
+			</basic>
+			<basic name="tipoCategoria">
+				<column name="tipoCategoria" />
+			</basic>
+			<basic name="unidadPreferida">
+				<column name="unidadPreferida" />
+			</basic>
+			<basic name="codigoExternoSuperCartegoria">
+				<column name="codigoExternoSuperCartegoria" />
+			</basic>
+			<one-to-many name="subCategorias">
+				<join-table name="TCategoria_Subcategorias">
+					<join-column name="codigoExternoCategoria"
+						referenced-column-name="codigoExterno" />
+					<inverse-join-column
+						name="codigoExternoSubcategoria"
+						referenced-column-name="codigoExterno" />
+				</join-table>
+			</one-to-many>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TCliente">
+		<table name="TCliente">
+		</table>
+		<attributes>
+			<id name="codexterno">
+				<column name="codexterno" />
+			</id>
+			<basic name="fechaalta">
+				<column name="fechaalta" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fechaModificacion">
+				<column name="fechaModificacion" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fechaBorrado">
+				<column name="fechaBorrado" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="codigo">
+				<column name="codigo" />
+			</basic>
+			<basic name="codpostal">
+				<column name="codpostal" />
+			</basic>
+			<basic name="direccion">
+				<column name="direccion" />
+			</basic>
+			<basic name="nif">
+				<column name="nif" />
+			</basic>
+			<basic name="razonsocial">
+				<column name="razonsocial" />
+			</basic>
+			<basic name="telefono1">
+				<column name="telefono1" />
+			</basic>
+			<basic name="telefono2">
+				<column name="telefono2" />
+			</basic>
+			<basic name="bloqueado">
+				<column name="bloqueado" />
+			</basic>
+			<basic name="observaciones">
+				<column name="observaciones" />
+			</basic>
+			<basic name="personaContacto">
+				<column name="personaContacto" />
+			</basic>
+			<basic name="poblacion">
+				<column name="poblacion" />
+			</basic>
+			<basic name="tipoTarifa">
+				<column name="tipoTarifa" />
+			</basic>
+			<transient name="clienteid" />
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TComprable">
+		<table name="TComprable">
+		</table>
+		<attributes>
+			<basic name="unidadPreferida">
+				<column name="unidadPreferida" />
+			</basic>
+			<basic name="idProveedor">
+				<column name="idProveedor" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TConductor">
+		<table name="TConductor">
+		</table>
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<basic name="nif">
+				<column name="nif" />
+			</basic>
+			<basic name="nombre">
+				<column name="nombre" />
+			</basic>
+			<basic name="fechaBorrado">
+				<column name="fechaBorrado" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="id">
+				<column name="id" />
+			</basic>
+			<basic name="telefono">
+				<column name="telefono" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TConsumo">
+		<table name="TConsumo">
+		</table>
+		<attributes>
+			<id name="id">
+				<column name="id" />
+			</id>
+			<basic name="cantidad">
+				<column name="cantidad" />
+			</basic>
+			<basic name="codigoExternoMaterial">
+				<column name="codigoExternoMaterial" />
+			</basic>
+			<basic name="unidad">
+				<column name="unidad" />
+			</basic>
+			<basic name="unidadCantidadTeorica">
+				<column name="unidadCantidadTeorica" />
+			</basic>
+			<basic name="descripcionMaterial">
+				<column name="descripcionMaterial" />
+			</basic>
+			<basic name="cantidadTeorica">
+				<column name="cantidadTeorica" />
+			</basic>
+			<basic name="tipoMaterial">
+				<column name="tipoMaterial"/>
+			</basic>
+			<embedded name="humedad">
+				<attribute-override name="valor">
+					<column name="humedad" table="TConsumo" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadHumedad" table="TConsumo" />
+				</attribute-override>
+			</embedded>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TEntrada">
+		<table name="TEntrada">
+		</table>
+		<attributes>
+			<id name="codigoLoteExterno">
+				<column name="codigoLoteExterno" />
+			</id>
+			<basic name="fechaCreacion">
+				<column name="fechaCreacion" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="codigoExternoMaterial">
+				<column name="codigoExternoMaterial" />
+			</basic>
+			<basic name="codigoExternoPlanta">
+				<column name="codigoExternoPlanta" />
+			</basic>
+			<basic name="codigoExternoAlmacen">
+				<column name="codigoExternoAlmacen" />
+			</basic>
+			<basic name="idAlmacen">
+				<column name="idAlmacen" />
+			</basic>
+			<embedded name="medida">
+			</embedded>
+			<transient name="fechaCreacionAsString" />
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.THormigonera"
+		cacheable="false">
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TLineaAlbaran">
+		<table name="TLineaAlbaran">
+		</table>
+		<attributes>
+			<many-to-one name="albaran">
+				<join-column name="codigoPlanta"
+					referenced-column-name="codigoPlanta" />
+				<join-column name="serie" referenced-column-name="serie" />
+				<join-column name="numeroAlbaran"
+					referenced-column-name="numeroalbaran" />
+				<join-column name="centro"
+					referenced-column-name="centro" />
+			</many-to-one>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TLineaPedido">
+		<table name="TLineaPedido">
+		</table>
+		<attributes>
+			<id name="id">
+				<column name="id" />
+			</id>
+			<basic name="material">
+				<column name="material" />
+			</basic>
+			<basic name="cantidadSuministrada">
+				<column name="cantidadSuministrada" />
+			</basic>
+			<basic name="unidadCantidadSuministrada">
+				<column name="unidadCantidadSuministrada" />
+			</basic>
+			<basic name="precioUnitario">
+				<column name="precioUnitario" />
+			</basic>
+			<basic name="unidadPrecioUnitario">
+				<column name="unidadPrecioUnitario" />
+			</basic>
+			<basic name="estado">
+				<column name="estado" />
+			</basic>
+			<basic name="cantidadConsumida">
+				<column name="cantidadConsumida" />
+			</basic>
+			<basic name="unidadCantidadConsumida">
+				<column name="unidadCantidadConsumida" />
+			</basic>
+			<basic name="numeroOrden">
+				<column name="numeroOrden" />
+			</basic>
+			<basic name="productoPrincipal">
+				<column name="productoPrincipal" />
+			</basic>
+			<many-to-one name="pedido"
+				target-entity="com.proin.conex.modelos.transporte.TPedido"
+				access="FIELD" fetch="EAGER">
+				<join-column name="centro"
+					referenced-column-name="centro" />
+				<join-column name="codigoExternoPedido"
+					referenced-column-name="codigoExterno" />
+			</many-to-one>
+			<transient name="cantidadOriginal" />
+			<transient name="unidadCantidadOriginal" />
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TMaterialTecnico">
+		<table name="TMaterialTecnico">
+		</table>
+		<attributes>
+			<basic name="tipoMaterial">
+				<column name="tipoMaterial" />
+			</basic>
+			<basic name="residuoSeco">
+				<column name="residuoSeco" />
+			</basic>
+			<basic name="densidadReal">
+				<column name="densidadReal" />
+			</basic>
+			<basic name="categoriaPrincipal">
+				<column name="categoriaPrincipal" />
+			</basic>
+			<basic name="porcentajeIonCloro">
+				<column name="porcentajeIonCloro" />
+			</basic>
+			<basic name="coeficienteAbsorcion">
+				<column name="coeficienteAbsorcion" />
+			</basic>
+			<basic name="origen">
+				<column name="origen" />
+			</basic>
+			<basic name="descripcionAlternativa">
+				<column name="descripcionAlternativa" />
+			</basic>
+			<basic name="unidadPreferida">
+				<column name="unidadPreferida" />
+			</basic>
+			<basic name="numeroDeOrden">
+				<column name="numeroDeOrden" />
+			</basic>
+			<basic name="EHE">
+				<column name="EHE" />
+			</basic>
+			<basic name="trazable">
+				<column name="trazable" />
+			</basic>
+			<element-collection name="categorias">
+				<column name="categorias" />
+				<collection-table
+					name="TMaterialTecnico_CodigoExternosCategorias">
+					<join-column name="codigoExternoMaterialTecnico"
+						referenced-column-name="codigoExterno" />
+				</collection-table>
+			</element-collection>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TObra">
+		<table name="TObra">
+		</table>
+		<id-class class="com.proin.conex.modelos.transporte.TObraId" />
+		<attributes>
+			<id name="codigoexterno">
+				<column name="codigoexterno" />
+			</id>
+			<id name="cliente">
+				<column name="cliente" />
+			</id>
+			<basic name="codpostal">
+				<column name="codpostal" />
+			</basic>
+			<basic name="descripcion">
+				<column name="descripcion" />
+			</basic>
+			<basic name="direccion">
+				<column name="direccion" />
+			</basic>
+			<basic name="numero">
+				<column name="numero" />
+			</basic>
+			<basic name="serie">
+				<column name="serie" />
+			</basic>
+			<basic name="telefono1">
+				<column name="telefono1" />
+			</basic>
+			<basic name="telefono2">
+				<column name="telefono2" />
+			</basic>
+			<basic name="terminada">
+				<column name="terminada" />
+			</basic>
+			<basic name="bloqueado">
+				<column name="bloqueado" />
+			</basic>
+			<basic name="fechaBorrado">
+				<column name="fechaBorrado" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="poblacion">
+				<column name="poblacion" />
+			</basic>
+			<basic name="observaciones">
+				<column name="observaciones" />
+			</basic>
+			<basic name="pagoAlContado">
+				<column name="pagoAlContado" />
+			</basic>
+			<basic name="tipoTarifa">
+				<column name="tipoTarifa" />
+			</basic>
+			<basic name="personaContacto">
+				<column name="personaContacto" />
+			</basic>
+			<embedded name="distancia">
+				<attribute-override name="valor">
+					<column name="distancia" table="TObra" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column table="TObra" name="unidadDistancia" />
+				</attribute-override>
+			</embedded>
+			<transient name="id" />
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TObraCentro">
+		<table name="TObraCentro">
+		</table>
+		<id-class
+			class="com.proin.conex.modelos.transporte.TObraCentroId" />
+		<attributes>
+			<id name="centro">
+				<column name="centro" />
+			</id>
+			<id name="obra">
+				<column name="obra" />
+			</id>
+			<id name="cliente">
+				<column name="cliente" />
+			</id>
+			<basic name="distancia">
+				<column name="distancia" />
+			</basic>
+			<basic name="nombreRadial">
+				<column name="nombreRadial" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TOperadorTransporte">
+		<table name="TOperadorTransporte">
+		</table>
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<basic name="codigoExternoRolProveedor">
+				<column name="codigoExternoRolProveedor" />
+			</basic>
+			<basic name="nombre">
+				<column name="nombre" />
+			</basic>
+			<basic name="inactivo">
+				<column name="inactivo" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="id" />
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TPedido">
+		<table name="TPedido">
+		</table>
+		<id-class
+			class="com.proin.conex.modelos.transporte.TPedidoId" />
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<id name="centro">
+				<column name="centro" />
+			</id>
+			<basic name="obra">
+				<column name="obra" />
+			</basic>
+			<basic name="cliente">
+				<column name="cliente" />
+			</basic>
+			<basic name="estado">
+				<column name="estado" />
+			</basic>
+			<basic name="serie">
+				<column name="serie" />
+			</basic>
+			<basic name="fechaBorrado">
+				<column name="fechaBorrado" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fechaInicioSuministro">
+				<column name="fechaInicioSuministro" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="minutosCadenciaSuministro">
+				<column name="minutosCadenciaSuministro" />
+			</basic>
+			<basic name="fechaAlta">
+				<column name="fechaAlta" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="comentario">
+				<column name="comentario" />
+			</basic>
+			<basic name="fechaAltaAsString">
+				<column name="fechaAltaAsString" />
+			</basic>
+			<basic name="fechaInicioSuministroAsString">
+				<column name="fechaInicioSuministroAsString" />
+			</basic>
+			<basic name="fechaBorradoAsString">
+				<column name="fechaBorradoAsString" />
+			</basic>
+			<basic name="cementoAlbaran">
+				<column name="cementoAlbaran" />
+			</basic>
+			<basic name="codigoExternoBastidor">
+				<column name="codigoExternoBastidor" />
+			</basic>
+			<basic name="especialidad">
+				<column name="especialidad" />
+			</basic>
+			<basic name="numeroPiezas">
+				<column name="numeroPiezas" />
+			</basic>
+			<basic name="id">
+				<column name="id" />
+			</basic>
+			<basic name="codigoExternoPedidoERP">
+				<column name="codigoExternoPedidoERP" />
+			</basic>
+			<one-to-many name="lineas" mapped-by="pedido"
+				orphan-removal="true">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-many>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TServicio">
+		<table name="TServicio">
+		</table>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TTransportista">
+		<table name="TTransportista">
+		</table>
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<basic name="codigoExternoRolProveedor">
+				<column name="codigoExternoRolProveedor" />
+			</basic>
+			<basic name="codigoExternoRolOperadorTransporte">
+				<column name="codigoExternoRolOperadorTransporte" />
+			</basic>
+			<basic name="nombre">
+				<column name="nombre" />
+			</basic>
+			<basic name="inactivo">
+				<column name="inactivo" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="personaContacto">
+				<column name="personaContacto" />
+			</basic>
+			<basic name="codigoPostal">
+				<column name="codigoPostal" />
+			</basic>
+			<basic name="numero">
+				<column name="numero" />
+			</basic>
+			<basic name="direccion">
+				<column name="direccion" />
+			</basic>
+			<basic name="nif">
+				<column name="nif" />
+			</basic>
+			<basic name="observaciones">
+				<column name="observaciones" />
+			</basic>
+			<basic name="transportistaPropio">
+				<column name="transportistaPropio" />
+			</basic>
+			<basic name="telefono1">
+				<column name="telefono1" />
+			</basic>
+			<basic name="telefono2">
+				<column name="telefono2" />
+			</basic>
+			<element-collection
+				name="codigosExternosOperadoresTransporte">
+				<column name="codigosExternosOperadoresTransporte" />
+				<collection-table
+					name="TTransportista_CodigosExternosOperadoresTransporte">
+					<join-column name="codigoExternoTransportista" />
+				</collection-table>
+			</element-collection>
+			<transient name="id" />
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TVendible">
+		<table name="TVendible">
+		</table>
+		<attributes>
+			<basic name="unidadPreferida">
+				<column name="unidadPreferida" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TProveedorII">
+		<table name="TProveedorII">
+		</table>
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codexterno" />
+			</id>
+			<basic name="nif">
+				<column name="nif" />
+			</basic>
+			<basic name="razonSocial">
+				<column name="razonsocial" />
+			</basic>
+			<basic name="tipovia">
+				<column name="tipovia" />
+			</basic>
+			<basic name="direccion">
+				<column name="direccion" />
+			</basic>
+			<basic name="numero">
+				<column name="numero" />
+			</basic>
+			<basic name="codigoPostal">
+				<column name="codpostal" />
+			</basic>
+			<basic name="poblacion">
+				<column name="poblacion" />
+			</basic>
+			<basic name="provincia">
+				<column name="provincia" />
+			</basic>
+			<basic name="pais">
+				<column name="pais" />
+			</basic>
+			<basic name="telefono1">
+				<column name="telefono1" />
+			</basic>
+			<basic name="telefono2">
+				<column name="telefono2" />
+			</basic>
+			<basic name="personaContacto">
+				<column name="personacontacto" />
+			</basic>
+			<basic name="agencia">
+				<column name="agencia" />
+			</basic>
+			<basic name="fechaalta">
+				<column name="fechaalta" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="inactivo">
+				<column name="inactivo" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="actualizadoA">
+				<column name="actualizadoA" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="observaciones">
+				<column name="observaciones" />
+			</basic>
+			<basic name="nombreProvincia">
+				<column name="nombreProvincia" />
+			</basic>
+			<transient name="id" />
+			<transient name="codexterno2" />
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TLineaAlbaranDespacho">
+		<table name="TLineaAlbaranDespacho">
+		</table>
+		<attributes>
+			<basic name="loteventa">
+				<column name="loteventa" />
+			</basic>
+			<basic name="importe">
+				<column name="importe" />
+			</basic>
+			<many-to-one name="albaran">
+				<join-column name="codigoPlanta"
+					referenced-column-name="codigoPlanta" />
+				<join-column name="serie" referenced-column-name="serie" />
+				<join-column name="numeroAlbaran"
+					referenced-column-name="numeroalbaran" />
+				<join-column name="centro"
+					referenced-column-name="centro" />
+			</many-to-one>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TAmbiente">
+		<table name="TAmbiente">
+		</table>
+		<attributes>
+			<id name="id">
+				<column name="id" />
+			</id>
+			<basic name="descripcion">
+				<column name="descripcion" />
+			</basic>
+			<basic name="tipoHormigon">
+				<column name="tipoHormigon" />
+			</basic>
+			<basic name="maximaRelacionAguaCemento">
+				<column name="maximaRelacionAguaCemento" />
+			</basic>
+			<basic name="minimoKilogramosCemento">
+				<column name="minimoKilogramosCemento" />
+			</basic>
+			<basic name="inactivo">
+				<column name="inactivo" />
+			</basic>
+			<basic name="actualizadoA">
+				<column name="actualizadoA" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TRadial">
+		<table name="TRadial">
+		</table>
+		<attributes>
+			<id name="nombre">
+				<column name="nombre" />
+			</id>
+			<embedded name="distancia">
+				<attribute-override name="valor">
+					<column name="distancia" table="TRadial" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadDistancia" table="TRadial" />
+				</attribute-override>
+			</embedded>
+			<embedded name="precio">
+				<attribute-override name="valor">
+					<column name="precio" table="TRadial" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadPrecio" table="TRadial" />
+				</attribute-override>
+			</embedded>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TAlbaranDespacho"
+		cacheable="true">
+		<table name="TAlbaranDespacho">
+		</table>
+		<attributes>
+			<basic name="cerrado">
+				<column name="cerrado" table="TAlbaranDespacho" />
+			</basic>
+			<basic name="brutop">
+				<column name="brutop" />
+			</basic>
+			<basic name="bruto">
+				<column name="bruto" />
+			</basic>
+			<basic name="valorado">
+				<column name="valorado" />
+			</basic>
+			<basic name="importeVenta">
+				<column name="importeVenta" />
+			</basic>
+			<one-to-many name="lineasAlbaran" mapped-by="albaran"
+				orphan-removal="true" fetch="EAGER">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-many>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TSolicitudAutorizacionPedido">
+		<table name="TSolicitudAutorizacionPedido">
+		</table>
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<basic name="cliente">
+				<column name="cliente" />
+			</basic>
+			<basic name="estado">
+				<column name="estado" />
+			</basic>
+			<basic name="razon">
+				<column name="razon" />
+			</basic>
+			<basic name="fechaCreacion">
+				<column name="fechaCreacion" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="empresa">
+				<column name="empresa" />
+			</basic>
+			<basic name="autorizador">
+				<column name="autorizador" />
+			</basic>
+			<one-to-one name="pedido">
+				<join-column name="centro"
+					referenced-column-name="centro" />
+				<join-column name="pedido"
+					referenced-column-name="codigoExterno" />
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-one>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TSolicitudAutorizacionVenta">
+		<table name="TSolicitudAutorizacionVenta">
+		</table>
+		<attributes>
+			<id name="codigoSolicitud">
+				<column name="codigoSolicitud" />
+			</id>
+			<basic name="dineroACuenta">
+				<column name="dineroACuenta" />
+			</basic>
+			<basic name="unidadDineroACuenta">
+				<column name="unidadDineroACuenta" />
+			</basic>
+			<basic name="codigoExternoCentro">
+				<column name="codigoExternoCentro" />
+			</basic>
+			<basic name="fechaSolicitud">
+				<column name="fechaSolicitud" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="codigoExternoObra">
+				<column name="codigoExternoObra" />
+			</basic>
+			<basic name="codigoExternoSerie">
+				<column name="codigoExternoSerie" />
+			</basic>
+			<basic name="estado">
+				<column name="estado" />
+			</basic>
+			<basic name="empresa">
+				<column name="empresa" />
+			</basic>
+			<basic name="razon">
+				<column name="razon" />
+			</basic>
+			<basic name="importeVenta">
+				<column name="importeVenta" />
+			</basic>
+			<basic name="codigoExternoCliente">
+				<column name="cliente" />
+			</basic>
+			<basic name="autorizador">
+				<column name="autorizador" />
+			</basic>
+			<one-to-many name="lineas" mapped-by="solicitud">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-many>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TLineaSolicitudAutorizacionVenta">
+		<table name="TLineaSolicitudAutorizacionVenta">
+		</table>
+		<attributes>
+			<id name="codigoLinea">
+				<column name="codigoLinea" />
+			</id>
+			<basic name="codigoExternoVendible">
+				<column name="codigoExternoVendible" />
+			</basic>
+			<basic name="cantidadSuministrada">
+				<column name="cantidadSuministrada" />
+			</basic>
+			<basic name="unidadCantidadSuministrada">
+				<column name="unidadCantidadSuministrada" />
+			</basic>
+			<basic name="precioUnitario">
+				<column name="precioUnitario" />
+			</basic>
+			<basic name="importe">
+				<column name="importe" />
+			</basic>
+			<basic name="unidadPrecioUnitario">
+				<column name="unidadPrecioUnitario" />
+			</basic>
+			<basic name="unidadDensidadMaterial">
+				<column name="unidadDensidadMaterial" />
+			</basic>
+			<basic name="densidadMaterial">
+				<column name="densidadMaterial" />
+			</basic>
+			<many-to-one name="solicitud">
+				<join-column name="solicitud"
+					referenced-column-name="codigoSolicitud" />
+			</many-to-one>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.direccionesPostales.TDireccionPostal">
+		<table name="TDireccionPostal">
+		</table>
+		<id-class
+			class="com.proin.conex.modelos.transporte.direccionesPostales.TDireccionPostalId" />
+		<attributes>
+			<id name="direccion">
+				<column name="direccion" />
+			</id>
+			<id name="numero">
+				<column name="numero" />
+			</id>
+			<id name="codigoPostal">
+				<column name="codigoPostal" />
+			</id>
+			<basic name="provincia">
+				<column name="provincia" />
+			</basic>
+			<basic name="poblacion">
+				<column name="poblacion" />
+			</basic>
+			<basic name="observaciones">
+				<column name="observaciones" />
+			</basic>
+			<basic name="id">
+				<column name="id" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.pedidosCompra.TPedidoCompraAbierto">
+		<table name="TPedidoCompraAbierto">
+		</table>
+		<id-class
+			class="com.proin.conex.modelos.transporte.pedidosCompra.TPedidoCompraAbiertoId" />
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<id name="codigoExternoCentro">
+				<column name="codigoExternoCentro" />
+			</id>
+			<basic name="id">
+				<column name="id" />
+			</basic>
+			<basic name="fechaAlta">
+				<column name="fechaAlta" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fechaInicio">
+				<column name="fechaInicio" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="estado">
+				<column name="estado" />
+			</basic>
+			<basic name="comentario">
+				<column name="comentario" />
+			</basic>
+			<basic name="fechaFin">
+				<column name="fechaFin" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fechaBorrado">
+				<column name="fechaBorrado" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="codigoExternoProveedor">
+				<column name="codigoExternoProveedor" />
+			</basic>
+			<basic name="codigoExternoOperadorTransporte">
+				<column name="codigoExternoOperadorTransporte" />
+			</basic>
+			<basic name="portesPagados">
+				<column name="portesPagados" />
+			</basic>
+			<one-to-many name="lineas" orphan-removal="true"
+				mapped-by="pedidoCompraAbierto">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-many>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.pedidosCompra.TLineaSuministro">
+		<table name="TLineaSuministro">
+		</table>
+		<attributes>
+			<id name="id">
+				<column name="id" />
+			</id>
+			<basic name="codigoExternoComprable">
+				<column name="codigoExternoComprable" />
+			</basic>
+			<basic name="codigoExternoOrigen">
+				<column name="codigoExternoOrigen" />
+			</basic>
+			<many-to-one name="pedidoCompraAbierto">
+				<join-column name="codigoExternoPedidoCompraAbierto"
+					referenced-column-name="codigoExterno" />
+				<join-column name="codigoExternoCentro"
+					referenced-column-name="codigoExternoCentro" />
+			</many-to-one>
+			<embedded name="cantidadMaximaEnEntrega">
+				<attribute-override name="valor">
+					<column name="cantidadMaximaEnEntrega"
+						table="TLineaSuministro" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadMaximaEnEntrega"
+						table="TLineaSuministro" />
+				</attribute-override>
+			</embedded>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.TIncidenciaAlbaran">
+		<table name="TIncidenciaAlbaran">
+		</table>
+		<id-class
+			class="com.proin.conex.modelos.transporte.TIncidenciaAlbaranId" />
+		<attributes>
+			<id name="codigoExterno">
+				<column name="codigoExterno" />
+			</id>
+			<id name="codigoPlanta">
+				<column name="codigoPlanta" />
+			</id>
+			<id name="codigoExternoAlbaran">
+				<column name="codigoExternoAlbaran" />
+			</id>
+			<id name="serieAlbaran">
+				<column name="serieAlbaran" />
+			</id>
+			<id name="centro">
+				<column name="centro" />
+			</id>
+			<basic name="tipoIncidencia">
+				<column name="tipoIncidencia" />
+			</basic>
+			<basic name="tipoCausaDevolucion">
+				<column name="tipoCausaDevolucion" />
+			</basic>
+			<basic name="fechaIncidencia">
+				<column name="fechaIncidencia" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="descripcion">
+				<column name="descripcion" />
+			</basic>
+			<basic name="codigoExternoAlbaranAntecedente">
+				<column name="codigoExternoAlbaranAntecedente" />
+			</basic>
+			<basic name="serieAlbaranAntecedente">
+				<column name="serieAlbaranAntecedente" />
+			</basic>
+			<basic name="coeficienteRecuperacionCemento">
+				<column name="coeficienteRecuperacionCemento" />
+			</basic>
+			<embedded name="cantidadARecuperar">
+				<attribute-override name="valor">
+					<column name="cantidadARecuperar" table="TIncidenciaAlbaran" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadARecuperar"
+						table="TIncidenciaAlbaran" />
+				</attribute-override>
+			</embedded>
+			<embedded name="cantidadVertedero">
+				<attribute-override name="valor">
+					<column name="cantidadVertedero" table="TIncidenciaAlbaran" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadVertedero"
+						table="TIncidenciaAlbaran" />
+				</attribute-override>
+			</embedded>
+			<transient name="id" />
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.albaranes.TAlbaranVenta">
+		<table name="TAlbaran">
+		</table>
+		<discriminator-column name="clase" />
+		<attributes>
+			<basic name="iniciodescarga">
+				<column name="iniciodescarga" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="llegadaobra">
+				<column table="TAlbaran" name="llegadaobra" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="llegadaplanta">
+				<column name="llegadaplanta" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="salidaobra">
+				<column name="salidaobra" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="finalTajo">
+				<column name="finalTajo" />
+			</basic>
+			<basic name="restoCargaIncompleta">
+				<column name="restoCargaIncompleta" />
+			</basic>
+			<basic name="codigoPostalObra">
+				<column name="codigoPostalObra" />
+			</basic>
+			<basic name="codigoExternoCementoAlbaran">
+				<column name="codigoExternoCementoAlbaran" />
+			</basic>
+			<basic name="cantidadAlbaran">
+				<column name="cantidadAlbaran" />
+			</basic>
+			<basic name="codigoExternoDistribuidor">
+				<column name="codigoExternoDistribuidor" />
+			</basic>
+			<basic name="codigoExternoMaterialFabricado">
+				<column name="codigoExternoMaterialFabricado" />
+			</basic>
+			<basic name="tipoMaterialFabricado">
+				<column name="tipoMaterialFabricado" />
+			</basic>
+			<basic name="codigoEmpresa">
+				<column name="codigoEmpresa" />
+			</basic>
+			<many-to-one name="albaranReferencia">
+				<join-column name="codigoPlantaAlbaranReferencia"
+					referenced-column-name="codigoPlanta" />
+				<join-column name="serieAlbaranReferencia"
+					referenced-column-name="serie" />
+				<join-column name="numeroAlbaranReferencia"
+					referenced-column-name="numeroalbaran" />
+				<join-column name="centroAlbaranReferencia"
+					referenced-column-name="centro" />
+			</many-to-one>
+			<one-to-many name="lineasAlbaran" mapped-by="albaran"
+				orphan-removal="true" fetch="EAGER">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-many>
+			<one-to-many name="albaranesComercializacion"
+				orphan-removal="false" mapped-by="albaranReferencia">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-many>
+			<one-to-many name="incidencias" orphan-removal="true">
+				<join-column name="codigoExternoAlbaran"
+					referenced-column-name="numeroAlbaran" />
+				<join-column name="codigoPlanta"
+					referenced-column-name="codigoPlanta" />
+				<join-column name="serieAlbaran"
+					referenced-column-name="serie" />
+				<join-column name="centro"
+					referenced-column-name="centro" />
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-many>
+			<one-to-one name="descripcionHormigon" mapped-by="albaran">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-one>
+			<one-to-one name="evaluacionMeteorologica" mapped-by="albaran">
+				<cascade>
+					<cascade-all />
+				</cascade>
+			</one-to-one>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TAlbaran">
+		<discriminator-value>TAlbaranFabricacion</discriminator-value>
+		<attributes>
+
+			<basic name="matricularemolque">
+				<column name="matricularemolque" />
+			</basic>
+			<basic name="observaciones2">
+				<column name="observaciones2" />
+			</basic>
+
+			<basic name="cantidadFabricada">
+				<column name="cantidadFabricada" />
+			</basic>
+
+
+			<one-to-many name="consumos" orphan-removal="true"
+				fetch="LAZY">
+				<join-table name="TAlbaran_TConsumos">
+					<join-column name="numeroAlbaran"
+						referenced-column-name="numeroalbaran" />
+					<join-column name="codigoPlanta"
+						referenced-column-name="codigoPlanta" />
+					<join-column name="serie"
+						referenced-column-name="serie" />
+					<join-column name="centro"
+						referenced-column-name="centro" />
+					<inverse-join-column name="idConsumo"
+						referenced-column-name="id" />
+				</join-table>
+				<cascade>
+					<cascade-persist />
+					<cascade-merge />
+					<cascade-remove />
+				</cascade>
+			</one-to-many>
+
+			<embedded name="cantidadARecuperar">
+				<attribute-override name="valor">
+					<column name="cantidadARecuperar" table="TAlbaran" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadARecuperar" table="TAlbaran" />
+				</attribute-override>
+			</embedded>
+			<embedded name="cantidadVertedero">
+				<attribute-override name="valor">
+					<column name="cantidadVertedero" table="TAlbaran" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidadVertedero" table="TAlbaran" />
+				</attribute-override>
+			</embedded>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.albaranes.TAlbaranFabricadoPorTerceros">
+		<attributes>
+			<basic name="codigoExternoProveedorHormigon">
+				<column name="codigoExternoProveedorHormigon" />
+			</basic>
+			<basic name="codigoExternoAlbaranProveedorHormigon">
+				<column name="codigoExternoAlbaranProveedorHormigon" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity
+		class="com.proin.conex.modelos.transporte.almacenes.TRegularizacion">
+		<table name="TRegularizacion">
+		</table>
+		<attributes>
+			<id name="id">
+				<column name="id" />
+			</id>
+			<basic name="fechaCreacion">
+				<column name="fechaCreacion" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="almacen">
+				<column name="almacen" />
+			</basic>
+			<basic name="material">
+				<column name="material" />
+			</basic>
+			<basic name="planta">
+				<column name="planta" />
+			</basic>
+			<basic name="centro">
+				<column name="centro" />
+			</basic>
+			<embedded name="cantidad">
+				<attribute-override name="valor">
+					<column name="cantidad" table="TRegularizacion" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadCantidad" table="TRegularizacion" />
+				</attribute-override>
+			</embedded>
+			<embedded name="stockDespuesMovimiento">
+				<attribute-override name="valor">
+					<column name="stockDespuesMovimiento"
+						table="TRegularizacion" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadStockDespuesMovimiento"
+						table="TRegularizacion" />
+				</attribute-override>
+			</embedded>
+			<embedded name="stockEnPlantaDespuesMovimiento">
+				<attribute-override name="valor">
+					<column name="stockEnPlantaDespuesMovimiento"
+						table="TRegularizacion" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadStockEnPlantaDespuesMovimiento"
+						table="TRegularizacion" />
+				</attribute-override>
+			</embedded>
+			<embedded name="stockEnCentroDespuesMovimiento">
+				<attribute-override name="valor">
+					<column name="stockEnCentroDespuesMovimiento"
+						table="TRegularizacion" />
+				</attribute-override>
+				<attribute-override name="unidad">
+					<column name="unidadStockEnCentroDespuesMovimiento"
+						table="TRegularizacion" />
+				</attribute-override>
+			</embedded>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.albaranes.TDescripcionHormigon">
+		<table name="TDescripcionHormigon">
+		</table>
+		<id-class class="com.proin.conex.modelos.transporte.TAlbaranId"/>
+		<attributes>
+			<basic name="literal">
+				<column name="literal"/>
+			</basic>
+			<basic name="tipoBasico">
+				<column name="tipoBasico"/>
+			</basic>
+			<basic name="tipo">
+				<column name="tipo"/>
+			</basic>
+			<basic name="tipoHormigonEstructural">
+				<column name="tipoHormigonEstructural"/>
+			</basic>
+			<basic name="tipoHormigonEspecial">
+				<column name="tipoHormigonEspecial"/>
+			</basic>
+			<basic name="tipoHormigonFibras">
+				<column name="tipoHormigonFibras"/>
+			</basic>
+			<basic name="especificacion">
+				<column name="especificacion"/>
+			</basic>
+			<basic name="resistencia">
+				<column name="resistencia"/>
+			</basic>
+			<basic name="tipoConsistencia">
+				<column name="tipoConsistencia"/>
+			</basic>
+			<basic name="conoConsistencia">
+				<column name="conoConsistencia"/>
+			</basic>
+			<basic name="contenidoCemento">
+				<column name="contenidoCemento"/>
+			</basic>
+			<basic name="contenidoFibra">
+				<column name="contenidoFibra"/>
+			</basic>
+			<basic name="tamanoMaximo">
+				<column name="tamanoMaximo"/>
+			</basic>
+			<basic name="ambiente">
+				<column name="ambiente"/>
+			</basic>
+			<basic name="autocompactabilidad">
+				<column name="autocompactabilidad"/>
+			</basic>
+			<basic name="tipoEscurrimiento">
+				<column name="tipoEscurrimiento"/>
+			</basic>
+			<basic name="tipoViscosidad">
+				<column name="tipoViscosidad"/>
+			</basic>
+			<basic name="tipoResistenciaBloqueo">
+				<column name="tipoResistenciaBloqueo"/>
+			</basic>
+			<basic name="tipoFibra">
+				<column name="tipoFibra"/>
+			</basic>
+			<basic name="resistenciaFlexotraccionR1">
+				<column name="resistenciaFlexotraccionR1"/>
+			</basic>
+			<basic name="resistenciaFlexotraccionR3">
+				<column name="resistenciaFlexotraccionR3"/>
+			</basic>
+			<basic name="tipoResistenciaFibrasFuncionNoEstructural">
+				<column name="tipoResistenciaFibrasFuncionNoEstructural"/>
+			</basic>
+			<basic name="longitudFibra">
+				<column name="longitudFibra"/>
+			</basic>
+			<basic name="mensajeError">
+				<column name="mensajeError"/>
+			</basic>
+			<one-to-one name="albaran" id="true">
+			</one-to-one>
+		</attributes>
+	</entity>
+	<entity class="com.proin.conex.modelos.transporte.TEvaluacionMeteorologica">
+		<table name="TEvaluacionMeteorologica">
+		</table>
+		<id-class class="com.proin.conex.modelos.transporte.TAlbaranId"/>
+		<attributes>
+			<basic name="fechaCreacion">
+				<column name="fechaCreacion"/>
+			</basic>
+			<basic name="razonesClima">
+				<column name="razonesClima"/>
+			</basic>
+			<basic name="clima">
+				<column name="clima"/>
+			</basic>
+			<basic name="direccionViento">
+				<column name="direccionViento"/>
+			</basic>
+			<basic name="humedad">
+				<column name="humedad"/>
+			</basic>
+			<basic name="intensidadPrecipitacion">
+				<column name="intensidadPrecipitacion"/>
+			</basic>
+			<basic name="presion">
+				<column name="presion"/>
+			</basic>
+			<basic name="temperatura">
+				<column name="temperatura"/>
+			</basic>
+			<basic name="velocidadViento">
+				<column name="velocidadViento"/>
+			</basic>
+			<basic name="prevision">
+				<column name="prevision"/>
+			</basic>
+			<one-to-one name="albaran" id="true">
+			</one-to-one>
+			<transient name="id"/>
+		</attributes>
+	</entity>
+	<embeddable
+		class="com.proin.conex.modelos.transporte.TMedida">
+		<attributes>
+			<basic name="valor">
+				<column name="valor" />
+			</basic>
+			<basic name="unidad">
+				<column name="unidad" />
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable
+		class="com.proin.conex.modelos.transporte.TAlbaranId">
+		<attributes>
+			<basic name="codigoPlanta">
+			</basic>
+			<basic name="numeroalbaran">
+			</basic>
+			<basic name="serie">
+			</basic>
+			<basic name="centro">
+				<column name="centro" />
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable
+		class="com.proin.conex.modelos.transporte.TObraId">
+		<attributes>
+			<basic name="codigoexterno">
+			</basic>
+			<basic name="cliente">
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable
+		class="com.proin.conex.modelos.transporte.direccionesPostales.TDireccionPostalId">
+		<attributes>
+			<basic name="direccion">
+				<column name="direccion" />
+			</basic>
+			<basic name="numero">
+				<column name="numero" />
+			</basic>
+			<basic name="codigoPostal">
+				<column name="codigoPostal" />
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable
+		class="com.proin.conex.modelos.transporte.pedidosCompra.TPedidoCompraAbiertoId">
+		<attributes>
+			<basic name="codigoExterno">
+				<column name="codigoExterno" />
+			</basic>
+			<basic name="codigoExternoCentro">
+				<column name="codigoExternoCentro" />
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable
+		class="com.proin.conex.modelos.transporte.TIncidenciaAlbaranId">
+		<attributes>
+			<basic name="codigoExterno">
+				<column name="codigoExterno" />
+			</basic>
+			<basic name="codigoPlanta">
+				<column name="codigoPlanta" />
+			</basic>
+			<basic name="codigoExternoAlbaran">
+				<column name="codigoExternoAlbaran" />
+			</basic>
+			<basic name="serieAlbaran">
+				<column name="serieAlbaran)" />
+			</basic>
+			<basic name="centro">
+				<column name="centro" />
+			</basic>
+		</attributes>
+	</embeddable>
+	<embeddable
+		class="com.proin.conex.modelos.transporte.TAlbaranEntradaId">
+		<attributes>
+			<basic name="codigoExternoAlbaranEntrada">
+				<column name="codigoExternoAlbaranEntrada" />
+			</basic>
+			<basic name="codigoExternoCentro">
+				<column name="codigoExternoCentro" />
+			</basic>
+		</attributes>
+	</embeddable>
+</entity-mappings>
