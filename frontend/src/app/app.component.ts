@@ -40,7 +40,7 @@ export class AppComponent implements OnInit  {
       console.log('subscribe to breadcrumb detail id');
 
       this.breadcrumbService.getRouteChangeObservable().subscribe((id: string )=> {
-        console.log('breadcrumb detail id', id);
+        console.log('breadcrumb route ', id);
         this.level2 = id;
       });
   }

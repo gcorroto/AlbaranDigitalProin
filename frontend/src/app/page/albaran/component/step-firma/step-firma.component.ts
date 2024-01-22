@@ -9,14 +9,13 @@ import { SignatureFieldComponent } from '@app/core/components/signature-field/si
 })
 export class StepFirmaComponent implements  AfterViewInit {
 
-  @Input() formGroup: FormGroup;
-  @Input() widthSize: number;
+  @Input() formGroup!: FormGroup;
 
   public title = 'Firma';
 
 
-  @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
-  @ViewChildren('firmaContainer') public firmaContainer: QueryList<ElementRef>;
+  @ViewChildren(SignatureFieldComponent) public sigs!: QueryList<SignatureFieldComponent>;
+  @ViewChildren('firmaContainer') public firmaContainer!: QueryList<ElementRef>;
 
   constructor(fb: FormBuilder) {
 
@@ -45,14 +44,15 @@ export class StepFirmaComponent implements  AfterViewInit {
   public submit() {
 
     // console.log(this.sigs.first.signaturePad);
-    console.log('CAPTURED firmaContainer writer:' + this.sigs.first.signature);
-    // const firmaUrl = this.sigs.first.signaturePad.toDataURL();
-    // console.log('CAPTURED firmaContainer:' + firmaUrl);
-    // this.formGroup.controls.signatureField.setValue(firmaUrl);
+
+    const firmaUrl = this.sigs.first.signaturePad.toDataURL();
+    console.log('CAPTURED firmaContainer:' + firmaUrl);
+    this.formGroup.controls['firma'].setValue(firmaUrl);
   }
 
   public clear() {
     this.sigs.first.clear.bind(this);
     this.sigs.first.clear();
+    this.formGroup.controls['firma'].setValue(undefined);
   }
 }

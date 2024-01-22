@@ -13,14 +13,15 @@
         <button mat-button (click)="sigs.first.clear()" [disabled]="!form.controls.signatureField1.valid">Limpiar Firma</button>
       </div> -->
       <div fxLayout="row">
-        <signature-field formControlName="firma"></signature-field>
+        <signature-field></signature-field>
       </div>
     </div>
     <div>
       <button mat-button matStepperPrevious>Volver</button>
-      <button mat-button (click)="sigs.first.clear()" [disabled]="!formGroup.controls['firma'].valid">Limpiar Firma</button>
+      <button mat-button (click)="clear()" [disabled]="!formGroup.controls['firma'].valid">Limpiar Firma</button>
 
-      <button mat-button matStepperNext [disabled]="!formGroup.valid">Firmar</button>
+      <button mat-button matStepperNext [disabled]="formGroup.valid">Firmar</button>
+      <button mat-button [disabled]="!formGroup.valid">Enviar</button>
 
     </div>
 </form>

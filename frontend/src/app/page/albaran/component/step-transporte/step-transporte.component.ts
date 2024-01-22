@@ -10,11 +10,11 @@ import { StepBaseComponent } from '../step-base/step-base.component';
 export class StepTransporteComponent extends StepBaseComponent implements OnInit {
 
   @Input() formGroup: FormGroup;
-  @ViewChildren('transporteContainer') public clienteContainer: QueryList<ElementRef>;
+  @ViewChildren('transporteContainer') public transporteContainer: QueryList<ElementRef>;
 
   constructor(private _formBuilder: FormBuilder) {
     super();
-    this.container = this.clienteContainer;
+    this.container = this.transporteContainer;
   }
 
   ngOnInit(): void {

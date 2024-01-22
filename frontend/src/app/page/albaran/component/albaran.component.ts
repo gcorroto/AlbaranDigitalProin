@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewContainerRef, Input } from '@angular/core';
+import { Component, OnInit, Output, ViewContainerRef, Input, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Albaran } from '@app/core/dto/albaran.model';
@@ -11,6 +11,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { EntityApiEnum } from '@app/core/const/Enums';
 import { ILog, Log } from '@app/core/dto/log.model';
 import { GenericCacheService } from '@app/core/services/cache/generic.service';
+import { StepBaseComponent } from './step-base/step-base.component';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -18,7 +19,7 @@ import { GenericCacheService } from '@app/core/services/cache/generic.service';
   templateUrl: './albaran.component.html',
   styleUrls: ['./albaran.component.scss']
 })
-export class AlbaranComponent implements OnInit {
+export class AlbaranComponent extends StepBaseComponent  implements OnInit {
   isLinear = true;
   // @Output() isReader = true;
   clienteFormGroup: FormGroup = new FormGroup({});
@@ -32,6 +33,8 @@ export class AlbaranComponent implements OnInit {
   // @Input() simple: boolean = true;
   widthSize: number = 0;
 
+  @ViewChildren('clienteContainer') public clienteContainer!: QueryList<ElementRef>;
+
   constructor(
     private readonly _formBuilder: FormBuilder,
     protected readonly ngxService: NgxUiLoaderService,
@@ -41,10 +44,14 @@ export class AlbaranComponent implements OnInit {
     private readonly log: GenericCacheService<Log,string>,
     public viewContainerRef: ViewContainerRef
     ) {
+      super();
+      this.container = this.clienteContainer;
+
     }
 
   ngOnInit(): void {
-    console.debug(`detallesalbaran firma`);
+
+    console.debug(`detalle albaran firma`);
     this.responsiveStepper();
 
     // this.route.paramMap.subscribe(params => {
@@ -63,7 +70,16 @@ export class AlbaranComponent implements OnInit {
       this.buildFormRecepcion();
       this.buildFormFirma();
 
+      this.clienteFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+      this.transporteFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+      this.hormigonFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+      this.meteorologiaFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+      this.horarioFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+      this.recepcionFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+      this.firmaFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+
       this.ngxService.stop();
+
     // });
   }
 
@@ -71,14 +87,14 @@ export class AlbaranComponent implements OnInit {
     const logCurrent:ILog  = {level: 'debug', message: `recibimos primera carga albaran [${JSON.stringify(data)}]`};
           this.log.postSave('send',logCurrent , EntityApiEnum.Log)
           .pipe(untilDestroyed(this))
-          .subscribe(
-            (logResp) => {
+          .subscribe({
+            next: (logResp) => {
               console.debug(logResp.message);
             },
-            (err)=>{
+            error: (err) => {
               console.error(err);
             }
-          );
+          });
   }
 
   private buildFormCliente() {
@@ -159,7 +175,7 @@ export class AlbaranComponent implements OnInit {
 
   private buildFormFirma() {
     this.firmaFormGroup = this._formBuilder.group({
-      'firma': [{value: this.albaran?.firma}, Validators.required],
+      'firma': [ undefined, Validators.required],
     });
   }
 
@@ -219,6 +235,52 @@ export class AlbaranComponent implements OnInit {
     },(err)=>{
       console.error(err);
     });
+  }
+
+  private areAllFormsValid(): boolean {
+
+      // this.clienteFormGroup.valid &&
+      // this.transporteFormGroup.valid &&
+      // this.hormigonFormGroup.valid &&
+      // this.meteorologiaFormGroup.valid &&
+      // this.horarioFormGroup.valid &&
+      return  this.recepcionFormGroup.valid &&
+      this.firmaFormGroup.valid;
+  }
+
+  private getInvalidForm(): string | null {
+    // if (!this.clienteFormGroup.valid) {
+    //   return 'clienteFormGroup';
+    // }
+    // if (!this.transporteFormGroup.valid) {
+    //   return 'transporteFormGroup';
+    // }
+    // if (!this.hormigonFormGroup.valid) {
+    //   return 'hormigonFormGroup';
+    // }
+    // if (!this.meteorologiaFormGroup.valid) {
+    //   return 'meteorologiaFormGroup';
+    // }
+    // if (!this.horarioFormGroup.valid) {
+    //   return 'horarioFormGroup';
+    // }
+    if (!this.recepcionFormGroup.valid) {
+      return 'recepcionFormGroup';
+    }
+    if (!this.firmaFormGroup.valid) {
+      return 'firmaFormGroup';
+    }
+    return null;
+  }
+
+  private executeIfAllFormsAreValid() {
+    const firma = this.firmaFormGroup.get('firma')?.value;
+    if (this.areAllFormsValid() && firma) {
+      console.log (` firma ${firma}`);
+      console.log('all forms are valid');
+    } else {
+      console.log(`${this.getInvalidForm()} are invalid`);
+    }
   }
 
 }

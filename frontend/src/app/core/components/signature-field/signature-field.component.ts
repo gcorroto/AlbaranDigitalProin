@@ -32,7 +32,9 @@ export class SignatureFieldComponent implements ControlValueAccessor {
     console.log('set signature to ' + this._signature);
     console.log('signature data :');
     console.log(this.signaturePad.toData());
-    this.propagateChange(this.signature);
+    if (typeof this.propagateChange === 'function') {
+      this.propagateChange(this.signature);
+    }
   }
 
   public writeValue(value: any): void {
