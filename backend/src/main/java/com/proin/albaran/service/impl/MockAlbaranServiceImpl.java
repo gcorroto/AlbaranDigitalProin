@@ -21,8 +21,11 @@ import com.proin.conex.modelos.transporte.TLineaAlbaran;
 import com.proin.conex.modelos.transporte.TMedida;
 import com.proin.conex.modelos.transporte.albaranes.TDescripcionHormigon;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
+@Slf4j
 public class MockAlbaranServiceImpl implements MockAlbaranService {
 	
 	final EasyRandom EASY_RANDOM = EasyRandomUtils.generateEasyRandom();
@@ -51,6 +54,12 @@ public class MockAlbaranServiceImpl implements MockAlbaranService {
 		} else {
 			return this.generarRandomAlbaran();
 		}
+	}
+
+	@Override
+	public void actualizarAlbaran(String id, AlbaranDto dto) {
+		
+		log.debug("firma del albaran " + id + " = " + dto.getFirma());
 	}
 	
     //// testing

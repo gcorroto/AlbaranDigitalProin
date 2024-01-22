@@ -109,6 +109,7 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 		// QUE HACEMOS?¿
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(dto, HttpStatus.OK);
         log.info("recibimos alta albaran con NumAlbaran " + dto.getNumAlbaran());
+		mockService.actualizarAlbaran(dto.getNumAlbaran(), dto);
 
         return response;
 	}

@@ -30,5 +30,7 @@ public class AlbaranDto extends BaseDto {
 	private HorarioDto horario;
 	private RecepcionDto recepcion;
 
+	private String firma;
+
 
 }

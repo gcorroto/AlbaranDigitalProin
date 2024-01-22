@@ -12,4 +12,6 @@ public interface MockAlbaranService {
     public List<TAlbaran> obtenerAlbaranesUsuario();
 
     public AlbaranDto rellenarCamposAlbaran(AlbaranDto dto);
+
+    public void actualizarAlbaran(String id, AlbaranDto dto);
 }

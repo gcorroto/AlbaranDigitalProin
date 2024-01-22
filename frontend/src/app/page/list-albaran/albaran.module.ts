@@ -17,14 +17,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AlbaranRoutingModule } from '@app/page/list-albaran/router/albaran.routing.module';
 // import { StepFormComponent } from '@component/step-form/step-form.component';
-import { StepFirmaComponent } from '@albaran/component/step-firma/step-firma.component';
-import { StepHormigonesComponent } from '@albaran/component/step-hormigones/step-hormigones.component';
 import { AngularSignatureFieldModule } from '@app/core/components/signature-field/signature-pad.module';
-import { StepHorariosComponent } from '@app/page/albaran/component/step-horarios/step-horarios.component';
-import { StepHormigonesContenidoComponent } from '@app/page/albaran/component/step-hormigones/step-hormigones-contenido/step-hormigones-contenido.component';
-import { StepMeteorologiaComponent } from '@app/page/albaran/component/step-meteorologia/step-meteorologia.component';
-import { StepRecepcionComponent } from '@app/page/albaran/component/step-recepcion/step-recepcion.component';
-import { StepTransporteComponent } from '@app/page/albaran/component/step-transporte/step-transporte.component';
+// import { StepHorariosComponent } from '@app/page/albaran/component/step-horarios/step-horarios.component';
 import { ToolbarComponent } from '@component/toolbar/toolbar.component';
 import { PrimeraCargaAlbaranResolver } from '@core/resolvers/albaran.resolver';
 // import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -35,14 +29,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ListAlbaranComponent } from '@app/page/list-albaran/component/list-albaran.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { StepClienteComponent } from '../albaran/component/step-cliente/step-cliente.component';
 import { StepClienteModule } from '../albaran/component/step-cliente/step-cliente.module';
-import { StepTransporteModule } from '../albaran/component/step-transporte/step-transporte.module';
 import { StepFirmaModule } from '../albaran/component/step-firma/step-firma.module';
-import { StepRecepcionModule } from '../albaran/component/step-recepcion/step-recepcion.module';
 import { StepHorariosModule } from '../albaran/component/step-horarios/step-horarios.module';
-import { StepMeteorologiaModule } from '../albaran/component/step-meteorologia/step-meteorologia.module';
 import { StepHormigonesModule } from '../albaran/component/step-hormigones/step-hormigones.module';
+import { StepMeteorologiaModule } from '../albaran/component/step-meteorologia/step-meteorologia.module';
+import { StepRecepcionModule } from '../albaran/component/step-recepcion/step-recepcion.module';
+import { StepTransporteModule } from '../albaran/component/step-transporte/step-transporte.module';
 
 
 const components = [

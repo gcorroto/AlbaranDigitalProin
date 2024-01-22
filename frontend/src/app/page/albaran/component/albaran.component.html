@@ -10,7 +10,49 @@
 
 <section class="container" *ngIf="albaran">
 
+    <ng-container *ngIf="widthSize === 2 else verticalRef">
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
 
+        <mat-step [stepControl]="clienteFormGroup">
+          <ng-template matStepLabel>Cliente</ng-template>
+          <app-step-cliente [formGroup]="clienteFormGroup"></app-step-cliente>
+        </mat-step>
+
+        <mat-step [stepControl]="transporteFormGroup">
+          <ng-template matStepLabel>Transporte</ng-template>
+          <app-step-transporte [formGroup]="transporteFormGroup"></app-step-transporte>
+        </mat-step>
+
+        <mat-step [stepControl]="hormigonFormGroup">
+          <ng-template matStepLabel>Hormigones</ng-template>
+          <app-step-hormigones [formGroup]="hormigonFormGroup"></app-step-hormigones>
+        </mat-step>
+
+        <mat-step [stepControl]="meteorologiaFormGroup">
+          <ng-template matStepLabel>Meteorología</ng-template>
+          <app-step-meteorologia [formGroup]="meteorologiaFormGroup"></app-step-meteorologia>
+        </mat-step>
+
+        <mat-step [stepControl]="horarioFormGroup">
+          <ng-template matStepLabel>Horario</ng-template>
+          <app-step-horarios [formGroup]="horarioFormGroup"></app-step-horarios>
+        </mat-step>
+
+        <mat-step [stepControl]="recepcionFormGroup">
+          <ng-template matStepLabel>Recepción</ng-template>
+          <app-step-recepcion [formGroup]="recepcionFormGroup"></app-step-recepcion>
+        </mat-step>
+
+        <mat-step [stepControl]="firmaFormGroup">
+          <ng-template matStepLabel>Firma</ng-template>
+          <app-step-firma [formGroup]="firmaFormGroup"></app-step-firma>
+        </mat-step>
+
+      </mat-horizontal-stepper>
+    </ng-container>
+
+    <ng-template #verticalRef>
+      <ng-container  *ngIf="widthSize < 2">
         <mat-vertical-stepper [linear]="isLinear" #stepper>
 
           <mat-step [stepControl]="clienteFormGroup">
@@ -33,10 +75,10 @@
             <app-step-meteorologia [formGroup]="meteorologiaFormGroup"></app-step-meteorologia>
           </mat-step>
 
-          <!-- <mat-step [stepControl]="horarioFormGroup">
+          <mat-step [stepControl]="horarioFormGroup">
             <ng-template matStepLabel>Horario</ng-template>
             <app-step-horarios [formGroup]="horarioFormGroup"></app-step-horarios>
-          </mat-step> -->
+          </mat-step>
 
           <mat-step [stepControl]="recepcionFormGroup">
             <ng-template matStepLabel>Recepción</ng-template>
@@ -49,4 +91,6 @@
           </mat-step>
 
         </mat-vertical-stepper>
+      </ng-container>
+    </ng-template>
 </section>

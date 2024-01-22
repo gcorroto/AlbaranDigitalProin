@@ -10,12 +10,12 @@
           <mat-grid-list
             (window:resize)="beResponsive()"
             [cols]="numColumns"
-            rowHeight="25px"
+            rowHeight="30px"
             gutterSize="5px"
             #albaranSimpleContainer>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
-            <p><strong>Especificación del Hormimgon: </strong></p>
+            <p><strong>Especificación del Hormigon: </strong></p>
             <p class="detalle-simple-value">{{albaran.hormigon?.tipo}}</p>
           </mat-grid-tile>
 

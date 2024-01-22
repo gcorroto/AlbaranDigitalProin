@@ -73,11 +73,12 @@ export class ListAlbaranComponent implements OnInit {
 
   pageChange(event: { pageIndex: any; pageSize: any; } | undefined) {
     event ??= {pageIndex:0, pageSize: this.pageSizeAlbaranes};
-    let calcSize = (event.pageIndex*event.pageSize);
+    let calcSize = (event.pageIndex * event.pageSize);
     let currentCalcSize = calcSize + event.pageSize;
-    if (currentCalcSize > this.totalAlbaranes.length) currentCalcSize =  this.totalAlbaranes.length - calcSize;
+    if (currentCalcSize > this.totalAlbaranes.length) {
+      currentCalcSize = this.totalAlbaranes.length;
+    }
     this.albaranes = this.totalAlbaranes.slice(calcSize, currentCalcSize);
-
   }
 
   expand(id: string){//method to load component when panel is expanded
