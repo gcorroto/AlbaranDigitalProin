@@ -21,7 +21,7 @@ spring:
   datasource:
     url: jdbc:sqlserver://85.215.195.246:1433;databaseName=conex.modelos.transporte;encrypt=false;trustServerCertificate=false
     username: albarandigital
-    password: BXZgi6QipRzfSg725QVQwT
+    password: albarandigital
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   profiles:

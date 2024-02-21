@@ -1,38 +1,32 @@
-// package com.proin.albaran.service.impl;
+package com.proin.albaran.service.impl;
 
-// import java.util.List;
+import java.util.Optional;
 
-// import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
-// import com.proin.albaran.entity.AlbaranEntity;
-// import com.proin.albaran.repository.AlbaranRepository;
-// import com.proin.albaran.repository.CustomAlbaranRepository;
-// import com.proin.albaran.service.AlbaranService;
-// import com.proin.conex.modelos.transporte.TAlbaran;
-// import com.proin.conex.modelos.transporte.TAlbaranId;
+import com.proin.albaran.entity.AlbaranEntity;
+import com.proin.albaran.entity.AlbaranEntityPK;
+import com.proin.albaran.repository.AlbaranRepository;
+import com.proin.albaran.service.AlbaranService;
 
-// import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor;
 
-// @Service
-// @AllArgsConstructor
-// public class AlbaranServiceImpl implements AlbaranService{
+@Service
+@AllArgsConstructor
+public class AlbaranServiceImpl implements AlbaranService{
 	
-// 	private final CustomAlbaranRepository albaranRepository;
-// 	private final AlbaranRepository albaranRepositoryEntities;
+	private final AlbaranRepository albaranRepository;
 	
-// 	@Override
-// 	public TAlbaran obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie) {
-// 		return albaranRepository.obtenerAlbaranPorId(new TAlbaranId(numeroAlbaran, centro, codigoPlanta, serie));
-// 	}
+	@Override
+	public Optional<AlbaranEntity> obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie) {
+		return albaranRepository.findById(new AlbaranEntityPK(numeroAlbaran, centro, codigoPlanta, serie));
+	}
 	
-// 	@Override
-// 	public List<AlbaranEntity> obtenerConEntities(){
-// 		return albaranRepositoryEntities.findAll();
-// 	}
-	
-	
-// 	public static void main (String args[]) {
-// 		System.out.println("HHola mundo raul");
-// 	}
-	
-// }
+	@Override
+	public Page<AlbaranEntity> obtener10Albaranes(){
+		return albaranRepository.findAll(PageRequest.of(0, 10));
+	}
+
+}

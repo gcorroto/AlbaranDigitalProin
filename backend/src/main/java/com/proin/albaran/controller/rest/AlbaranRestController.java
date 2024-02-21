@@ -2,6 +2,7 @@ package com.proin.albaran.controller.rest;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.ArrayUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +34,10 @@ import com.proin.albaran.dto.MeteorologiaDto;
 import com.proin.albaran.dto.RecepcionDto;
 import com.proin.albaran.dto.RemolqueDto;
 import com.proin.albaran.dto.TransporteDto;
-import com.proin.albaran.service.MockAlbaranService;
+import com.proin.albaran.entity.AlbaranEntity;
+import com.proin.albaran.service.AlbaranService;
 import com.proin.albaran.util.EasyRandomUtils;
 import com.proin.conex.modelos.transporte.TAlbaran;
-import com.proin.conex.modelos.transporte.TMedida;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,10 +48,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/v1/albaran")
 public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto> {
 
-	private List<String> catalogoUnidades = TMedida.mapaUnidades.keySet().stream().collect(Collectors.toList());
 	private final ModelMapper modelMapper;
-	private final MockAlbaranService mockService;
-	// private final AlbaranService albaranService;
+	private final AlbaranService albaranService;
 
 	@PostConstruct
 	public void init() {
@@ -59,18 +59,12 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 	@GetMapping()
 	public ResponseEntity<?> getAlbaranesUsuario(@RequestParam(value = "meta", required=false) boolean meta) {
 
-		// albaranService.obtenerAlbaranesUsuario();
-		//albaranService.obtenerAlbaran("1", "2", "HNESVASCOS001", "1");
-		
+		Page<AlbaranEntity> albaranes = albaranService.obtener10Albaranes();
         ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        try {
-            List<TAlbaran> entities = mockService.obtenerAlbaranesUsuario();
-            List<AlbaranDto> dtos = entities.stream().map(e -> mockService.rellenarCamposAlbaran(convertToDto(e))).collect(Collectors.toList());
-        if (dtos == null || dtos!=null && dtos.isEmpty()) {
-            response = new ResponseEntity<List<AlbaranDto>>(HttpStatus.NO_CONTENT);
-        }else {
-			response = new ResponseEntity<List<AlbaranDto>>(dtos, HttpStatus.OK);
-		}
+        try {            
+			if (!albaranes.isEmpty()) {
+			//response = new ResponseEntity<List<AlbaranDto>>(albaranes, HttpStatus.OK);
+			} 
         } catch (Exception e) {
 			log.error("Error al general el listado de albaranes", e);
             response = new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -79,7 +73,6 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
         return response;
 	}
 
-	// GET CONSULTA ALBARAN CREADO ?¿
     @GetMapping(value = "/{id}")
 	@ResponseMetadataBody
 	public ResponseEntity<?> getAlbaranById(@PathVariable(value = "id", required=true) String id, @RequestParam(value = "meta", required=false) boolean meta) {
@@ -87,14 +80,11 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
         ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {
             log.info("recibimos consulta albaran con id " + id);
-            TAlbaran entity = mockService.obtenerAlbaran(id);
-            AlbaranDto dto = mockService.rellenarCamposAlbaran(convertToDto(entity));
-			if (dto == null) {
-				response = new ResponseEntity<AlbaranDto>(HttpStatus.NO_CONTENT);
-			}else {
-				response = new ResponseEntity<AlbaranDto>(dto, HttpStatus.OK);
+			Optional<AlbaranEntity> albaran = albaranService.obtenerAlbaran("3367", "3", "3", "SF");
+			if (!albaran.isEmpty()){
+				//response = new ResponseEntity<AlbaranDto>(dto, HttpStatus.OK);
 			}
-        	response = new ResponseEntity<>(dto, HttpStatus.OK);
+        	//response = new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (Exception e) {
             response = new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -109,7 +99,7 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 		// QUE HACEMOS?¿
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(dto, HttpStatus.OK);
         log.info("recibimos alta albaran con NumAlbaran " + dto.getNumAlbaran());
-		mockService.actualizarAlbaran(dto.getNumAlbaran(), dto);
+		// mockService.actualizarAlbaran(dto.getNumAlbaran(), dto);
 
         return response;
 	}
@@ -148,16 +138,17 @@ public class AlbaranRestController implements BaseController<TAlbaran,AlbaranDto
 	}
 
 	private List<DesgloseContenidoDto> mapContenidoHormigon(List<DesgloseContenidoDto> degloses){
-		return degloses.stream().map(c-> {
-			c.setFabricante(EasyRandomUtils.companiaGenerator().getRandomValue());
-			c.setModelo(EasyRandomUtils.modeloHormigonGenerator().getRandomValue());
-			c.setCantidad(String.valueOf(
-				EASY_RANDOM.nextObject(Integer.class) + 
-				" "+ 
-				(ArrayUtils.isEmpty(catalogoUnidades.toArray(new String[0])) ? "" :EasyRandomUtils.catalogoRandomGenerator(catalogoUnidades).getRandomValue())
-			));
-			return c;
-		}).collect(Collectors.toList());
+		return null;
+		// return degloses.stream().map(c-> {
+		// 	c.setFabricante(EasyRandomUtils.companiaGenerator().getRandomValue());
+		// 	c.setModelo(EasyRandomUtils.modeloHormigonGenerator().getRandomValue());
+		// 	c.setCantidad(String.valueOf(
+		// 		EASY_RANDOM.nextObject(Integer.class) + 
+		// 		" "+ 
+		// 		(ArrayUtils.isEmpty(catalogoUnidades.toArray(new String[0])) ? "" :EasyRandomUtils.catalogoRandomGenerator(catalogoUnidades).getRandomValue())
+		// 	));
+		// 	return c;
+		// }).collect(Collectors.toList());
 	}
 
 	@Override

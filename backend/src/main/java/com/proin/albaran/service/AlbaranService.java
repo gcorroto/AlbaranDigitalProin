@@ -1,13 +1,16 @@
-// package com.proin.albaran.service;
+package com.proin.albaran.service;
 
-// import java.util.List;
+import java.util.Optional;
 
-// import com.proin.albaran.entity.AlbaranEntity;
-// import com.proin.conex.modelos.transporte.TAlbaran;
+import org.springframework.data.domain.Page;
 
-// public interface AlbaranService {
+import com.proin.albaran.entity.AlbaranEntity;
 
-// 	TAlbaran obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie);
+public interface AlbaranService {
+
+	Optional<AlbaranEntity> obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie);
+
+	Page<AlbaranEntity> obtener10Albaranes();
 	
-// 	List<AlbaranEntity> obtenerConEntities();
-// }
+
+}
