@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AlbaranDto extends BaseDto {
+public class AlbaranDto {
 
+	private String albaranid;
 	private String numAlbaran;
 	private String fechaEntrega;
 	private Integer radial;

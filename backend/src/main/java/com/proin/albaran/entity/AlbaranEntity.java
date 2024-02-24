@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -20,13 +19,8 @@ import lombok.Setter;
 @Table(name="TAlbaran")
 @Setter
 @Getter
-public class AlbaranEntity {
-	
-	@EmbeddedId
-	private AlbaranEntityPK id;
-	
-    private String albaranid;
-
+public class AlbaranEntity extends AlbaranAbstract{
+		
     @OneToOne(cascade = CascadeType.ALL)
         @JoinColumns({
         @JoinColumn(name = "numeroalbaran", referencedColumnName = "numeroalbaran"),
@@ -52,33 +46,7 @@ public class AlbaranEntity {
 
     private Double relacionAguaCementoReal;
 
-    private Date fechaAlbaran;
-
-    private Double distanciaADestino;
-
-    private String unidadDistanciaADestino;
-
-    private String nombreCliente;
-
-    private String cliente;
-
-    private String nombreObra;
-
-    private String obra;
-
-    private String nombreOperadorTransporte;
-
-    private String  cifOperadorTransporte;
-
-    private String matriculaCamion;
-
     private String matricularemolque;
-
-    private String nombreTransportista;
-
-	private String cifTransportista;
-
-	private Boolean clienteEsCargadorContractual; 
 
     @OneToMany(fetch = javax.persistence.FetchType.EAGER)
     @JoinColumns({
