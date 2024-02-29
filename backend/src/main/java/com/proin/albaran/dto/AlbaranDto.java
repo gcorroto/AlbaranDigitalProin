@@ -1,60 +1,68 @@
 package com.proin.albaran.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import java.util.Date;
+import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+import lombok.Data;
+
+@Data
 public class AlbaranDto {
 
-	// Información básica del albarán
-    private String numeroAlbaran;
-    private String centro;
-    private String codigoPlanta;
-    private String serie;
-    private Date fecha;
+	////////// Pestaña cabecera
   
-    // Información del hormigón
-    private String tipoHormigon;
-    private String referenciaCliente;
-    private String nombreComercial;
-  
-    // Cantidades
+    private String especificacion;
     private Double volumenTotalFabricado;
     private Double masaTotalFabricada;
     private String unidadMasaTotalFabricada;
-  
-    // Cemento
     private String descripcionCementoAlbaran;
     private Double masaCementiciaReal;
     private String unidadMasaCementiciaReal;
     private String nombreProveedorCementoAlbaran;
-  
-    // Relación agua/cemento
     private Double relacionAguaCementoReal;
-  
-    // Datos del camión
+
+    ////////// Pestaña de cliente
+    private String numeroAlbaran;
+    private Date fecha;
+    private String unidadDistanciaADestino;
+    private Double distanciaADestino;
+    private String codigoPlanta;
+    private String centro;
+    private String nombreCliente;
+    private String cliente;
+    private String nombreObra;
+    private String obra;
+
+    ////////// Pestaña de transporte
+    private String nombreOperadorTransporte;
+    private String cifOperadorTransporte;
     private String matriculaCamion;
     private String matricularemolque;
-  
-    // Entorno
+    private String nombreTransportista;
+    private String cifTransportista;
+    private Boolean clienteEsCargadorContractual;
+
+    ////////// Pestaña de hormigones 
+    private List<LineaAlbaranDto> lineasAlbaran;
+
+    ////////// Pestaña meteorología 
     private String clima;
-    private String temperatura;
-    private String humedad;
-    private String velocidadViento;
     private String direccionViento;
-  
-    // Fechas
+    private Date fechaCreacion;
+    private String humedad;
+    private String intensidadPrecipitacion;
+    private String presion;
+    private String prevision;
+    private String razonesClima;
+    private String temperatura;
+    private String velocidadViento;
+
+    ////////// Pestaña Horarios
+    private Date fechaAlbaran;
     private Date llegadaobra;
     private Date iniciodescarga;
     private Date salidaobra;
     private Date llegadaplanta;
-  
-    // Observaciones
-    private String observaciones;
+
+
+    ////////// Pestaña firma
 }
