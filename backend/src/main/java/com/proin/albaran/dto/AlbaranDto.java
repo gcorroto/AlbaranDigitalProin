@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -11,27 +12,49 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AlbaranDto {
 
-	private String albaranid;
-	private String numAlbaran;
-	private String fechaEntrega;
-	private Integer radial;
-	private Float m3;
-	private Integer progresoDia;
-	private String planta;
-	private Integer viaCarga;
-	private String obra;
-	private String direccion;
-	private String cp;
-	private String municipio;
-
-	private ClienteDto cliente;
-	private TransporteDto transporte;
-	private MeteorologiaDto meteorologia;
-	private HormigonDto hormigon;
-	private HorarioDto horario;
-	private RecepcionDto recepcion;
-
-	private String firma;
-
-
+	// Información básica del albarán
+    private String numeroAlbaran;
+    private String centro;
+    private String codigoPlanta;
+    private String serie;
+    private Date fecha;
+  
+    // Información del hormigón
+    private String tipoHormigon;
+    private String referenciaCliente;
+    private String nombreComercial;
+  
+    // Cantidades
+    private Double volumenTotalFabricado;
+    private Double masaTotalFabricada;
+    private String unidadMasaTotalFabricada;
+  
+    // Cemento
+    private String descripcionCementoAlbaran;
+    private Double masaCementiciaReal;
+    private String unidadMasaCementiciaReal;
+    private String nombreProveedorCementoAlbaran;
+  
+    // Relación agua/cemento
+    private Double relacionAguaCementoReal;
+  
+    // Datos del camión
+    private String matriculaCamion;
+    private String matricularemolque;
+  
+    // Entorno
+    private String clima;
+    private String temperatura;
+    private String humedad;
+    private String velocidadViento;
+    private String direccionViento;
+  
+    // Fechas
+    private Date llegadaobra;
+    private Date iniciodescarga;
+    private Date salidaobra;
+    private Date llegadaplanta;
+  
+    // Observaciones
+    private String observaciones;
 }
