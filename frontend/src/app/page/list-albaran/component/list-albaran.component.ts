@@ -81,7 +81,8 @@ export class ListAlbaranComponent implements OnInit {
     this.albaranes = this.totalAlbaranes.slice(calcSize, currentCalcSize);
   }
 
-  expand(id: string){//method to load component when panel is expanded
+  expand(id: string | undefined){//method to load component when panel is expanded
+    if(!id) return;
     this.idDetail = id;
     this.loading = true;
 

@@ -35,13 +35,13 @@ export class AlbaranSimpleComponent  extends StepBaseComponent implements OnInit
   }
 
 
- navigateToSignAlbaran(albaran: Albaran) {
-  this.ngxService.start();
-  this.router.navigate(['/sign', albaran.numAlbaran], {
-    state: {
-      albaran: albaran
-    }
-  });
-}
+  navigateToSignAlbaran(albaran: Albaran) {
+    this.ngxService.start();
+    this.router.navigate(['/sign', albaran.numeroAlbaran], {
+      state: {
+        albaran: albaran
+      }
+    });
+  }
 
 }

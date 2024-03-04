@@ -1,34 +1,68 @@
-<form [formGroup]="formGroup">
+<div class="row" *ngFor="let linea of lineasAlbaran">
+
   <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #hormigonesContainer>
 
-      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
-        <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
-          <mat-label>Tipo de Hormigón/Mortero</mat-label>
-          <input matInput placeholder="" formControlName="hormigon.tipo" required>
-        </mat-form-field>
-      </mat-grid-tile>
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Tipo de Material</mat-label>
+        <input matInput placeholder="" [value]="linea.tipoMaterial"  required>
+      </mat-form-field>
+    </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
-        <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
-          <mat-label>Ficha Técnica de Referencia</mat-label>
-          <input matInput placeholder="" formControlName="hormigon.referencia" required>
-        </mat-form-field>
-      </mat-grid-tile>
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Descripción</mat-label>
+        <input matInput placeholder="" [value]="linea.descripcion" required>
+      </mat-form-field>
+    </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
-        <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
-          <mat-label>Ficha Técnica de Referencia</mat-label>
-          <input matInput placeholder="" formControlName="hormigon.relacion" required>
-        </mat-form-field>
-      </mat-grid-tile>
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Cantidad</mat-label>
+        <input matInput placeholder="" [value]="linea.cantidad" required>
+      </mat-form-field>
+    </mat-grid-tile>
 
-    </mat-grid-list>
-    <mat-divider></mat-divider>
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Sello</mat-label>
+        <input matInput placeholder="" [value]="linea.sello" required>
+      </mat-form-field>
+    </mat-grid-tile>
 
-    <app-step-hormigones-contenido [formGroup]="formGroup"></app-step-hormigones-contenido>
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Entidad certificadora</mat-label>
+        <input matInput placeholder="" [value]="linea.entidadCertificadora" required>
+      </mat-form-field>
+    </mat-grid-tile>
 
-    <div>
-      <button mat-button matStepperPrevious>Volver</button>
-      <button mat-button matStepperNext>Siguiente</button>
-    </div>
-</form>
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Logotipo</mat-label>
+        <input matInput placeholder="" [value]="linea.logotipo" required>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Cantidad solicitada pedido</mat-label>
+        <input matInput placeholder="" value="{{linea.cantidadSolicitadaPedido}} {{linea.unidadCantidadSolicitadaPedido}}" required>
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+      <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+        <mat-label>Cantidad servida pedido</mat-label>
+        <input matInput placeholder="" value="{{linea.cantidadServidaDia}} {{linea.unidadCantidadServidaDia}}" required>
+      </mat-form-field>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+    
+</div>
+<mat-divider></mat-divider>
+<div>
+  <button mat-button matStepperPrevious>Volver</button>
+  <button mat-button matStepperNext>Siguiente</button>
+</div>

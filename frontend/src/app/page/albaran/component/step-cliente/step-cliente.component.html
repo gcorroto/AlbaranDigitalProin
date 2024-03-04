@@ -4,30 +4,30 @@
       <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
           <mat-label>Nº de albarán</mat-label>
-          <input matInput placeholder="" formControlName="numAlbaran" required>
+          <input matInput placeholder="" formControlName="numeroAlbaran" required>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Fecha de entrega</mat-label>
-          <input matInput placeholder="-" formControlName="fechaEntrega" readonly>
+          <input matInput placeholder="-" formControlName="fechaAlbaran" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
-          <mat-label>Radial</mat-label>
-          <input matInput placeholder="-" formControlName="radial" readonly>
+          <mat-label>distanciaADestino</mat-label>
+          <input matInput placeholder="-" formControlName="distanciaADestino" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
+      <!-- <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>M3 entregados</mat-label>
           <input matInput placeholder="-" formControlName="m3" readonly>
         </mat-form-field>
-      </mat-grid-tile>
+      </mat-grid-tile> -->
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
@@ -39,41 +39,48 @@
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Planta</mat-label>
-          <input matInput placeholder="-" formControlName="planta" readonly>
+          <input matInput placeholder="-" formControlName="codigoPlanta" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
-          <mat-label>viaCarga</mat-label>
-          <input matInput placeholder="-" formControlName="viaCarga" readonly>
+          <mat-label>centro</mat-label>
+          <input matInput placeholder="-" formControlName="centro" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
           <mat-label>Cliente</mat-label>
-          <input matInput placeholder=" " formControlName="cliente.nombre" readonly>
+          <input matInput placeholder=" " formControlName="nombreCliente" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Nº Cliente</mat-label>
-          <input matInput placeholder=" " formControlName="cliente.id" readonly>
+          <input matInput placeholder=" " formControlName="cliente" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
+      <!-- <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>CIF</mat-label>
           <input matInput placeholder=" " formControlName="cliente.cif" readonly>
+        </mat-form-field>
+      </mat-grid-tile> -->
+
+      <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
+          <mat-label>Obra</mat-label>
+          <input matInput placeholder=" " formControlName="nombreObra" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
-          <mat-label>Obra</mat-label>
+          <mat-label>Codigo Obra</mat-label>
           <input matInput placeholder=" " formControlName="obra" readonly>
         </mat-form-field>
       </mat-grid-tile>
@@ -85,19 +92,19 @@
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
+      <!-- <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Población</mat-label>
           <input matInput placeholder=" " formControlName="cp" readonly>
         </mat-form-field>
-      </mat-grid-tile>
+      </mat-grid-tile> -->
 
-      <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
+      <!-- <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Municipio</mat-label>
           <input matInput placeholder=" " formControlName="municipio" readonly>
         </mat-form-field>
-      </mat-grid-tile>
+      </mat-grid-tile> -->
 
     </mat-grid-list>
     <mat-divider></mat-divider>

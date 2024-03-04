@@ -29,7 +29,7 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
   horarioFormGroup: FormGroup = new FormGroup({});
   recepcionFormGroup: FormGroup = new FormGroup({});
   firmaFormGroup: FormGroup = new FormGroup({});
-  albaran?: Albaran;
+  public albaran!: Albaran;
   // @Input() simple: boolean = true;
   widthSize: number = 0;
 
@@ -61,10 +61,8 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
       if (this.albaran) {
         this.logInitialData(this.albaran);
       }
-
       this.buildFormCliente();
       this.buildFormTransporte();
-      this.buildFormHormigon();
       this.buildFormMeteorologia();
       this.buildFormHorarios();
       this.buildFormRecepcion();
@@ -85,81 +83,73 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
 
   private logInitialData(data: Albaran) {
     const logCurrent:ILog  = {level: 'debug', message: `recibimos primera carga albaran [${JSON.stringify(data)}]`};
-          this.log.postSave('send',logCurrent , EntityApiEnum.Log)
-          .pipe(untilDestroyed(this))
-          .subscribe({
-            next: (logResp) => {
-              console.debug(logResp.message);
-            },
-            error: (err) => {
-              console.error(err);
-            }
-          });
+    this.log.postSave('send',logCurrent , EntityApiEnum.Log)
+    .pipe(untilDestroyed(this))
+    .subscribe({
+      next: (logResp) => {
+        console.debug(logResp.message);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
   private buildFormCliente() {
     this.clienteFormGroup = this._formBuilder.group({
-      numAlbaran: [{value: this.albaran?.numAlbaran || '', disabled: true}],
-      fechaEntrega: [{value: this.albaran?.fechaEntrega || '', disabled: true}],
-      radial: [{value: this.albaran?.radial || '', disabled: true}],
-      m3: [{value: this.albaran?.m3 || '', disabled: true}],
-      progresoDia: [{value: this.albaran?.progresoDia || '', disabled: true}],
-      planta: [{value: this.albaran?.planta || '', disabled: true}],
-      viaCarga: [{value: this.albaran?.viaCarga || '', disabled: true}],
-      'cliente.nombre': [{value: this.albaran?.cliente?.nombre || '', disabled: true}],
-      'cliente.id': [{value: this.albaran?.cliente?.id || '', disabled: true}],
-      'cliente.cif': [{value: this.albaran?.cliente?.cif || '', disabled: true}],
+      numeroAlbaran: [{value: this.albaran?.numeroAlbaran || '', disabled: true}],
+      fechaAlbaran: [{value: this.albaran?.fechaAlbaran || '', disabled: true}],
+      distanciaADestino: [{value: this.albaran?.distanciaADestino || '', disabled: true}],
+      //m3: [{value: this.albaran?.m3 || '', disabled: true}],
+      //progresoDia: [{value: this.albaran?.progresoDia || '', disabled: true}], //TODO: llevar a lineas
+      codigoPlanta: [{value: this.albaran?.codigoPlanta || '', disabled: true}],
+      centro: [{value: this.albaran?.centro || '', disabled: true}],
+      nombreCliente: [{value: this.albaran?.nombreCliente || '', disabled: true}],
+      cliente: [{value: this.albaran?.cliente || '', disabled: true}],
+      //'cliente.cif': [{value: this.albaran?.cliente?.cif || '', disabled: true}],
+      nombreObra: [{value: this.albaran?.nombreObra || '', disabled: true}],
       obra: [{value: this.albaran?.obra || '', disabled: true}],
-      direccion: [{value: this.albaran?.direccion || '', disabled: true}],
-      cp: [{value: this.albaran?.cp || '', disabled: true}],
-      municipio: [{value: this.albaran?.municipio || '', disabled: true}]
+      //direccion: [{value: this.albaran?.direccion || '', disabled: true}], // TODO: llevalo a la cabecera?
+      // cp: [{value: this.albaran?.cp || '', disabled: true}],
+      // municipio: [{value: this.albaran?.municipio || '', disabled: true}]
     });
   }
 
   private buildFormTransporte() {
     this.transporteFormGroup = this._formBuilder.group({
-      'transporte.empresa': [{value: this.albaran?.transporte?.empresa || '', disabled: true}],
-      'transporte.cif': [{value: this.albaran?.transporte?.cif || '', disabled: true}],
-      'transporte.camion.matricula': [{value: this.albaran?.transporte?.camion?.matricula || '', disabled: true}],
-      'transporte.remolque.matricula': [{value: this.albaran?.transporte?.remolque?.matricula || '', disabled: true}],
-      'transporte.cargadorContractual': [{value: this.albaran?.transporte?.cargadorContractual || '', disabled: true}]
-    });
-  }
-
-  private buildFormHormigon() {
-    this.hormigonFormGroup = this._formBuilder.group({
-      'hormigon.tipo': [{value: this.albaran?.hormigon?.tipo || '', disabled: true}],
-      'hormigon.referencia': [{value: this.albaran?.hormigon?.referencia || '', disabled: true}],
-      'hormigon.relacion': [{value: this.albaran?.hormigon?.relacion || '', disabled: true}],
-      'hormigon.contenido.cementos': [{value: this.albaran?.hormigon?.contenido?.cementos || '', disabled: true}],
-      'hormigon.contenido.aditivos': [{value: this.albaran?.hormigon?.contenido?.aditivos || '', disabled: true}],
-      'hormigon.contenido.adiciones': [{value: this.albaran?.hormigon?.contenido?.adiciones || '', disabled: true}],
-      // 'hormigon.adiciones.tipo': ['', Validators.required],
-      // 'hormigon.adiciones.cantidad': ['', Validators.required],
+      nombreOperadorTransporte: [{value: this.albaran?.nombreOperadorTransporte || '', disabled: true}],
+      cifOperadorTransporte: [{value: this.albaran?.cifOperadorTransporte || '', disabled: true}],
+      matriculaCamion: [{value: this.albaran?.matriculaCamion || '', disabled: true}],
+      matricularemolque: [{value: this.albaran?.matricularemolque || '', disabled: true}],
+      clienteEsCargadorContractual: [{value: this.albaran?.clienteEsCargadorContractual || '', disabled: true}], //TODO: convertir en SI / NO
+      cifTransportista: [{value: this.albaran?.cifTransportista || '', disabled: true}],
+      nombreTransportista: [{value: this.albaran?.nombreTransportista || '', disabled: true}],
     });
   }
 
   private buildFormMeteorologia() {
     this.meteorologiaFormGroup = this._formBuilder.group({
-      // 'meteorologia.temperatura': [{value: this.albaran.meteorologia.temperatura, disabled: true}],
-      // 'meteorologia.humedad': [{value: this.albaran.meteorologia.humedad, disabled: true}],
-      // 'meteorologia.velocidad': [{value: this.albaran.meteorologia.velocidad, disabled: true}],
-      'meteorologia.temperatura': [{value: '100', disabled: true}],
-      'meteorologia.humedad': [{value: '40', disabled: true}],
-      'meteorologia.velocidad': [{value: '60', disabled: true}],
+      direccionViento: [{value: this.albaran.direccionViento, disabled: true}],
+      humedad: [{value: this.albaran.humedad, disabled: true}],
+      intensidadPrecipitacion: [{value: this.albaran.intensidadPrecipitacion, disabled: true}],
+      presion: [{value: this.albaran.presion, disabled: true}],
+      prevision: [{value: this.albaran.prevision, disabled: true}],
+      razonesClima: [{value: this.albaran.razonesClima, disabled: true}],
+      temperatura: [{value: this.albaran.temperatura, disabled: true}],
+      velocidadViento: [{value: this.albaran.velocidadViento, disabled: true}]
+      // 'meteorologia.temperatura': [{value: '100', disabled: true}],
+      // 'meteorologia.humedad': [{value: '40', disabled: true}],
+      // 'meteorologia.velocidad': [{value: '60', disabled: true}],
     });
   }
 
   private buildFormHorarios() {
     this.horarioFormGroup = this._formBuilder.group({
-      'horario.cargaPlanta': [{value: '11:30', disabled: true}],
-      'horario.llegadaObra': ['', Validators.required],
-      'horario.inicioDescarga': ['', Validators.required],
-      'horario.finalDescarga': ['', Validators.required],
-      'horario.llegadaPlanta': ['', Validators.required],
-      'horario.limiteUso': [{value: '13:00', disabled: true}],
-      'horario.hormigonBombeado': ['', Validators.required],
-      'horario.aguaCliente': ['', Validators.required],
+      fechaAlbaran : [{value: this.albaran.fechaAlbaran, disabled: true}],
+      llegadaobra: [{value: this.albaran.llegadaobra}, Validators.required],
+      iniciodescarga: [{value: this.albaran.iniciodescarga}, Validators.required],
+      salidaobra: [{value: this.albaran.salidaobra}, Validators.required],
+      llegadaplanta: [{value: this.albaran.llegadaplanta}, Validators.required],
     });
   }
 

@@ -4,7 +4,7 @@
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Carga en Planta</mat-label>
-          <input matInput placeholder="-" formControlName="horario.cargaPlanta" readonly>
+          <input matInput placeholder="-" formControlName="fechaAlbaran" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
@@ -12,7 +12,7 @@
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Llegada a obra</mat-label>
           <!-- <input matInput placeholder="-" formControlName="horario.llegadaObra"> -->
-          <input matInput placeholder="-" formControlName="horario.llegadaObra" [ngxTimepicker]="appendedLlegadaObra" readonly>
+          <input matInput placeholder="-" formControlName="llegadaobra" [ngxTimepicker]="appendedLlegadaObra" readonly>
           <ngx-material-timepicker #appendedLlegadaObra [appendToInput]="true"></ngx-material-timepicker>
         </mat-form-field>
       </mat-grid-tile>
@@ -20,28 +20,20 @@
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Inicio Descarga</mat-label>
-          <input matInput placeholder="-" formControlName="horario.inicioDescarga" [ngxTimepicker]="appendedInicioDescarga" readonly>
+          <input matInput placeholder="-" formControlName="iniciodescarga" [ngxTimepicker]="appendedInicioDescarga" readonly>
           <ngx-material-timepicker #appendedInicioDescarga [appendToInput]="true"></ngx-material-timepicker>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
-          <mat-label>Final de Descarga</mat-label>
-          <input matInput placeholder="-" formControlName="horario.finalDescarga" [ngxTimepicker]="appendedFinalDescarga" readonly>
-          <ngx-material-timepicker #appendedFinalDescarga [appendToInput]="true"></ngx-material-timepicker>
-        </mat-form-field>
-      </mat-grid-tile>
-
-      <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
-        <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Llegada a Planta</mat-label>
-          <input matInput placeholder="-" formControlName="horario.llegadaPlanta" [ngxTimepicker]="appendedLlegadaPlanta" readonly>
+          <input matInput placeholder="-" formControlName="llegadaplanta" [ngxTimepicker]="appendedLlegadaPlanta" readonly>
           <ngx-material-timepicker #appendedLlegadaPlanta [appendToInput]="true"></ngx-material-timepicker>
         </mat-form-field>
       </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
+      <!-- <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Límite de Uso</mat-label>
           <input matInput placeholder="-" formControlName="horario.limiteUso" readonly>
@@ -49,10 +41,6 @@
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
-        <!-- <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
-          <mat-label>Hormigón ha sido bombeado</mat-label>
-          <input matInput placeholder="-" formControlName="horario.hormigonBombeado">
-        </mat-form-field> -->
         <mat-slide-toggle [style.width.px]="getWidth(1)" (window:resize)="beResponsive()" formControlName="horario.hormigonBombeado">Hormigón ha sido bombeado</mat-slide-toggle>
       </mat-grid-tile>
 
@@ -61,7 +49,7 @@
           <mat-label>Agua Añadida a obra a petición del cliente</mat-label>
           <input matInput placeholder="-" formControlName="horario.aguaCliente">
         </mat-form-field>
-      </mat-grid-tile>
+      </mat-grid-tile> -->
 
     </mat-grid-list>
     <mat-divider></mat-divider>

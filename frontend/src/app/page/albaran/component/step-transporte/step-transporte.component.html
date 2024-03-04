@@ -4,45 +4,51 @@
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
           <mat-label>Empresa</mat-label>
-          <input matInput placeholder="" formControlName="transporte.empresa" readonly>
+          <input matInput placeholder="" formControlName="nombreOperadorTransporte" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
-          <mat-label>cif</mat-label>
-          <input matInput placeholder="-" formControlName="transporte.cif" readonly>
+          <mat-label>CIF</mat-label>
+          <input matInput placeholder="-" formControlName="cifOperadorTransporte" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
           <mat-label>Matrícula Camión</mat-label>
-          <input matInput placeholder="-" formControlName="transporte.camion.matricula" readonly>
+          <input matInput placeholder="-" formControlName="matriculaCamion" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
           <mat-label>Matrícula Remolque</mat-label>
-          <input matInput placeholder="-" formControlName="transporte.remolque.matricula" readonly>
+          <input matInput placeholder="-" formControlName="matricularemolque" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
           <mat-label>Cargador Contractual</mat-label>
-          <input matInput placeholder="-" formControlName="transporte.cargadorContractual" readonly>
+          <input matInput placeholder="-" formControlName="clienteEsCargadorContractual" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
-          <mat-label>CIF</mat-label>
-          <input matInput placeholder="-" formControlName="transporte.cif" readonly>
+          <mat-label>Transportista</mat-label>
+          <input matInput placeholder="-" formControlName="nombreTransportista" readonly>
         </mat-form-field>
       </mat-grid-tile>
 
+      <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
+        <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
+          <mat-label>CIF Transportista</mat-label>
+          <input matInput placeholder="-" formControlName="cifTransportista" readonly>
+        </mat-form-field>
+      </mat-grid-tile>
 
     </mat-grid-list>
     <mat-divider></mat-divider>
