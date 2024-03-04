@@ -1,7 +1,6 @@
 package com.proin.albaran.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -26,15 +25,14 @@ public class AlbaranServiceImpl implements AlbaranService{
 	private final ModelMapper modelMapper;
 	
 	@Override
-	public Optional<AlbaranEntity> obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie) {
-		return albaranRepository.findById(new AlbaranEntityPK(numeroAlbaran, centro, codigoPlanta, serie));
+	public AlbaranDto obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie) {
+		return modelMapper.map(albaranRepository.findById(new AlbaranEntityPK(numeroAlbaran, centro, codigoPlanta, serie)),AlbaranDto.class);
 	}
 	
 	@Override
-	public List<AlbaranDto> obtener10Albaranes(){
+	public List<AlbaranDto> obtener10Albaranes() {
 		Page<AlbaranEntity> albaranesEntity = albaranRepository.findAll(PageRequest.of(0, 10));
-		return albaranesEntity	.stream().map(entity -> modelMapper.map(entity, AlbaranDto.class))
-								.collect(Collectors.toList());
+		return albaranesEntity	.stream().map(entity -> modelMapper.map(entity, AlbaranDto.class)).collect(Collectors.toList());
 	}
 
 }

@@ -8,7 +8,7 @@ import com.proin.albaran.entity.AlbaranEntity;
 
 public interface AlbaranService {
 
-	Optional<AlbaranEntity> obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie);
+	AlbaranDto obtenerAlbaran(String numeroAlbaran, String centro, String codigoPlanta, String serie);
 
 	List<AlbaranDto> obtener10Albaranes();
 	

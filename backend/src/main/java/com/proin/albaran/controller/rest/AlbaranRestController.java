@@ -2,7 +2,6 @@ package com.proin.albaran.controller.rest;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proin.albaran.dto.AlbaranDto;
-import com.proin.albaran.entity.AlbaranEntity;
 import com.proin.albaran.service.AlbaranService;
 
 import lombok.AllArgsConstructor;
@@ -47,34 +45,24 @@ public class AlbaranRestController {
         return response;
 	}
 
-    @GetMapping(value = "/{id}")
-	public ResponseEntity<?> getAlbaranById(@PathVariable(value = "id", required=true) String id, @RequestParam(value = "meta", required=false) boolean meta) {
-
-        ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        try {
-            log.info("recibimos consulta albaran con id " + id);
-			Optional<AlbaranEntity> albaran = albaranService.obtenerAlbaran("3367", "3", "3", "SF");
-			if (!albaran.isEmpty()){
-				//response = new ResponseEntity<AlbaranDto>(dto, HttpStatus.OK);
-			}
-        	//response = new ResponseEntity<>(dto, HttpStatus.OK);
-        } catch (Exception e) {
-            response = new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return response;
+    @GetMapping(value = "/{numeroalbaran}")
+	public ResponseEntity<?> getAlbaranByNumeroAlbaran(@PathVariable(value = "numeroalbaran", required=true) String numeroalbaran, 
+											@RequestParam(value = "centro", required=true) String centro,
+											@RequestParam(value = "codigoPlanta", required=true) String codigoPlanta,
+											@RequestParam(value = "serie", required=true) String serie) {
+		return new ResponseEntity<AlbaranDto>(albaranService.obtenerAlbaran(numeroalbaran, centro, codigoPlanta, serie), HttpStatus.OK);
 	}
 
 	// POST GUARDAMOS NUEVO ALBARAN
-    @PostMapping("/{id}")
-	public ResponseEntity<AlbaranDto> postAlbaranById(@PathVariable("id") Integer id, @RequestBody AlbaranDto dto) {
+    @PostMapping("/{numeroalbaran}")
+	public ResponseEntity<AlbaranDto> postAlbaranById(@PathVariable("numeroalbaran") Integer numeroalbaran, @RequestBody AlbaranDto dto) {
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(dto, HttpStatus.OK);
         return response;
 	}
 
 	// PUT ACTUALIZAMOS ALBARAN ?¿
-    @PutMapping("/{id}")
-	public ResponseEntity<AlbaranDto> putAlbaranById(@PathVariable("id") Integer id, @RequestBody AlbaranDto dto) {
+    @PutMapping("/{numeroalbaran}")
+	public ResponseEntity<AlbaranDto> putAlbaranById(@PathVariable("numeroalbaran") Integer numeroalbaran, @RequestBody AlbaranDto dto) {
         ResponseEntity<AlbaranDto> response = new ResponseEntity<>(dto, HttpStatus.OK);
         return response;
 	}
