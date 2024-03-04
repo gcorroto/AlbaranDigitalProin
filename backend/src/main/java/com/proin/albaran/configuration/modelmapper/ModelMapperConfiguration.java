@@ -21,6 +21,7 @@ public class ModelMapperConfiguration {
 			.addMappings(mapper -> mapper.map(src -> src.getId().getNumeroalbaran(), AlbaranDto::setNumeroAlbaran))
 			.addMappings(mapper -> mapper.map(src -> src.getId().getCentro(), AlbaranDto::setCentro))
 			.addMappings(mapper -> mapper.map(src -> src.getId().getCodigoPlanta(), AlbaranDto::setCodigoPlanta))
+			.addMappings(mapper -> mapper.map(src -> src.getId().getSerie(), AlbaranDto::setSerie))
 			.addMappings(mapper -> mapper.map(src -> src.getDescripcionHormigonEntity().getEspecificacion(), AlbaranDto::setEspecificacion))
 			.addMappings(mapper -> mapper.map(src -> src.getEvaluacionMeteorologicaEntity().getClima(), AlbaranDto::setClima))
 			.addMappings(mapper -> mapper.map(src -> src.getEvaluacionMeteorologicaEntity().getDireccionViento(), AlbaranDto::setDireccionViento))
