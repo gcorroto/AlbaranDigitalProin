@@ -90,7 +90,7 @@ export class ListAlbaranComponent implements OnInit {
     const params = new HttpParams()
     .set('centro', albaran.centro ? albaran.centro : '')
     .set('codigoPlanta', albaran.codigoPlanta ? albaran.codigoPlanta : '')
-    .set('serie', 'SF');
+    .set('serie', albaran.serie ? albaran.serie : '');
 
     const options = {
       params: params

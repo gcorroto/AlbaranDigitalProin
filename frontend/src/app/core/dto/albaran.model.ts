@@ -49,6 +49,7 @@ export class Albaran {
     // Pestaña cabecera
     especificacion?: string;
     volumenTotalFabricado?: number;
+    unidadVolumenTotalFabricado?: string;
     masaTotalFabricada?: number;
     unidadMasaTotalFabricada?: string;
     descripcionCementoAlbaran?: string;
@@ -56,6 +57,7 @@ export class Albaran {
     unidadMasaCementiciaReal?: string;
     nombreProveedorCementoAlbaran?: string;
     relacionAguaCementoReal?: number;
+    serie?:string;
 
     // Pestaña de cliente
     numeroAlbaran?: string;

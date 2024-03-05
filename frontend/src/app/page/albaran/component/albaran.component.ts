@@ -32,6 +32,7 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
   public albaran!: Albaran;
   // @Input() simple: boolean = true;
   widthSize: number = 0;
+  isLoadComplete: boolean = false;
 
   @ViewChildren('clienteContainer') public clienteContainer!: QueryList<ElementRef>;
 
@@ -46,6 +47,7 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
     ) {
       super();
       this.container = this.clienteContainer;
+      this.isLoadComplete = false;
 
     }
 
@@ -77,7 +79,7 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
       this.firmaFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
 
       this.ngxService.stop();
-
+      this.isLoadComplete = true;
     // });
   }
 

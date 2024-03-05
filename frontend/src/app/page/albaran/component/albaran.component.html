@@ -8,7 +8,7 @@
   {{!isReader ? 'Modo simple' : 'Modo completo'}}
 </button> -->
 
-<section class="container" *ngIf="albaran">
+<section class="container" *ngIf="albaran && isLoadComplete">
 
     <ng-container *ngIf="widthSize === 2 else verticalRef">
       <mat-horizontal-stepper [linear]="isLinear" #stepper>
@@ -25,7 +25,7 @@
 
         <mat-step [stepControl]="hormigonFormGroup">
           <ng-template matStepLabel>Hormigones</ng-template>
-          <app-step-hormigones [formGroup]="hormigonFormGroup"></app-step-hormigones>
+          <app-step-hormigones [albaran]="albaran"></app-step-hormigones>
         </mat-step>
 
         <mat-step [stepControl]="meteorologiaFormGroup">
@@ -67,7 +67,7 @@
 
           <mat-step [stepControl]="hormigonFormGroup">
             <ng-template matStepLabel>Hormigones</ng-template>
-            <app-step-hormigones [lineasAlbaran]="albaran.lineasAlbaran"></app-step-hormigones>
+            <app-step-hormigones [albaran]="albaran"></app-step-hormigones>
           </mat-step>
 
           <mat-step [stepControl]="meteorologiaFormGroup">

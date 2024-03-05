@@ -1,4 +1,14 @@
-<div class="row" *ngFor="let linea of lineasAlbaran">
+<!-- <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #hormigonesContainer>
+  <mat-grid-tile [colspan]="getColSpan(2)" [rowspan]="1">
+    <mat-form-field [style.width.px]="getWidth(2)" (window:resize)="beResponsive()">
+      <mat-label>Progreso día</mat-label>
+      <input matInput placeholder="-" formControlName="progresoDia" readonly>
+      <input matInput placeholder="-" [value]="alabran."  required>
+    </mat-form-field>
+  </mat-grid-tile>
+  
+</mat-grid-list> -->
+<div class="linea" *ngFor="let linea of albaran?.lineasAlbaran">
 
   <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #hormigonesContainer>
 
@@ -59,8 +69,9 @@
     </mat-grid-tile>
 
   </mat-grid-list>
-    
+  <mat-divider></mat-divider>
 </div>
+
 <mat-divider></mat-divider>
 <div>
   <button mat-button matStepperPrevious>Volver</button>
