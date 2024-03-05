@@ -27,6 +27,7 @@ public class AlbaranDto {
     private Double distanciaADestino;
     private String codigoPlanta;
     private String centro;
+    private String serie;
     private String nombreCliente;
     private String cliente;
     private String nombreObra;
