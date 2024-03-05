@@ -32,6 +32,8 @@ public class AlbaranEntity extends AlbaranAbstract{
 
     private Double volumenTotalFabricado;
 
+    private String unidadVolumenTotalFabricado;
+
     private Double masaTotalFabricada;
 
     private String unidadMasaTotalFabricada;

@@ -12,6 +12,7 @@ public class AlbaranDto {
   
     private String especificacion;
     private Double volumenTotalFabricado;
+    private String unidadVolumenTotalFabricado;
     private Double masaTotalFabricada;
     private String unidadMasaTotalFabricada;
     private String descripcionCementoAlbaran;
