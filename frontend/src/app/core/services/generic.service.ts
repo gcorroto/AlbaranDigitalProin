@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Formats } from '@const/Enums';
-import { Async, EntityApi } from '@const/types';
-import { ResultSearch } from '@dto/result.search.model';
+import { EntityApi } from '@const/types';
 import { Observable } from 'rxjs';
+import { HttpClientOptions } from './impl/http.service';
 
 /***
  * Servicio Singleton HTTP
@@ -19,14 +19,14 @@ export abstract class GenericService<T,I> {
    * @param {I}
    * @return {Async<T>}
    * **/
-  abstract getById(id: I,ent: EntityApi, format?: Formats): Observable<T>;
+  abstract getById(id: I,ent: EntityApi, format?: Formats, options?: HttpClientOptions): Observable<T>;
 
   /**
    * @template GET all
    * @param
    * @return {Async<T>}
    * **/
-  abstract getAll(ent: EntityApi, format?: Formats): Observable<T[]>;
+  abstract getAll(ent: EntityApi, format?: Formats, options?: HttpClientOptions): Observable<T[]>;
 
 
   /**
@@ -34,20 +34,20 @@ export abstract class GenericService<T,I> {
    * @param
    * @return {Async<T>}
    * **/
-  abstract postSave(id: I, t: T, ent: EntityApi, format?: Formats): Observable<T>;
+  abstract postSave(id: I, t: T, ent: EntityApi, format?: Formats, options?: HttpClientOptions): Observable<T>;
 
   /**
    * @template {T} PUT
    * @param
    * @return {Async<T>}
    * **/
-  abstract putUpdate(id: I, t: T, ent: EntityApi, format?: Formats): Observable<T>;
+  abstract putUpdate(id: I, t: T, ent: EntityApi, format?: Formats, options?: HttpClientOptions): Observable<T>;
 
   /**
    * @template {T} PATCH
    * @param
    * @return {Async<T>}
    * **/
-  abstract patchUpdate(p: Partial<T>, ent: EntityApi, format?: Formats): Observable<T>;
+  abstract patchUpdate(p: Partial<T>, ent: EntityApi, format?: Formats, options?: HttpClientOptions): Observable<T>;
 
 }

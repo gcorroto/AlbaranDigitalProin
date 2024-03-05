@@ -13,6 +13,8 @@ import { ILog, Log } from '@app/core/dto/log.model';
 import { GenericCacheService } from '@app/core/services/cache/generic.service';
 import { AlbaranSimpleComponent } from '@albaran/component/albaran-simple/albaran-simple.component';
 import { Subject } from 'rxjs';
+import { HttpClientOptions } from '@app/core/services/impl/http.service';
+import { HttpParams } from '@angular/common/http';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -81,12 +83,20 @@ export class ListAlbaranComponent implements OnInit {
     this.albaranes = this.totalAlbaranes.slice(calcSize, currentCalcSize);
   }
 
-  expand(id: string | undefined){//method to load component when panel is expanded
-    if(!id) return;
-    this.idDetail = id;
+  expand(albaran: Albaran){//method to load component when panel is expanded
+    this.idDetail = albaran.numeroAlbaran?albaran.numeroAlbaran:'';
     this.loading = true;
 
-    this.serviceAlbaran.getById(id, EntityApiEnum.Albaran)
+    const params = new HttpParams()
+    .set('centro', albaran.centro ? albaran.centro : '')
+    .set('codigoPlanta', albaran.codigoPlanta ? albaran.codigoPlanta : '')
+    .set('serie', 'SF');
+
+    const options = {
+      params: params
+    };
+
+    this.serviceAlbaran.getById(this.idDetail, EntityApiEnum.Albaran, undefined, options)
       .pipe(untilDestroyed(this))
       .subscribe({
         next:(data: Albaran) => {
