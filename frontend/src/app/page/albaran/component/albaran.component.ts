@@ -12,6 +12,8 @@ import { EntityApiEnum } from '@app/core/const/Enums';
 import { ILog, Log } from '@app/core/dto/log.model';
 import { GenericCacheService } from '@app/core/services/cache/generic.service';
 import { StepBaseComponent } from './step-base/step-base.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogData, GenericDialogComponent } from '@app/generic-dialog/generic-dialog.component';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -43,7 +45,9 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
     protected readonly router: Router,
     protected readonly breakpointObserver: BreakpointObserver,
     private readonly log: GenericCacheService<Log,string>,
-    public viewContainerRef: ViewContainerRef
+    public viewContainerRef: ViewContainerRef,
+    private readonly serviceAlbaran: GenericCacheService<Albaran,string>,
+    public dialog: MatDialog
     ) {
       super();
       this.container = this.clienteContainer;
@@ -67,7 +71,6 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
       this.buildFormTransporte();
       this.buildFormMeteorologia();
       this.buildFormHorarios();
-      this.buildFormRecepcion();
       this.buildFormFirma();
 
       this.clienteFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
@@ -155,78 +158,99 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
     });
   }
 
-  private buildFormRecepcion() {
-    this.recepcionFormGroup = this._formBuilder.group({
-      'recepcion.laboratorio': ['', Validators.required],
-      'recepcion.elementoHormigon': ['', Validators.required],
-      'recepcion.horaToma': ['', Validators.required],
-      'recepcion.cono': ['', Validators.required],
-      'recepcion.numProbetas': ['', Validators.required],
-    });
-  }
-
   private buildFormFirma() {
     this.firmaFormGroup = this._formBuilder.group({
       'firma': [ undefined, Validators.required],
     });
   }
 
+  public onFormSubmit(firmaB64: string) {
+    let numeroAlbaran = this.albaran.numeroAlbaran?this.albaran.numeroAlbaran:'';
+
+    this.albaran.llegadaobra = this.horarioFormGroup.get("llegadaobra")?.value();
+    this.albaran.iniciodescarga = this.horarioFormGroup.get("iniciodescarga")?.value();
+    this.albaran.salidaobra = this.horarioFormGroup.get("salidaobra")?.value();
+    this.albaran.llegadaplanta = this.horarioFormGroup.get("llegadaplanta")?.value();
+    this.albaran.firmaCliente = firmaB64;
+
+    this.serviceAlbaran.postSave(numeroAlbaran, this.albaran, EntityApiEnum.Albaran)
+      .pipe(untilDestroyed(this))
+      .subscribe({
+        next:(data: Albaran) => {
+          const dialogRef = this.dialog.open(GenericDialogComponent, {
+            data: {
+              message: 'El albarán se ha guardado correctamente',
+              btnText: 'Aceptar'
+            } as DialogData,
+          });
+      
+          dialogRef.afterClosed().subscribe(result => {
+            this.router.navigate(['/list']);
+          });
+        },
+        error:(err: any) => {
+          console.error(err);
+          this.dialog.open(GenericDialogComponent, {
+            data: {
+              message: `Se ha producido un error al guardar el albarán. ${err}`,
+              btnText: 'Aceptar'
+            } as DialogData,
+          });
+        }
+      }
+    );
+
+  }
 
   private responsiveStepper(): void {
     this.widthSize = 0;
 
 
+    this.breakpointObserver
+    .observe(['(min-width: 1280px)'])
+    .pipe(untilDestroyed(this))
+    .subscribe((state: BreakpointState) => {
+      if (state.matches) {
+        this.widthSize = 2;
+        this.callLogger('log', 'Viewport width is 1280px or greater!');
+      } else {
+        this.callLogger('log', 'Viewport width is less than 1280px!');
         this.breakpointObserver
-        .observe(['(min-width: 1280px)'])
+        .observe(['(min-width: 600px)'])
         .pipe(untilDestroyed(this))
         .subscribe((state: BreakpointState) => {
           if (state.matches) {
-            this.widthSize = 2;
-            this.callLogger('log', 'Viewport width is 1280px or greater!');
+            this.widthSize = 1;
+              this.callLogger('log', 'Viewport width is 600px or greater!');
           } else {
-            this.callLogger('log', 'Viewport width is less than 1280px!');
-            this.breakpointObserver
-            .observe(['(min-width: 600px)'])
-            .pipe(untilDestroyed(this))
-            .subscribe((state: BreakpointState) => {
-              if (state.matches) {
-                this.widthSize = 1;
-                  this.callLogger('log', 'Viewport width is 600px or greater!');
-              } else {
-                this.widthSize = 0;
-                this.callLogger('log', 'Viewport width is less than 600px!');
-              }
-            });
+            this.widthSize = 0;
+            this.callLogger('log', 'Viewport width is less than 600px!');
           }
-        })
+        });
+      }
+    })
   }
 
   private callLogger(level: string, message: string) {
-    const logCurrent:ILog  = {level, message};
-    this.log.postSave('send',logCurrent , EntityApiEnum.Log)
-    .subscribe((logResp) => {
-        switch (level) {
-          case 'log':
-            console.log(logResp.message);
-            break;
-          case 'debug':
-            console.debug(logResp.message);
-              break;
-          case 'info':
-            console.info(logResp.message);
-              break;
-          case 'warn':
-            console.warn(logResp.message);
-              break;
-          case 'error':
-            console.error(logResp.message);
-              break;
-          default:
-              break;
-        }
-    },(err)=>{
-      console.error(err);
-    });
+    switch (level) {
+      case 'log':
+        console.log(message);
+        break;
+      case 'debug':
+        console.debug(message);
+          break;
+      case 'info':
+        console.info(message);
+          break;
+      case 'warn':
+        console.warn(message);
+          break;
+      case 'error':
+        console.error(message);
+          break;
+      default:
+          break;
+    }
   }
 
   private areAllFormsValid(): boolean {
@@ -256,9 +280,9 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
     // if (!this.horarioFormGroup.valid) {
     //   return 'horarioFormGroup';
     // }
-    if (!this.recepcionFormGroup.valid) {
-      return 'recepcionFormGroup';
-    }
+    // if (!this.recepcionFormGroup.valid) {
+    //   return 'recepcionFormGroup';
+    // }
     if (!this.firmaFormGroup.valid) {
       return 'firmaFormGroup';
     }

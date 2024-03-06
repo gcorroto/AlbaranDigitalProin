@@ -10,61 +10,61 @@
 </mat-grid-list> -->
 <div class="linea" *ngFor="let linea of albaran?.lineasAlbaran">
 
-  <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #hormigonesContainer>
+  <mat-grid-list [cols]="numColumns" rowHeight="75px" gutterSize="5px" #hormigonesContainer>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Tipo de Material</mat-label>
-        <input matInput placeholder="" [value]="linea.tipoMaterial"  required>
+        <input matInput placeholder="" [value]="linea.tipoMaterial"  readonly>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Descripción</mat-label>
-        <input matInput placeholder="" [value]="linea.descripcion" required>
+        <input matInput placeholder="" [value]="linea.descripcion" readonly>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Cantidad</mat-label>
-        <input matInput placeholder="" [value]="linea.cantidad" required>
+        <input matInput placeholder="" [value]="linea.cantidad" readonly>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Sello</mat-label>
-        <input matInput placeholder="" [value]="linea.sello" required>
+        <input matInput placeholder="" [value]="linea.sello" readonly>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Entidad certificadora</mat-label>
-        <input matInput placeholder="" [value]="linea.entidadCertificadora" required>
+        <input matInput placeholder="" [value]="linea.entidadCertificadora" readonly>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Logotipo</mat-label>
-        <input matInput placeholder="" [value]="linea.logotipo" required>
+        <input matInput placeholder="" [value]="linea.logotipo" readonly>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Cantidad solicitada pedido</mat-label>
-        <input matInput placeholder="" value="{{linea.cantidadSolicitadaPedido}} {{linea.unidadCantidadSolicitadaPedido}}" required>
+        <input matInput placeholder="" value="{{linea.cantidadSolicitadaPedido}} {{linea.unidadCantidadSolicitadaPedido}}" readonly>
       </mat-form-field>
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">
         <mat-label>Cantidad servida pedido</mat-label>
-        <input matInput placeholder="" value="{{linea.cantidadServidaDia}} {{linea.unidadCantidadServidaDia}}" required>
+        <input matInput placeholder="" value="{{linea.cantidadServidaDia}} {{linea.unidadCantidadServidaDia}}" readonly>
       </mat-form-field>
     </mat-grid-tile>
 

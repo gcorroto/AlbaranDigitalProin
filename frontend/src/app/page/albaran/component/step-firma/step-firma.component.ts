@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignatureFieldComponent } from '@app/core/components/signature-field/signature-field.component';
 
@@ -10,6 +11,7 @@ import { SignatureFieldComponent } from '@app/core/components/signature-field/si
 export class StepFirmaComponent implements  AfterViewInit {
 
   @Input() formGroup!: FormGroup;
+  @Output() formSubmit = new EventEmitter<string>();
 
   public title = 'Firma';
 
@@ -48,6 +50,7 @@ export class StepFirmaComponent implements  AfterViewInit {
     const firmaUrl = this.sigs.first.signaturePad.toDataURL();
     console.log('CAPTURED firmaContainer:' + firmaUrl);
     this.formGroup.controls['firma'].setValue(firmaUrl);
+    this.formSubmit.emit(firmaUrl);
   }
 
   public clear() {

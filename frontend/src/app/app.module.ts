@@ -14,6 +14,8 @@ import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreadcrumbService } from './core/services/breadcrumb.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { GenericDialogComponent } from './generic-dialog/generic-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 const defaultLoaderConfig: NgxUiLoaderConfig = {
@@ -36,7 +38,8 @@ const defaultLoaderConfig: NgxUiLoaderConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GenericDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ const defaultLoaderConfig: NgxUiLoaderConfig = {
     MatTreeModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   bootstrap: [AppComponent],
   exports: [HttpClientModule, NgxUiLoaderModule],

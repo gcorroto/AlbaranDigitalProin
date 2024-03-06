@@ -101,6 +101,9 @@ export class Albaran {
     iniciodescarga?: Date;
     salidaobra?: Date;
     llegadaplanta?: Date;
+
+    // Pestaña firma
+    firmaCliente!: String;
 }
 
 export class AlbaranOLD implements IAlbaran {

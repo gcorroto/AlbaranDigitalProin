@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup">
-  <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #clienteContainer>
+  <mat-grid-list [cols]="numColumns" rowHeight="75px" gutterSize="5px" #clienteContainer>
 
       <mat-grid-tile [colspan]="getColSpan(1)" [rowspan]="1">
         <mat-form-field [style.width.px]="getWidth(1)" (window:resize)="beResponsive()">

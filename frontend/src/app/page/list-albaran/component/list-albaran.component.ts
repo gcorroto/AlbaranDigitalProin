@@ -120,7 +120,7 @@ export class ListAlbaranComponent implements OnInit {
       }
       );
 
- }
+  }
 
   ngOnInit(): void {
 

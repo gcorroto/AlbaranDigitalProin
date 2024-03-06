@@ -10,7 +10,7 @@
           <mat-grid-list
             (window:resize)="beResponsive()"
             [cols]="numColumns"
-            rowHeight="30px"
+            rowHeight="37px"
             gutterSize="5px"
             #albaranSimpleContainer>
 
@@ -20,37 +20,31 @@
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
-            <h2></h2>
             <p><strong>Volumen: </strong></p>
             <p class="detalle-simple-value">{{albaran.volumenTotalFabricado}} {{albaran.unidadVolumenTotalFabricado}}</p>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
-            <h2></h2>
             <p><strong>Masa: </strong></p>
             <p class="detalle-simple-value">{{albaran.masaTotalFabricada}} {{albaran.unidadMasaTotalFabricada}}</p>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
-            <h2></h2>
             <p><strong>Cemento: </strong></p>
             <p class="detalle-simple-value">{{albaran.descripcionCementoAlbaran}}</p>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
-            <h2></h2>
             <p><strong>Cantidad cemento: </strong></p>
             <p class="detalle-simple-value">{{albaran.masaCementiciaReal}} {{albaran.unidadMasaCementiciaReal}}</p>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
-            <h2></h2>
             <p><strong>Relación agua-cemento: </strong></p>
             <p class="detalle-simple-value">{{albaran.relacionAguaCementoReal}}</p>
           </mat-grid-tile>
 
           <!-- <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
-            <h2></h2>
             <p><strong>Cantidad de Agua: </strong></p>
             <p class="detalle-simple-value">{{albaran.horario?.aguaCliente}} L</p>
           </mat-grid-tile> -->

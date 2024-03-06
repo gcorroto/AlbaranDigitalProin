@@ -23,7 +23,7 @@
           <app-step-transporte [formGroup]="transporteFormGroup"></app-step-transporte>
         </mat-step>
 
-        <mat-step [stepControl]="hormigonFormGroup">
+        <mat-step [stepControl]="hormigonFormGroup" [completed]="false" >
           <ng-template matStepLabel>Hormigones</ng-template>
           <app-step-hormigones [albaran]="albaran"></app-step-hormigones>
         </mat-step>
@@ -33,19 +33,19 @@
           <app-step-meteorologia [formGroup]="meteorologiaFormGroup"></app-step-meteorologia>
         </mat-step>
 
-        <mat-step [stepControl]="horarioFormGroup">
+        <mat-step [stepControl]="horarioFormGroup" [completed]="false">
           <ng-template matStepLabel>Horario</ng-template>
           <app-step-horarios [formGroup]="horarioFormGroup"></app-step-horarios>
         </mat-step>
 
-        <mat-step [stepControl]="recepcionFormGroup">
+        <!-- <mat-step [stepControl]="recepcionFormGroup">
           <ng-template matStepLabel>Recepción</ng-template>
           <app-step-recepcion [formGroup]="recepcionFormGroup"></app-step-recepcion>
-        </mat-step>
+        </mat-step> -->
 
         <mat-step [stepControl]="firmaFormGroup">
           <ng-template matStepLabel>Firma</ng-template>
-          <app-step-firma [formGroup]="firmaFormGroup"></app-step-firma>
+          <app-step-firma [formGroup]="firmaFormGroup" (formSubmit)="onFormSubmit"></app-step-firma>
         </mat-step>
 
       </mat-horizontal-stepper>
@@ -65,7 +65,7 @@
             <app-step-transporte [formGroup]="transporteFormGroup"></app-step-transporte>
           </mat-step>
 
-          <mat-step [stepControl]="hormigonFormGroup">
+          <mat-step [stepControl]="hormigonFormGroup" [completed]="false" >
             <ng-template matStepLabel>Hormigones</ng-template>
             <app-step-hormigones [albaran]="albaran"></app-step-hormigones>
           </mat-step>
@@ -75,15 +75,15 @@
             <app-step-meteorologia [formGroup]="meteorologiaFormGroup"></app-step-meteorologia>
           </mat-step>
 
-          <mat-step [stepControl]="horarioFormGroup">
+          <mat-step [stepControl]="horarioFormGroup" [completed]="false" >
             <ng-template matStepLabel>Horario</ng-template>
             <app-step-horarios [formGroup]="horarioFormGroup"></app-step-horarios>
           </mat-step>
 
-          <mat-step [stepControl]="recepcionFormGroup">
+          <!-- <mat-step [stepControl]="recepcionFormGroup">
             <ng-template matStepLabel>Recepción</ng-template>
             <app-step-recepcion [formGroup]="recepcionFormGroup"></app-step-recepcion>
-          </mat-step>
+          </mat-step> -->
 
           <mat-step [stepControl]="firmaFormGroup">
             <ng-template matStepLabel>Firma</ng-template>

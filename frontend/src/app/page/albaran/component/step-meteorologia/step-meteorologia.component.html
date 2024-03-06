@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup">
-  <mat-grid-list [cols]="numColumns" rowHeight="100px" gutterSize="5px" #meteorologiaContainer>
+  <mat-grid-list [cols]="numColumns" rowHeight="75px" gutterSize="5px" #meteorologiaContainer>
     <mat-grid-tile [colspan]="getColSpan(3)" [rowspan]="1">
       <mat-form-field [style.width.px]="getWidth(3)" (window:resize)="beResponsive()">
         <mat-label>Direccion Viento</mat-label>
