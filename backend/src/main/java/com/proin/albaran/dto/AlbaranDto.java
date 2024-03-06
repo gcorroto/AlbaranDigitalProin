@@ -65,6 +65,6 @@ public class AlbaranDto {
     private Date salidaobra;
     private Date llegadaplanta;
 
-
     ////////// Pestaña firma
+    private String firmaCliente;
 }
