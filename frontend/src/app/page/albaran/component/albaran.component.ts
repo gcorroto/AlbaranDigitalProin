@@ -17,13 +17,11 @@ import { DialogData, GenericDialogComponent } from '@app/generic-dialog/generic-
 
 @UntilDestroy({ checkProperties: true })
 @Component({
-  // selector: 'app-albaran',
   templateUrl: './albaran.component.html',
   styleUrls: ['./albaran.component.scss']
 })
 export class AlbaranComponent extends StepBaseComponent  implements OnInit {
   isLinear = true;
-  // @Output() isReader = true;
   clienteFormGroup: FormGroup = new FormGroup({});
   transporteFormGroup: FormGroup = new FormGroup({});
   hormigonFormGroup: FormGroup = new FormGroup({});
@@ -32,7 +30,6 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
   recepcionFormGroup: FormGroup = new FormGroup({});
   firmaFormGroup: FormGroup = new FormGroup({});
   public albaran!: Albaran;
-  // @Input() simple: boolean = true;
   widthSize: number = 0;
   isLoadComplete: boolean = false;
 
@@ -44,7 +41,6 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
     private readonly route: ActivatedRoute,
     protected readonly router: Router,
     protected readonly breakpointObserver: BreakpointObserver,
-    private readonly log: GenericCacheService<Log,string>,
     public viewContainerRef: ViewContainerRef,
     private readonly serviceAlbaran: GenericCacheService<Albaran,string>,
     public dialog: MatDialog
@@ -59,45 +55,25 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
 
     console.debug(`detalle albaran firma`);
     this.responsiveStepper();
+    const state = window.history.state;
+    this.albaran = state?.['albaran'];
 
-    // this.route.paramMap.subscribe(params => {
-      const state = window.history.state;
-      this.albaran = state?.['albaran'];
+    this.buildFormCliente();
+    this.buildFormTransporte();
+    this.buildFormMeteorologia();
+    this.buildFormHorarios();
+    this.buildFormFirma();
 
-      if (this.albaran) {
-        this.logInitialData(this.albaran);
-      }
-      this.buildFormCliente();
-      this.buildFormTransporte();
-      this.buildFormMeteorologia();
-      this.buildFormHorarios();
-      this.buildFormFirma();
+    this.clienteFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+    this.transporteFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+    this.hormigonFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+    this.meteorologiaFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+    this.horarioFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+    this.recepcionFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
+    this.firmaFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
 
-      this.clienteFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
-      this.transporteFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
-      this.hormigonFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
-      this.meteorologiaFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
-      this.horarioFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
-      this.recepcionFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
-      this.firmaFormGroup.valueChanges.subscribe(() => this.executeIfAllFormsAreValid());
-
-      this.ngxService.stop();
-      this.isLoadComplete = true;
-    // });
-  }
-
-  private logInitialData(data: Albaran) {
-    const logCurrent:ILog  = {level: 'debug', message: `recibimos primera carga albaran [${JSON.stringify(data)}]`};
-    this.log.postSave('send',logCurrent , EntityApiEnum.Log)
-    .pipe(untilDestroyed(this))
-    .subscribe({
-      next: (logResp) => {
-        console.debug(logResp.message);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    this.ngxService.stop();
+    this.isLoadComplete = true;
   }
 
   private buildFormCliente() {
@@ -105,18 +81,12 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
       numeroAlbaran: [{value: this.albaran?.numeroAlbaran || '', disabled: true}],
       fechaAlbaran: [{value: this.albaran?.fechaAlbaran || '', disabled: true}],
       distanciaADestino: [{value: this.albaran?.distanciaADestino || '', disabled: true}],
-      //m3: [{value: this.albaran?.m3 || '', disabled: true}],
-      //progresoDia: [{value: this.albaran?.progresoDia || '', disabled: true}], //TODO: llevar a lineas
       codigoPlanta: [{value: this.albaran?.codigoPlanta || '', disabled: true}],
       centro: [{value: this.albaran?.centro || '', disabled: true}],
       nombreCliente: [{value: this.albaran?.nombreCliente || '', disabled: true}],
       cliente: [{value: this.albaran?.cliente || '', disabled: true}],
-      //'cliente.cif': [{value: this.albaran?.cliente?.cif || '', disabled: true}],
       nombreObra: [{value: this.albaran?.nombreObra || '', disabled: true}],
       obra: [{value: this.albaran?.obra || '', disabled: true}],
-      //direccion: [{value: this.albaran?.direccion || '', disabled: true}], // TODO: llevalo a la cabecera?
-      // cp: [{value: this.albaran?.cp || '', disabled: true}],
-      // municipio: [{value: this.albaran?.municipio || '', disabled: true}]
     });
   }
 
@@ -142,9 +112,6 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
       razonesClima: [{value: this.albaran.razonesClima, disabled: true}],
       temperatura: [{value: this.albaran.temperatura, disabled: true}],
       velocidadViento: [{value: this.albaran.velocidadViento, disabled: true}]
-      // 'meteorologia.temperatura': [{value: '100', disabled: true}],
-      // 'meteorologia.humedad': [{value: '40', disabled: true}],
-      // 'meteorologia.velocidad': [{value: '60', disabled: true}],
     });
   }
 
@@ -212,77 +179,27 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
     .subscribe((state: BreakpointState) => {
       if (state.matches) {
         this.widthSize = 2;
-        this.callLogger('log', 'Viewport width is 1280px or greater!');
       } else {
-        this.callLogger('log', 'Viewport width is less than 1280px!');
         this.breakpointObserver
         .observe(['(min-width: 600px)'])
         .pipe(untilDestroyed(this))
         .subscribe((state: BreakpointState) => {
           if (state.matches) {
             this.widthSize = 1;
-              this.callLogger('log', 'Viewport width is 600px or greater!');
           } else {
             this.widthSize = 0;
-            this.callLogger('log', 'Viewport width is less than 600px!');
           }
         });
       }
     })
   }
 
-  private callLogger(level: string, message: string) {
-    switch (level) {
-      case 'log':
-        console.log(message);
-        break;
-      case 'debug':
-        console.debug(message);
-          break;
-      case 'info':
-        console.info(message);
-          break;
-      case 'warn':
-        console.warn(message);
-          break;
-      case 'error':
-        console.error(message);
-          break;
-      default:
-          break;
-    }
-  }
-
   private areAllFormsValid(): boolean {
-
-      // this.clienteFormGroup.valid &&
-      // this.transporteFormGroup.valid &&
-      // this.hormigonFormGroup.valid &&
-      // this.meteorologiaFormGroup.valid &&
-      // this.horarioFormGroup.valid &&
       return  this.recepcionFormGroup.valid &&
       this.firmaFormGroup.valid;
   }
 
   private getInvalidForm(): string | null {
-    // if (!this.clienteFormGroup.valid) {
-    //   return 'clienteFormGroup';
-    // }
-    // if (!this.transporteFormGroup.valid) {
-    //   return 'transporteFormGroup';
-    // }
-    // if (!this.hormigonFormGroup.valid) {
-    //   return 'hormigonFormGroup';
-    // }
-    // if (!this.meteorologiaFormGroup.valid) {
-    //   return 'meteorologiaFormGroup';
-    // }
-    // if (!this.horarioFormGroup.valid) {
-    //   return 'horarioFormGroup';
-    // }
-    // if (!this.recepcionFormGroup.valid) {
-    //   return 'recepcionFormGroup';
-    // }
     if (!this.firmaFormGroup.valid) {
       return 'firmaFormGroup';
     }

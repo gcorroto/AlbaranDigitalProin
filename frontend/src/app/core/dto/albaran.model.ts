@@ -36,6 +36,7 @@ export interface LineaAlbaranDto {
     unidadCantidadSolicitadaPedido?: string;
     cantidadServidaDia?: number;
     unidadCantidadServidaDia?: string;
+    unidadCantidadServidaDia2?: string;
 }
 
 export class Albaran {

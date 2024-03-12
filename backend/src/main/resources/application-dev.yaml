@@ -1,37 +1,8 @@
-env:
-  security:
-    csrf:
-      enabled: true
-      cookie:
-        domain: localhost
-        name: 'CSRF-TOKEN'
-        httOnly: false
-        secure: false
-    paths:
-      exclude: "/static/**,/signup,/login,/,/favicon.ico,/**.css,/**.scss,/**.html,/**.js"
-      include: "/api/**"
-  spring:
-    security:
-      user:
-        name: hugo
-        password: oguh
-        
-    jpa:
-      database-platform: org.hibernate.dialect.SQLServerDialect
-      hibernate:
-        naming:
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-        ddl-auto: none
-      generate-ddl: false
-      
-    # datasource:
-    #   url: jdbc:sqlserver://85.215.195.246:1433;databaseName=conex.modelos.transporte;encrypt=false;trustServerCertificate=false
-    #   username: albarandigital
-    #   password: BXZgi6QipRzfSg725QVQwT
-    #   driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver            
----
+spring:
+  datasource:
+    url: jdbc:sqlserver://85.215.195.246:1433;databaseName=conex.modelos.transporte;encrypt=false;trustServerCertificate=false
+    username: albarandigital
+    password: albarandigital
 logging:
   level:
-    com.proin.albaran: INFO
-    org.hibernate: INFO
+    org.springframework.security: DEBUG    

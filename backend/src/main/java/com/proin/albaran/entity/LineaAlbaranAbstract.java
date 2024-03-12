@@ -1,14 +1,7 @@
 package com.proin.albaran.entity;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
-import com.proin.conex.modelos.transporte.TMedida;
 
 import lombok.Getter;
 import lombok.Setter;

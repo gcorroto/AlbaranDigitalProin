@@ -3,12 +3,7 @@ server:
     context-path: /albaran-digital
 spring:
   main:
-    allow-bean-definition-overriding: true 
-  security:
-    user:
-      name: hugo
-      password: oguh
-      
+    allow-bean-definition-overriding: true       
   jpa:
     database-platform: org.hibernate.dialect.SQLServerDialect
     hibernate:
@@ -19,9 +14,6 @@ spring:
     generate-ddl: false
     
   datasource:
-    url: jdbc:sqlserver://85.215.195.246:1433;databaseName=conex.modelos.transporte;encrypt=false;trustServerCertificate=false
-    username: albarandigital
-    password: albarandigital
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   profiles:

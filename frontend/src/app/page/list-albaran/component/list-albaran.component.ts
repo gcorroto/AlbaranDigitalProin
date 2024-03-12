@@ -68,7 +68,6 @@ export class ListAlbaranComponent implements OnInit {
     private readonly route: ActivatedRoute,
     protected readonly router: Router,
     protected readonly breakpointObserver: BreakpointObserver,
-    private readonly log: GenericCacheService<Log,string>,
     private readonly serviceAlbaran: GenericCacheService<Albaran,string>
     ) {
     }
@@ -123,46 +122,11 @@ export class ListAlbaranComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     const resolvedData: Albaran[] = this.route.snapshot.data['albaranesUsuario'];
     this.totalAlbaranes = resolvedData;
     this.albaranesLength = resolvedData.length;
-    this.logInitialData(resolvedData);
     this.pageChange(undefined);
     this.ngxService.stop();
-  }
-
-  private logInitialData(data: Albaran[]) {
-      this.callLogger('debug',`recibimos primera carga albaranes [${JSON.stringify(data)}]`);
-  }
-
-  private callLogger(level: string, message: string) {
-    const logCurrent:ILog  = {level, message};
-    this.log.postSave('send',logCurrent , EntityApiEnum.Log)
-    .pipe(untilDestroyed(this))
-    .subscribe((logResp) => {
-        switch (level) {
-          case 'log':
-            console.log(logResp.message);
-            break;
-          case 'debug':
-            console.debug(logResp.message);
-              break;
-          case 'info':
-            console.info(logResp.message);
-              break;
-          case 'warn':
-            console.warn(logResp.message);
-              break;
-          case 'error':
-            console.error(logResp.message);
-              break;
-          default:
-              break;
-        }
-    },(err)=>{
-      console.error(err);
-    });
   }
 
 }

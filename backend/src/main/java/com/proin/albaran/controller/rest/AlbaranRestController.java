@@ -31,7 +31,7 @@ public class AlbaranRestController {
 	@GetMapping()
 	public ResponseEntity<?> getAlbaranesUsuario(@RequestParam(value = "meta", required=false) boolean meta) {
 
-		List<AlbaranDto> albaranes = albaranService.obtener10Albaranes();
+		List<AlbaranDto> albaranes = albaranService.obtenerAlbaranesByUsuarioAutenticado();
         ResponseEntity<?> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         try {            
 			if (!albaranes.isEmpty()) {

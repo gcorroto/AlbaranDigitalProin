@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.ReactiveSecurityContextHolder;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.proin.albaran.dto.AlbaranDto;
@@ -30,9 +31,14 @@ public class AlbaranServiceImpl implements AlbaranService{
 	}
 	
 	@Override
-	public List<AlbaranDto> obtener10Albaranes() {
-		Page<AlbaranEntity> albaranesEntity = albaranRepository.findAll(PageRequest.of(0, 10));
-		return albaranesEntity	.stream().map(entity -> modelMapper.map(entity, AlbaranDto.class)).collect(Collectors.toList());
+	public List<AlbaranDto> obtenerAlbaranesByUsuarioAutenticado() {
+		ReactiveSecurityContextHolder.getContext().map(SecurityContext::getAuthentication)
+		.subscribe(authentication -> {
+			// Aquí puedes usar el objeto de autenticación
+			System.out.println(authentication.getName());
+		});
+		List<AlbaranEntity> albaranesEntity = albaranRepository.findAllByCifTransportistaOrderByFechaAlbaranDesc("B14952631");
+		return albaranesEntity.stream().map(entity -> modelMapper.map(entity, AlbaranDto.class)).collect(Collectors.toList());
 	}
 
 }
