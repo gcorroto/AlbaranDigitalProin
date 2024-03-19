@@ -12,6 +12,7 @@ export class StepFirmaComponent implements  AfterViewInit {
 
   @Input() formGroup!: FormGroup;
   @Output() formSubmit = new EventEmitter<string>();
+  @Output() sign = new EventEmitter<string>();
 
   public title = 'Firma';
 
@@ -43,12 +44,19 @@ export class StepFirmaComponent implements  AfterViewInit {
     this.sigs.first.signaturePad.set('penColor', 'rgb(0,0,0)');
   }
 
+  public onSign() {
+    const firmaUrl = this.sigs.first.signaturePad.toDataURL();
+    console.log('onSign CAPTURED firmaContainer:' + firmaUrl);
+    this.formGroup.controls['firma'].setValue(firmaUrl);
+    this.sign.emit(firmaUrl);
+  }
+
   public submit() {
 
     // console.log(this.sigs.first.signaturePad);
 
     const firmaUrl = this.sigs.first.signaturePad.toDataURL();
-    console.log('CAPTURED firmaContainer:' + firmaUrl);
+    console.log('submit CAPTURED firmaContainer:' + firmaUrl);
     this.formGroup.controls['firma'].setValue(firmaUrl);
     this.formSubmit.emit(firmaUrl);
   }

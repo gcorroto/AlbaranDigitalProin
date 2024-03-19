@@ -131,6 +131,21 @@ export class AlbaranComponent extends StepBaseComponent  implements OnInit {
     });
   }
 
+  public onSign(firmaB64: string) {
+    console.log("onSign firmaB64", firmaB64);
+    let numeroAlbaran = this.albaran.numeroAlbaran?this.albaran.numeroAlbaran:'';
+    this.albaran.firmaCliente = firmaB64;
+
+    this.serviceAlbaran.putUpdate(numeroAlbaran, this.albaran, EntityApiEnum.Albaran).subscribe((res)=>{
+      this.dialog.open(GenericDialogComponent, {
+        data: {
+          message: 'El albarán se ha firmado correctamente',
+          btnText: 'Aceptar'
+        } as DialogData,
+      });
+    })
+  }
+
   public onFormSubmit(firmaB64: string) {
     let numeroAlbaran = this.albaran.numeroAlbaran?this.albaran.numeroAlbaran:'';
 

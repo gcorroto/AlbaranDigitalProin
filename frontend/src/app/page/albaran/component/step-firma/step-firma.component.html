@@ -20,7 +20,7 @@
       <button mat-button matStepperPrevious>Volver</button>
       <button mat-button (click)="clear()" [disabled]="!formGroup.controls['firma'].valid">Limpiar Firma</button>
 
-      <button mat-button matStepperNext [disabled]="formGroup.valid">Firmar</button>
+      <a mat-button matStepperNext [disabled]="formGroup.valid" (click)="onSign()">Firmar</a>
       <button mat-button [disabled]="!formGroup.valid">Enviar</button>
 
     </div>

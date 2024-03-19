@@ -45,7 +45,7 @@
 
         <mat-step [stepControl]="firmaFormGroup">
           <ng-template matStepLabel>Firma</ng-template>
-          <app-step-firma [formGroup]="firmaFormGroup" (formSubmit)="onFormSubmit"></app-step-firma>
+          <app-step-firma [formGroup]="firmaFormGroup" (sign)="onSign($event)" (formSubmit)="onFormSubmit($event)"></app-step-firma>
         </mat-step>
 
       </mat-horizontal-stepper>

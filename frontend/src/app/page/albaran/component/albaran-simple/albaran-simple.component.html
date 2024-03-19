@@ -21,12 +21,12 @@
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
             <p><strong>Volumen: </strong></p>
-            <p class="detalle-simple-value">{{albaran.volumenTotalFabricado}} {{albaran.unidadVolumenTotalFabricado}}</p>
+            <p class="detalle-simple-value">{{albaran.volumenTotalFabricado | number : '1.2-2'}} {{albaran.unidadVolumenTotalFabricado}}</p>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
             <p><strong>Masa: </strong></p>
-            <p class="detalle-simple-value">{{albaran.masaTotalFabricada}} {{albaran.unidadMasaTotalFabricada}}</p>
+            <p class="detalle-simple-value">{{albaran.masaTotalFabricada | number : '1.2-2'}} {{albaran.unidadMasaTotalFabricada}}</p>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
@@ -36,12 +36,12 @@
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
             <p><strong>Cantidad cemento: </strong></p>
-            <p class="detalle-simple-value">{{albaran.masaCementiciaReal}} {{albaran.unidadMasaCementiciaReal}}</p>
+            <p class="detalle-simple-value">{{albaran.masaCementiciaReal | number : '1.2-2'}} {{albaran.unidadMasaCementiciaReal}}</p>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
             <p><strong>Relación agua-cemento: </strong></p>
-            <p class="detalle-simple-value">{{albaran.relacionAguaCementoReal}}</p>
+            <p class="detalle-simple-value">{{albaran.relacionAguaCementoReal | number : '1.2-2'}}</p>
           </mat-grid-tile>
 
           <!-- <mat-grid-tile [colspan]="getColSpan(2)"  [rowspan]="1" fxLayout="row" fxLayoutAlign="start center">
