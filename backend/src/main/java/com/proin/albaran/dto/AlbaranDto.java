@@ -1,7 +1,10 @@
 package com.proin.albaran.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -11,21 +14,22 @@ public class AlbaranDto {
 	////////// Pestaña cabecera
   
     private String especificacion;
-    private Double volumenTotalFabricado;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT, pattern = "%.2f")
+    private BigDecimal volumenTotalFabricado;
     private String unidadVolumenTotalFabricado;
-    private Double masaTotalFabricada;
+    private BigDecimal masaTotalFabricada;
     private String unidadMasaTotalFabricada;
     private String descripcionCementoAlbaran;
-    private Double masaCementiciaReal;
+    private BigDecimal masaCementiciaReal;
     private String unidadMasaCementiciaReal;
     private String nombreProveedorCementoAlbaran;
-    private Double relacionAguaCementoReal;
+    private BigDecimal relacionAguaCementoReal;
 
     ////////// Pestaña de cliente
     private String numeroAlbaran;
     private Date fecha;
     private String unidadDistanciaADestino;
-    private Double distanciaADestino;
+    private BigDecimal distanciaADestino;
     private String codigoPlanta;
     private String centro;
     private String serie;
