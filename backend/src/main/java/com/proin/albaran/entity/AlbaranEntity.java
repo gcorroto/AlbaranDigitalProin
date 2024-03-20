@@ -1,6 +1,7 @@
 package com.proin.albaran.entity;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -30,23 +31,23 @@ public class AlbaranEntity extends AlbaranAbstract{
     })
     private DescripcionHormigonEntity descripcionHormigonEntity;
 
-    private Double volumenTotalFabricado;
+    private BigDecimal volumenTotalFabricado;
 
     private String unidadVolumenTotalFabricado;
 
-    private Double masaTotalFabricada;
+    private BigDecimal masaTotalFabricada;
 
     private String unidadMasaTotalFabricada;
 
     private String descripcionCementoAlbaran;
 
-    private Double masaCementiciaReal;
+    private BigDecimal masaCementiciaReal;
 
     private String unidadMasaCementiciaReal;
 
     private String nombreProveedorCementoAlbaran;
 
-    private Double relacionAguaCementoReal;
+    private BigDecimal relacionAguaCementoReal;
 
     private String matricularemolque;
 
