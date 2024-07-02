@@ -21,3 +21,14 @@ spring:
       pro-csrf: pro, csrf
       dev-csrf: dev, csrf
       dev-insecure: dev, insecure
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    defaultModelsExpandDepth: -1
+    docExpansion: none
+    operationsSorter: method
+    tagsSorter: alpha
+    path: /swagger-ui.html      
