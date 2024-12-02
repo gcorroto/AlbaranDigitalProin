@@ -36,6 +36,3 @@ out/
 ### VS Code ###
 .vscode/
 .history/
-*/.angular/
-frontend/frontend.rar
-backend/libs/frontend-0.0.1-beta1.jar
